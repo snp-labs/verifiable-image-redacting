@@ -63,7 +63,9 @@ std::ostream& operator<<(std::ostream &out, const snark_for_completment_proving_
     out << pk.H_query;
     out << pk.L_query;
     out << pk.constraint_system;
-consume_OUTPUT_NEWLINE
+
+    return out;
+}
 template<typename ppT>
 std::istream& operator>>(std::istream &in, snark_for_completment_proving_key<ppT> &pk)
 {
@@ -391,7 +393,8 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
 
 template <typename ppT>
 snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_completment_proving_key<ppT> &pk,
-                                                      const snark_for_completment_primary_input<ppT> &primary_input,
+                                                      //const snark_for_completment_primary_input<ppT> &primary_input,
+                                                      const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                       const snark_for_completment_auxiliary_input<ppT> &auxiliary_input)
 {
     libff::enter_block("Call to snark_for_completment_prover");
@@ -523,7 +526,8 @@ snark_for_completment_processed_verification_key<ppT> snark_for_completment_veri
 
 template <typename ppT>
 bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_processed_verification_key<ppT> &pvk,
-                                               const snark_for_completment_primary_input<ppT> &primary_input,
+                                               //const snark_for_completment_primary_input<ppT> &primary_input,
+                                               const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                const snark_for_completment_proof<ppT> &proof)
 {
     libff::enter_block("Call to snark_for_completment_online_verifier_weak_IC");
@@ -578,7 +582,8 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
 
 template<typename ppT>
 bool snark_for_completment_verifier_weak_IC(const snark_for_completment_verification_key<ppT> &vk,
-                                        const snark_for_completment_primary_input<ppT> &primary_input,
+                                        //const snark_for_completment_primary_input<ppT> &primary_input,
+                                        const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                         const snark_for_completment_proof<ppT> &proof)
 {
     libff::enter_block("Call to snark_for_completment_verifier_weak_IC");
@@ -590,7 +595,8 @@ bool snark_for_completment_verifier_weak_IC(const snark_for_completment_verifica
 
 template<typename ppT>
 bool snark_for_completment_online_verifier_strong_IC(const snark_for_completment_processed_verification_key<ppT> &pvk,
-                                                 const snark_for_completment_primary_input<ppT> &primary_input,
+                                                 //const snark_for_completment_primary_input<ppT> &primary_input,
+                                                 const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                  const snark_for_completment_proof<ppT> &proof)
 {
     bool result = true;
@@ -612,7 +618,8 @@ bool snark_for_completment_online_verifier_strong_IC(const snark_for_completment
 
 template<typename ppT>
 bool snark_for_completment_verifier_strong_IC(const snark_for_completment_verification_key<ppT> &vk,
-                                          const snark_for_completment_primary_input<ppT> &primary_input,
+                                          //const snark_for_completment_primary_input<ppT> &primary_input,
+                                          const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                           const snark_for_completment_proof<ppT> &proof)
 {
     libff::enter_block("Call to snark_for_completment_verifier_strong_IC");
@@ -624,7 +631,8 @@ bool snark_for_completment_verifier_strong_IC(const snark_for_completment_verifi
 
 template<typename ppT>
 bool snark_for_completment_affine_verifier_weak_IC(const snark_for_completment_verification_key<ppT> &vk,
-                                               const snark_for_completment_primary_input<ppT> &primary_input,
+                                               //const snark_for_completment_primary_input<ppT> &primary_input,
+                                               const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                const snark_for_completment_proof<ppT> &proof)
 {
     libff::enter_block("Call to snark_for_completment_affine_verifier_weak_IC");

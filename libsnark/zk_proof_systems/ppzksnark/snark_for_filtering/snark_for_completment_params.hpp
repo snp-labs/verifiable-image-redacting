@@ -20,13 +20,15 @@ namespace libsnark {
 
 /**
  * Below are various template aliases (used for convenience).
+ * 
+ * primary = statement 필요 없음
  */
 
 template<typename ppT>
 using snark_for_completment_constraint_system = r1cs_constraint_system<libff::Fr<ppT> >;//linear_combination<FieldT> a, b, c;
 
-template<typename ppT>
-using snark_for_completment_primary_input = r1cs_primary_input<libff::Fr<ppT> >;//std::vector<FieldT>
+// template<typename ppT>
+// using snark_for_completment_primary_input = r1cs_primary_input<libff::Fr<ppT> >;//std::vector<FieldT>
 
 template<typename ppT>
 using snark_for_completment_auxiliary_input = r1cs_auxiliary_input<libff::Fr<ppT> >;//std::vector<FieldT>

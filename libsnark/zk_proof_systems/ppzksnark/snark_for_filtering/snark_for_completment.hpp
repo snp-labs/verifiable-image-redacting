@@ -337,10 +337,12 @@ public:
         return G1_size() * libff::G1<ppT>::size_in_bits() + G2_size() * libff::G2<ppT>::size_in_bits();
     }
 
-    void print_size() const
+   void print_size() const
     {
-        libff::print_indent(); printf("* G1 elements in proof: %zu\n", thi * primary: statement 없음 
- * 대신 C_x, _C_x가 들어감
+        libff::print_indent(); printf("* G1 elements in proof: %zu\n", this->G1_size());
+        libff::print_indent(); printf("* G2 elements in proof: %zu\n", this->G2_size());
+        libff::print_indent(); printf("* Proof size in bits: %zu\n", this->size_in_bits());
+    }
 
     bool is_well_formed() const
     {
