@@ -39,5 +39,5 @@ int main()
     default_r1cs_gg_ppzksnark_pp::init_public_params();
     libff::start_profiling();
 
-    test_r1cs_gg_ppzksnark<default_r1cs_gg_ppzksnark_pp>(1000, 100);
+    test_r1cs_gg_ppzksnark<default_r1cs_gg_ppzksnark_pp>(1000, 0);
 }

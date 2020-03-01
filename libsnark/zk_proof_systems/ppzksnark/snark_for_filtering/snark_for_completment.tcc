@@ -34,6 +34,10 @@ See snark_for_completment.hpp .
 namespace libsnark {
 
 // == operator 정의
+/**
+ * A proving key for the R1CS GG-ppzkSNARK.
+ * L_query 필요 없음
+ */
 template<typename ppT>
 bool snark_for_completment_proving_key<ppT>::operator==(const snark_for_completment_proving_key<ppT> &other) const
 {
@@ -45,7 +49,7 @@ bool snark_for_completment_proving_key<ppT>::operator==(const snark_for_completm
             this->A_query == other.A_query &&
             this->B_query == other.B_query &&
             this->H_query == other.H_query &&
-            this->L_query == other.L_query &&
+            //this->L_query == other.L_query &&
             this->constraint_system == other.constraint_system);
 }
 
@@ -61,7 +65,7 @@ std::ostream& operator<<(std::ostream &out, const snark_for_completment_proving_
     out << pk.A_query;
     out << pk.B_query;
     out << pk.H_query;
-    out << pk.L_query;
+    //out << pk.L_query;
     out << pk.constraint_system;
 
     return out;
@@ -82,28 +86,33 @@ std::istream& operator>>(std::istream &in, snark_for_completment_proving_key<ppT
     in >> pk.A_query;
     in >> pk.B_query;
     in >> pk.H_query;
-    in >> pk.L_query;
+    //in >> pk.L_query;
     in >> pk.constraint_system;
 
     return in;
 }
 
+/*
+ * A verification key for the R1CS GG-ppzkSNARK.
+ * L_query 필요 없음
+ * gamma 관련 필요 없음
+ */
 template<typename ppT>
 bool snark_for_completment_verification_key<ppT>::operator==(const snark_for_completment_verification_key<ppT> &other) const
 {
     return (this->alpha_g1_beta_g2 == other.alpha_g1_beta_g2 &&
-            this->gamma_g2 == other.gamma_g2 &&
-            this->delta_g2 == other.delta_g2 &&
-            this->gamma_ABC_g1 == other.gamma_ABC_g1);
+            //this->gamma_g2 == other.gamma_g2 &&
+            this->delta_g2 == other.delta_g2 /*&&
+            this->gamma_ABC_g1 == other.gamma_ABC_g1*/);
 }
 
 template<typename ppT>
 std::ostream& operator<<(std::ostream &out, const snark_for_completment_verification_key<ppT> &vk)
 {
     out << vk.alpha_g1_beta_g2 << OUTPUT_NEWLINE;
-    out << vk.gamma_g2 << OUTPUT_NEWLINE;
+    //out << vk.gamma_g2 << OUTPUT_NEWLINE;
     out << vk.delta_g2 << OUTPUT_NEWLINE;
-    out << vk.gamma_ABC_g1 << OUTPUT_NEWLINE;
+    //out << vk.gamma_ABC_g1 << OUTPUT_NEWLINE;
 
     return out;
 }
@@ -113,12 +122,12 @@ std::istream& operator>>(std::istream &in, snark_for_completment_verification_ke
 {
     in >> vk.alpha_g1_beta_g2;
     libff::consume_OUTPUT_NEWLINE(in);
-    in >> vk.gamma_g2;
-    libff::consume_OUTPUT_NEWLINE(in);
+    //in >> vk.gamma_g2;
+    //libff::consume_OUTPUT_NEWLINE(in);
     in >> vk.delta_g2;
     libff::consume_OUTPUT_NEWLINE(in);
-    in >> vk.gamma_ABC_g1;
-    libff::consume_OUTPUT_NEWLINE(in);
+    //in >> vk.gamma_ABC_g1;
+    //libff::consume_OUTPUT_NEWLINE(in);
 
     return in;
 }
@@ -127,18 +136,18 @@ template<typename ppT>
 bool snark_for_completment_processed_verification_key<ppT>::operator==(const snark_for_completment_processed_verification_key<ppT> &other) const
 {
     return (this->vk_alpha_g1_beta_g2 == other.vk_alpha_g1_beta_g2 &&
-            this->vk_gamma_g2_precomp == other.vk_gamma_g2_precomp &&
-            this->vk_delta_g2_precomp == other.vk_delta_g2_precomp &&
-            this->gamma_ABC_g1 == other.gamma_ABC_g1);
+            //this->vk_gamma_g2_precomp == other.vk_gamma_g2_precomp &&
+            this->vk_delta_g2_precomp == other.vk_delta_g2_precomp /*&&
+            this->gamma_ABC_g1 == other.gamma_ABC_g1*/);
 }
 
 template<typename ppT>
 std::ostream& operator<<(std::ostream &out, const snark_for_completment_processed_verification_key<ppT> &pvk)
 {
     out << pvk.vk_alpha_g1_beta_g2 << OUTPUT_NEWLINE;
-    out << pvk.vk_gamma_g2_precomp << OUTPUT_NEWLINE;
+    //out << pvk.vk_gamma_g2_precomp << OUTPUT_NEWLINE;
     out << pvk.vk_delta_g2_precomp << OUTPUT_NEWLINE;
-    out << pvk.gamma_ABC_g1 << OUTPUT_NEWLINE;
+    //out << pvk.gamma_ABC_g1 << OUTPUT_NEWLINE;
 
     return out;
 }
@@ -148,12 +157,12 @@ std::istream& operator>>(std::istream &in, snark_for_completment_processed_verif
 {
     in >> pvk.vk_alpha_g1_beta_g2;
     libff::consume_OUTPUT_NEWLINE(in);
-    in >> pvk.vk_gamma_g2_precomp;
-    libff::consume_OUTPUT_NEWLINE(in);
+    //in >> pvk.vk_gamma_g2_precomp;
+    //libff::consume_OUTPUT_NEWLINE(in);
     in >> pvk.vk_delta_g2_precomp;
     libff::consume_OUTPUT_NEWLINE(in);
-    in >> pvk.gamma_ABC_g1;
-    libff::consume_OUTPUT_NEWLINE(in);
+    //in >> pvk.gamma_ABC_g1;
+    //libff::consume_OUTPUT_NEWLINE(in);
 
     return in;
 }
@@ -210,6 +219,12 @@ std::istream& operator>>(std::istream &in, snark_for_completment_proof<ppT> &pro
 //     return result;
 // }
 //setup(R)
+
+/**
+ * A key pair for the R1CS GG-ppzkSNARK, which consists of a proving key and a verification key.
+ * gamma 필요 없음
+ * SNARK for filtering scheme에서 f_i == Lt
+ */
 template <typename ppT>
 snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_for_completment_constraint_system<ppT> &r1cs)
 {
@@ -223,9 +238,9 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
     const libff::Fr<ppT> t = libff::Fr<ppT>::random_element();
     const libff::Fr<ppT> alpha = libff::Fr<ppT>::random_element();
     const libff::Fr<ppT> beta = libff::Fr<ppT>::random_element();
-    const libff::Fr<ppT> gamma = libff::Fr<ppT>::random_element();
+    //const libff::Fr<ppT> gamma = libff::Fr<ppT>::random_element();
     const libff::Fr<ppT> delta = libff::Fr<ppT>::random_element();
-    const libff::Fr<ppT> gamma_inverse = gamma.inverse();
+    //const libff::Fr<ppT> gamma_inverse = gamma.inverse();
     const libff::Fr<ppT> delta_inverse = delta.inverse();
 
     /* A quadratic arithmetic program evaluated at t. */
@@ -260,17 +275,17 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
     libff::Fr_vector<ppT> Ct = std::move(qap.Ct);
     libff::Fr_vector<ppT> Ht = std::move(qap.Ht);
 
-    /* The gamma inverse product component: (beta*A_i(t) + alpha*B_i(t) + C_i(t)) * gamma^{-1}. */
-    libff::enter_block("Compute gamma_ABC for R1CS verification key");
-    libff::Fr_vector<ppT> gamma_ABC;
-    gamma_ABC.reserve(qap.num_inputs()); // IO 갯수
+    // /* The gamma inverse product component: (beta*A_i(t) + alpha*B_i(t) + C_i(t)) * gamma^{-1}. */
+    // libff::enter_block("Compute gamma_ABC for R1CS verification key");
+    // libff::Fr_vector<ppT> gamma_ABC;
+    // gamma_ABC.reserve(qap.num_inputs()); // IO 갯수
 
-    const libff::Fr<ppT> gamma_ABC_0 = (beta * At[0] + alpha * Bt[0] + Ct[0]) * gamma_inverse;
-    for (size_t i = 1; i < qap.num_inputs() + 1; ++i)
-    {
-        gamma_ABC.emplace_back((beta * At[i] + alpha * Bt[i] + Ct[i]) * gamma_inverse);
-    }
-    libff::leave_block("Compute gamma_ABC for R1CS verification key");
+    // const libff::Fr<ppT> gamma_ABC_0 = (beta * At[0] + alpha * Bt[0] + Ct[0]) * gamma_inverse;
+    // for (size_t i = 1; i < qap.num_inputs() + 1; ++i)
+    // {
+    //     gamma_ABC.emplace_back((beta * At[i] + alpha * Bt[i] + Ct[i]) * gamma_inverse);
+    // }
+    // libff::leave_block("Compute gamma_ABC for R1CS verification key");
 
     /* The delta inverse product component: (beta*A_i(t) + alpha*B_i(t) + C_i(t)) * delta^{-1}. */
     libff::enter_block("Compute L query for R1CS proving key");
@@ -338,7 +353,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
     // kc_batch_exp will convert its output to special form internally
     libff::leave_block("Compute the B-query", false);
 
-    libff::enter_block("Compute the H-query", false);   //gro16 t(x)
+    libff::enter_block("Compute the H-query", false);
     libff::G1_vector<ppT> H_query = batch_exp_with_coeff(g1_scalar_size, g1_window_size, g1_table, qap.Zt * delta_inverse, Ht);
 #ifdef USE_MIXED_ADDITION
     libff::batch_to_special<libff::G1<ppT> >(H_query);
@@ -357,22 +372,22 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
 
     libff::enter_block("Generate R1CS verification key");
     libff::GT<ppT> alpha_g1_beta_g2 = ppT::reduced_pairing(alpha_g1, beta_g2);
-    libff::G2<ppT> gamma_g2 = gamma * G2_gen;
+    // libff::G2<ppT> gamma_g2 = gamma * G2_gen;
 
-    libff::enter_block("Encode gamma_ABC for R1CS verification key");
-    libff::G1<ppT> gamma_ABC_g1_0 = gamma_ABC_0 * g1_generator;
-    libff::G1_vector<ppT> gamma_ABC_g1_values = batch_exp(g1_scalar_size, g1_window_size, g1_table, gamma_ABC);
-    libff::leave_block("Encode gamma_ABC for R1CS verification key");
+    // libff::enter_block("Encode gamma_ABC for R1CS verification key");
+    // libff::G1<ppT> gamma_ABC_g1_0 = gamma_ABC_0 * g1_generator;
+    // libff::G1_vector<ppT> gamma_ABC_g1_values = batch_exp(g1_scalar_size, g1_window_size, g1_table, gamma_ABC);
+    // libff::leave_block("Encode gamma_ABC for R1CS verification key");
     libff::leave_block("Generate R1CS verification key");
 
     libff::leave_block("Call to snark_for_completment_generator");
 
-    accumulation_vector<libff::G1<ppT> > gamma_ABC_g1(std::move(gamma_ABC_g1_0), std::move(gamma_ABC_g1_values));
+    // accumulation_vector<libff::G1<ppT> > gamma_ABC_g1(std::move(gamma_ABC_g1_0), std::move(gamma_ABC_g1_values));
 
     snark_for_completment_verification_key<ppT> vk = snark_for_completment_verification_key<ppT>(alpha_g1_beta_g2,
-                                                                                         gamma_g2,
-                                                                                         delta_g2,
-                                                                                         gamma_ABC_g1);
+                                                                                        //  gamma_g2,
+                                                                                         delta_g2/*,
+                                                                                         gamma_ABC_g1*/);
 
     snark_for_completment_proving_key<ppT> pk = snark_for_completment_proving_key<ppT>(std::move(alpha_g1),
                                                                                std::move(beta_g1),
@@ -382,7 +397,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
                                                                                std::move(A_query),
                                                                                std::move(B_query),
                                                                                std::move(H_query),
-                                                                               std::move(L_query),
+                                                                               //std::move(L_query),
                                                                                std::move(r1cs_copy));
 
     pk.print_size();
@@ -390,11 +405,13 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
 
     return snark_for_completment_keypair<ppT>(std::move(pk), std::move(vk));
 }
-
+/**
+* primary_input이 필요없지만 r1cs_to_qap_witness_map 형식에 맞춰주기 위해 일단 살려둠
+* 
+*/
 template <typename ppT>
 snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_completment_proving_key<ppT> &pk,
-                                                      //const snark_for_completment_primary_input<ppT> &primary_input,
-                                                      const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
+                                                      const snark_for_completment_primary_input<ppT> &primary_input,
                                                       const snark_for_completment_auxiliary_input<ppT> &auxiliary_input)
 {
     libff::enter_block("Call to snark_for_completment_prover");
@@ -427,7 +444,7 @@ snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_co
     assert(pk.A_query.size() == qap_wit.num_variables()+1);
     assert(pk.B_query.domain_size() == qap_wit.num_variables()+1);
     assert(pk.H_query.size() == qap_wit.degree() - 1);
-    assert(pk.L_query.size() == qap_wit.num_variables() - qap_wit.num_inputs());
+    //assert(pk.L_query.size() == qap_wit.num_variables() - qap_wit.num_inputs());
 #endif
 
 #ifdef MULTICORE
@@ -477,16 +494,16 @@ snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_co
         chunks);
     libff::leave_block("Compute evaluation to H-query", false);
 
-    libff::enter_block("Compute evaluation to L-query", false);
-    libff::G1<ppT> evaluation_Lt = libff::multi_exp_with_mixed_addition<libff::G1<ppT>,
-                                                                        libff::Fr<ppT>,
-                                                                        libff::multi_exp_method_BDLO12>(
-        pk.L_query.begin(),
-        pk.L_query.end(),
-        const_padded_assignment.begin() + qap_wit.num_inputs() + 1,
-        const_padded_assignment.begin() + qap_wit.num_variables() + 1,
-        chunks);
-    libff::leave_block("Compute evaluation to L-query", false);
+    // libff::enter_block("Compute evaluation to L-query", false);
+    // libff::G1<ppT> evaluation_Lt = libff::multi_exp_with_mixed_addition<libff::G1<ppT>,
+    //                                                                     libff::Fr<ppT>,
+    //                                                                     libff::multi_exp_method_BDLO12>(
+    //     pk.L_query.begin(),
+    //     pk.L_query.end(),
+    //     const_padded_assignment.begin() + qap_wit.num_inputs() + 1,
+    //     const_padded_assignment.begin() + qap_wit.num_variables() + 1,
+    //     chunks);
+    // libff::leave_block("Compute evaluation to L-query", false);
 
     /* A = alpha + sum_i(a_i*A_i(t)) + r*delta */
     libff::G1<ppT> g1_A = pk.alpha_g1 + evaluation_At + r * pk.delta_g1;
@@ -495,8 +512,10 @@ snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_co
     libff::G1<ppT> g1_B = pk.beta_g1 + evaluation_Bt.h + s * pk.delta_g1;
     libff::G2<ppT> g2_B = pk.beta_g2 + evaluation_Bt.g + s * pk.delta_g2;
 
-    /* C = sum_i(a_i*((beta*A_i(t) + alpha*B_i(t) + C_i(t)) + H(t)*Z(t))/delta) + A*s + r*b - r*s*delta */
-    libff::G1<ppT> g1_C = evaluation_Ht + evaluation_Lt + s *  g1_A + r * g1_B - (r * s) * pk.delta_g1;
+    /* C = sum_i(a_i*((beta*A_i(t) + alpha*B_i(t) + C_i(t)) + H(t)*Z(t))/delta) + A*s + r*b - r*s*delta 
+    * -> C = sum_i(H(t)*Z(t))/delta) + A*s + r*b - r*s*delta  로 수정
+    */
+    libff::G1<ppT> g1_C = evaluation_Ht + /*evaluation_Lt +*/ s *  g1_A + r * g1_B - (r * s) * pk.delta_g1;
 
     libff::leave_block("Compute the proof");
 
@@ -515,9 +534,9 @@ snark_for_completment_processed_verification_key<ppT> snark_for_completment_veri
 
     snark_for_completment_processed_verification_key<ppT> pvk;
     pvk.vk_alpha_g1_beta_g2 = vk.alpha_g1_beta_g2;
-    pvk.vk_gamma_g2_precomp = ppT::precompute_G2(vk.gamma_g2);
+    //pvk.vk_gamma_g2_precomp = ppT::precompute_G2(vk.gamma_g2);
     pvk.vk_delta_g2_precomp = ppT::precompute_G2(vk.delta_g2);
-    pvk.gamma_ABC_g1 = vk.gamma_ABC_g1;
+    //pvk.gamma_ABC_g1 = vk.gamma_ABC_g1;
 
     libff::leave_block("Call to snark_for_completment_verifier_process_vk");
 
@@ -531,12 +550,12 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
                                                const snark_for_completment_proof<ppT> &proof)
 {
     libff::enter_block("Call to snark_for_completment_online_verifier_weak_IC");
-    assert(pvk.gamma_ABC_g1.domain_size() >= primary_input.size());
+    // assert(pvk.gamma_ABC_g1.domain_size() >= primary_input.size());
 
-    libff::enter_block("Accumulate input");
-    const accumulation_vector<libff::G1<ppT> > accumulated_IC = pvk.gamma_ABC_g1.template accumulate_chunk<libff::Fr<ppT> >(primary_input.begin(), primary_input.end(), 0);
-    const libff::G1<ppT> &acc = accumulated_IC.first;
-    libff::leave_block("Accumulate input");
+    // libff::enter_block("Accumulate input");
+    // const accumulation_vector<libff::G1<ppT> > accumulated_IC = pvk.gamma_ABC_g1.template accumulate_chunk<libff::Fr<ppT> >(primary_input.begin(), primary_input.end(), 0);
+    // const libff::G1<ppT> &acc = accumulated_IC.first;
+    // libff::leave_block("Accumulate input");
 
     bool result = true;
 
@@ -556,12 +575,16 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     const libff::G1_precomp<ppT> proof_g_A_precomp = ppT::precompute_G1(proof.g_A);
     const libff::G2_precomp<ppT> proof_g_B_precomp = ppT::precompute_G2(proof.g_B);
     const libff::G1_precomp<ppT> proof_g_C_precomp = ppT::precompute_G1(proof.g_C);
-    const libff::G1_precomp<ppT> acc_precomp = ppT::precompute_G1(acc);
+    // const libff::G1_precomp<ppT> acc_precomp = ppT::precompute_G1(acc);
 
     const libff::Fqk<ppT> QAP1 = ppT::miller_loop(proof_g_A_precomp,  proof_g_B_precomp);
-    const libff::Fqk<ppT> QAP2 = ppT::double_miller_loop(
-        acc_precomp, pvk.vk_gamma_g2_precomp,
-        proof_g_C_precomp, pvk.vk_delta_g2_precomp);
+    /** e(sum_i(a_i*((beta*A_i(t) + alpha*B_i(t) + C_i(t)))/gamma),gamma) + e(C,delta) 
+     * -> e((C*C_x*_C_x),(delta)) 
+     */
+    // const libff::Fqk<ppT> QAP2 = ppT::double_miller_loop(
+    //     acc_precomp, pvk.vk_gamma_g2_precomp,
+    //     proof_g_C_precomp, pvk.vk_delta_g2_precomp);
+    const libff::Fqk<ppT> QAP2 = ppT::miller_loop(proof_g_C_precomp + C_x + _C_x,  pvk.vk_delta_g2_precomp);
     const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP1 * QAP2.unitary_inverse());
 
     if (QAP != pvk.vk_alpha_g1_beta_g2)
@@ -588,7 +611,7 @@ bool snark_for_completment_verifier_weak_IC(const snark_for_completment_verifica
 {
     libff::enter_block("Call to snark_for_completment_verifier_weak_IC");
     snark_for_completment_processed_verification_key<ppT> pvk = snark_for_completment_verifier_process_vk<ppT>(vk);
-    bool result = snark_for_completment_online_verifier_weak_IC<ppT>(pvk, primary_input, proof);
+    bool result = snark_for_completment_online_verifier_weak_IC<ppT>(pvk, /*primary_input,*/ C_x, _C_x, proof);
     libff::leave_block("Call to snark_for_completment_verifier_weak_IC");
     return result;
 }
@@ -602,15 +625,17 @@ bool snark_for_completment_online_verifier_strong_IC(const snark_for_completment
     bool result = true;
     libff::enter_block("Call to snark_for_completment_online_verifier_strong_IC");
 
-    if (pvk.gamma_ABC_g1.domain_size() != primary_input.size())
-    {
-        libff::print_indent(); printf("Input length differs from expected (got %zu, expected %zu).\n", primary_input.size(), pvk.gamma_ABC_g1.domain_size());
-        result = false;
-    }
-    else
-    {
-        result = snark_for_completment_online_verifier_weak_IC(pvk, primary_input, proof);
-    }
+    // if (pvk.gamma_ABC_g1.domain_size() != primary_input.size())
+    // {
+    //     libff::print_indent(); printf("Input length differs from expected (got %zu, expected %zu).\n", primary_input.size(), pvk.gamma_ABC_g1.domain_size());
+    //     result = false;
+    // }
+    // else
+    // {
+    //     result = snark_for_completment_online_verifier_weak_IC(pvk, primary_input, proof);
+    // }
+
+    result = snark_for_completment_online_verifier_weak_IC(pvk, /*primary_input,*/ C_x, _C_x, proof);
 
     libff::leave_block("Call to snark_for_completment_online_verifier_strong_IC");
     return result;
@@ -624,66 +649,71 @@ bool snark_for_completment_verifier_strong_IC(const snark_for_completment_verifi
 {
     libff::enter_block("Call to snark_for_completment_verifier_strong_IC");
     snark_for_completment_processed_verification_key<ppT> pvk = snark_for_completment_verifier_process_vk<ppT>(vk);
-    bool result = snark_for_completment_online_verifier_strong_IC<ppT>(pvk, primary_input, proof);
+    bool result = snark_for_completment_online_verifier_strong_IC<ppT>(pvk, /*primary_input,*/ C_x, _C_x, proof);
     libff::leave_block("Call to snark_for_completment_verifier_strong_IC");
     return result;
 }
-
+/**
+ * affine은 수정에 문제 있어 snark_for_completment_verifier_strong_IC를 return 하도록 함
+ */
 template<typename ppT>
 bool snark_for_completment_affine_verifier_weak_IC(const snark_for_completment_verification_key<ppT> &vk,
                                                //const snark_for_completment_primary_input<ppT> &primary_input,
                                                const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                const snark_for_completment_proof<ppT> &proof)
 {
-    libff::enter_block("Call to snark_for_completment_affine_verifier_weak_IC");
-    assert(vk.gamma_ABC_g1.domain_size() >= primary_input.size());
 
-    libff::affine_ate_G2_precomp<ppT> pvk_vk_gamma_g2_precomp = ppT::affine_ate_precompute_G2(vk.gamma_g2);
-    libff::affine_ate_G2_precomp<ppT> pvk_vk_delta_g2_precomp = ppT::affine_ate_precompute_G2(vk.delta_g2);
+    return snark_for_completment_verifier_strong_IC(vk, /*primary_input,*/ C_x, _C_x, proof);
 
-    libff::enter_block("Accumulate input");
-    const accumulation_vector<libff::G1<ppT> > accumulated_IC = vk.gamma_ABC_g1.template accumulate_chunk<libff::Fr<ppT> >(primary_input.begin(), primary_input.end(), 0);
-    const libff::G1<ppT> &acc = accumulated_IC.first;
-    libff::leave_block("Accumulate input");
+    // libff::enter_block("Call to snark_for_completment_affine_verifier_weak_IC");
+    // //assert(vk.gamma_ABC_g1.domain_size() >= primary_input.size());
 
-    bool result = true;
+    // //libff::affine_ate_G2_precomp<ppT> pvk_vk_gamma_g2_precomp = ppT::affine_ate_precompute_G2(vk.gamma_g2);
+    // libff::affine_ate_G2_precomp<ppT> pvk_vk_delta_g2_precomp = ppT::affine_ate_precompute_G2(vk.delta_g2);
 
-    libff::enter_block("Check if the proof is well-formed");
-    if (!proof.is_well_formed())
-    {
-        if (!libff::inhibit_profiling_info)
-        {
-            libff::print_indent(); printf("At least one of the proof elements does not lie on the curve.\n");
-        }
-        result = false;
-    }
-    libff::leave_block("Check if the proof is well-formed");
+    // // libff::enter_block("Accumulate input");
+    // // const accumulation_vector<libff::G1<ppT> > accumulated_IC = vk.gamma_ABC_g1.template accumulate_chunk<libff::Fr<ppT> >(primary_input.begin(), primary_input.end(), 0);
+    // // const libff::G1<ppT> &acc = accumulated_IC.first;
+    // // libff::leave_block("Accumulate input");
 
-    libff::enter_block("Check QAP divisibility");
-    const libff::affine_ate_G1_precomp<ppT> proof_g_A_precomp = ppT::affine_ate_precompute_G1(proof.g_A);
-    const libff::affine_ate_G2_precomp<ppT> proof_g_B_precomp = ppT::affine_ate_precompute_G2(proof.g_B);
-    const libff::affine_ate_G1_precomp<ppT> proof_g_C_precomp = ppT::affine_ate_precompute_G1(proof.g_C);
-    const libff::affine_ate_G1_precomp<ppT> acc_precomp = ppT::affine_ate_precompute_G1(acc);
+    // bool result = true;
 
-    const libff::Fqk<ppT> QAP_miller = ppT::affine_ate_e_times_e_over_e_miller_loop(
-        acc_precomp, pvk_vk_gamma_g2_precomp,
-        proof_g_C_precomp, pvk_vk_delta_g2_precomp,
-        proof_g_A_precomp,  proof_g_B_precomp);
-    const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP_miller.unitary_inverse());
+    // libff::enter_block("Check if the proof is well-formed");
+    // if (!proof.is_well_formed())
+    // {
+    //     if (!libff::inhibit_profiling_info)
+    //     {
+    //         libff::print_indent(); printf("At least one of the proof elements does not lie on the curve.\n");
+    //     }
+    //     result = false;
+    // }
+    // libff::leave_block("Check if the proof is well-formed");
 
-    if (QAP != vk.alpha_g1_beta_g2)
-    {
-        if (!libff::inhibit_profiling_info)
-        {
-            libff::print_indent(); printf("QAP divisibility check failed.\n");
-        }
-        result = false;
-    }
-    libff::leave_block("Check QAP divisibility");
+    // libff::enter_block("Check QAP divisibility");
+    // const libff::affine_ate_G1_precomp<ppT> proof_g_A_precomp = ppT::affine_ate_precompute_G1(proof.g_A);
+    // const libff::affine_ate_G2_precomp<ppT> proof_g_B_precomp = ppT::affine_ate_precompute_G2(proof.g_B);
+    // const libff::affine_ate_G1_precomp<ppT> proof_g_C_precomp = ppT::affine_ate_precompute_G1(proof.g_C);
+    // //const libff::affine_ate_G1_precomp<ppT> acc_precomp = ppT::affine_ate_precompute_G1(acc);
 
-    libff::leave_block("Call to snark_for_completment_affine_verifier_weak_IC");
+    // const libff::Fqk<ppT> QAP_miller = ppT::affine_ate_e_times_e_over_e_miller_loop(
+    //     libff::G1<ppT>::G1_one, libff::G2<ppT>::G2_one,
+    //     proof_g_C_precomp + C_x + _C_x,  pvk.vk_delta_g2_precomp,
+    //     proof_g_A_precomp,  proof_g_B_precomp);
+    // const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP_miller.unitary_inverse());
+    
+    // if (QAP != vk.alpha_g1_beta_g2)
+    // {
+    //     if (!libff::inhibit_profiling_info)
+    //     {
+    //         libff::print_indent(); printf("QAP divisibility check failed.\n");
+    //     }
+    //     result = false;
+    // }
+    // libff::leave_block("Check QAP divisibility");
 
-    return result;
+    // libff::leave_block("Call to snark_for_completment_affine_verifier_weak_IC");
+
+    // return result;
 }
 
 } // libsnark

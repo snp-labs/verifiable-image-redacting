@@ -382,7 +382,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
 //auxiliary: witness
 template<typename ppT>
 snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_completment_proving_key<ppT> &pk,
-                                                      //const snark_for_completment_primary_input<ppT> &primary_input,
+                                                      const snark_for_completment_primary_input<ppT> &primary_input,
                                                       const snark_for_completment_auxiliary_input<ppT> &auxiliary_input);
 
 /*
@@ -409,7 +409,7 @@ snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_co
  */
 template<typename ppT>
 bool snark_for_completment_verifier_weak_IC(const snark_for_completment_verification_key<ppT> &vk,
-                                        //const snark_for_completment_primary_input<ppT> &primary_input,
+                                        const snark_for_completment_primary_input<ppT> &primary_input,
                                         const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                         const snark_for_completment_proof<ppT> &proof);
 
@@ -420,7 +420,7 @@ bool snark_for_completment_verifier_weak_IC(const snark_for_completment_verifica
  */
 template<typename ppT>
 bool snark_for_completment_verifier_strong_IC(const snark_for_completment_verification_key<ppT> &vk,
-                                          //const snark_for_completment_primary_input<ppT> &primary_input,
+                                          const snark_for_completment_primary_input<ppT> &primary_input,
                                           const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                           const snark_for_completment_proof<ppT> &proof);
 
@@ -434,11 +434,12 @@ snark_for_completment_processed_verification_key<ppT> snark_for_completment_veri
  * A verifier algorithm for the R1CS GG-ppzkSNARK that:
  * (1) accepts a processed verification key, and
  * (2) has weak input consistency.
- */ * primary: statement 없음 
+ * primary: statement 없음 
  * 대신 C_x, _C_x가 들어감
+ */
 template<typename ppT>
 bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_processed_verification_key<ppT> &pvk,
-                                               //const snark_for_completment_primary_input<ppT> &input,
+                                               const snark_for_completment_primary_input<ppT> &input,
                                                const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                const snark_for_completment_proof<ppT> &proof);
 
@@ -449,7 +450,7 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
  */
 template<typename ppT>
 bool snark_for_completment_online_verifier_strong_IC(const snark_for_completment_processed_verification_key<ppT> &pvk,
-                                                 //const snark_for_completment_primary_input<ppT> &primary_input,
+                                                 const snark_for_completment_primary_input<ppT> &primary_input,
                                                  const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                  const snark_for_completment_proof<ppT> &proof);
 
@@ -468,7 +469,7 @@ bool snark_for_completment_online_verifier_strong_IC(const snark_for_completment
  */
 template<typename ppT>
 bool snark_for_completment_affine_verifier_weak_IC(const snark_for_completment_verification_key<ppT> &vk,
-                                               //const snark_for_completment_primary_input<ppT> &primary_input,
+                                               const snark_for_completment_primary_input<ppT> &primary_input,
                                                const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                const snark_for_completment_proof<ppT> &proof);
 
