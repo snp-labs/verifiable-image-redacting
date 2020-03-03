@@ -28,6 +28,7 @@ template <typename ppT>
 bool snark_for_filtering_proving_key<ppT>::operator==(const snark_for_filtering_proving_key<ppT> &other) const
 {
     return (this->P_vector == other.P_vector &&
+            this->f_vector == other.f_vector &&
             this->alpha_g1 == other.alpha_g1 &&
             this->beta_g1 == other.beta_g1 &&
             this->beta_g2 == other.beta_g2 &&
@@ -43,6 +44,7 @@ template <typename ppT>
 std::ostream &operator<<(std::ostream &out, const snark_for_filtering_proving_key<ppT> &pk)
 {
     out << pk.P_vector;
+    out << pk.f_vector;
     out << pk.alpha_g1 << OUTPUT_NEWLINE;
     out << pk.beta_g1 << OUTPUT_NEWLINE;
     out << pk.beta_g2 << OUTPUT_NEWLINE;
@@ -59,6 +61,7 @@ template <typename ppT>
 std::istream &operator>>(std::istream &in, const snark_for_filtering_proving_key<ppT> &pk)
 {
     in >> pk.P_vector;
+    in >> pk.f_vector;
     in >> pk.alpha_g1;
     libff::consume_OUTPUT_NEWLINE(in);
     in >> pk.beta_g1;
@@ -156,22 +159,6 @@ std::istream &operator>>(std::istream &in, snark_for_filtering_proof<ppT> &proof
     return in;
 }
 
-// template <typename ppT>
-// snark_for_filtering_hash<ppT> snark_for_filtering_hashing(const snark_for_filtering_pp<ppT> &pp, const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input){
-
-//     libff::G1<ppT> sigma_g1 = libff::G1<ppT>::zero();
-//     sigma_g1 = pp.hfal_H[0];
-
-//     for(size_t i = 0; i < primary_input.size(); i++){
-//         sigma_g1 = primary_input[i] * pp.hfal_H[i+1] + sigma_g1;
-//     }
-//     snark_for_filtering_hash<ppT> hash = snark_for_filtering_hash<ppT>(std::move(sigma_g1));
-
-// 	hash.print_size();
-
-//     return hash;
-// }
-
 /**
  * pp 문제 있음 
 */
@@ -239,6 +226,7 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const snark_for_c
 
     snark_for_filtering_proving_key<ppT> ek = snark_for_filtering_proving_key<ppT>(
         std::move(P_vector),
+        std::move(f_vector),
         std::move(keypair.pk.alpha_g1),
         std::move(keypair.pk.beta_g1),
         std::move(keypair.pk.beta_g2),
@@ -268,16 +256,45 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const snark_for_c
 }
 
 template <typename ppT>
-snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filtering_proving_key<ppT> &pk, const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input, size_t len){
-    libff::G1<ppT> Proof_sum = libff::G1<ppT>::zero();
-    Proof_sum = pk.P_g1[0];
-    for(size_t i = 1; i <  len+1; i++){ 
-        // std::cout<<i<<", "<<(primary_input[i]).as_ulong()<<std::endl;
-        Proof_sum = (primary_input[i] * pk.P_g1[i]) + Proof_sum;
+snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filtering_proving_key<ppT> &pk, 
+                                                    const snark_for_completment_primary_input<ppT> &primary_input,
+                                                    const snark_for_completment_auxiliary_input<ppT> &auxiliary_input,
+                                                    libff::Fr_vector<ppT> u1_vector, libff::Fr_vector<ppT> u2_vector, libff::Fr<ppT> x0 ){
+    libff::Fr<ppT> o2 = libff::Fr<ppT>::random_element();
+    libff::Fr<ppT> o1 = libff::Fr<ppT>::zero();
+    libff::G1<ppT> _C_x = o2 * pk.f_vector.rest.values[0];
+    libff::G1<ppT> ss_proof_g1 = o1 * pk.P_vector.rest.values[0];
+    const int len = u1_vector.size;//len = n-1
+
+    for(size_t i = 0; i <= len; i++){//0 ~ n-1까지
+		_C_x += u2_vector.rest.values[i] * pk.f_vector.rest.values[i+1];
     }
 
+    ss_proof_g1 += o2 * pk.P_vector.rest.values[1];
+    ss_proof_g1 += x0 * pk.P_vector.rest.values[2];
+    for(size_t i = 0; i <= len; i++){//0 ~ n-1까지
+		ss_proof_g1 += u1_vector.rest.values[i] * pk.P_vector.rest.values[i+3];
+    }
+    for(size_t i = 0; i <= len; i++){//0 ~ n-1까지
+		ss_proof_g1 += u2_vector.rest.values[i] * pk.P_vector.rest.values[i+len+3];
+    }
+
+    snark_for_filtering_proving_key<ppT> pk = snark_for_filtering_proving_key<ppT>(
+        std::move(pk.alpha_g1),
+        std::move(pk.beta_g1),
+        std::move(pk.beta_g2),
+        std::move(pk.delta_g1),
+        std::move(pk.delta_g2),
+        std::move(pk.A_query),
+        std::move(pk.B_query),
+        std::move(pk.H_query),
+        std::move(pk.r1cs_copy)
+        );
+    
+    snark_for_completment_proof<ppT> completment_proof = snark_for_completment_prover(&pk, &primary_input, auxiliary_input)
+
     snark_for_filtering_proof<ppT> proof
-        = snark_for_filtering_proof<ppT>(std::move(Proof_sum));
+        = snark_for_filtering_proof<ppT>(std::move(completment_proof), std::move(ss_proof_g1), std::move(_C_x));
 
 	proof.print_size();
 
@@ -286,50 +303,23 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filter
 
 template <typename ppT>
 bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT> &vk, 
-                                    const libff::G1<ppT> &cm1, 
-                                    const libff::G1<ppT> &cm2,
+                                    const libff::G1<ppT> &sigma_x, 
+                                    const libff::G1<ppT> &c_x,
                                     const snark_for_filtering_proof<ppT> &proof){
 
 
-    libff::GT<ppT> left = ppT::reduced_pairing(proof.proof_G1, vk.a_g2);
-    libff::GT<ppT> right = ppT::reduced_pairing(cm1, vk.C1_g2);
-    libff::GT<ppT> right2 = ppT::reduced_pairing(cm2, vk.C2_g2);
+    libff::GT<ppT> left = ppT::reduced_pairing(proof.ss_proof_g1, vk.a_g2);
+    libff::GT<ppT> right0 = ppT::reduced_pairing(c_x, vk.c0_g2);
+    libff::GT<ppT> right1 = ppT::reduced_pairing(proof._C_x, vk.c1_g2);
+    libff::GT<ppT> right2 = ppT::reduced_pairing(sigma_x, vk.c2_g2);
 
-    return (left == (right *  right2));
-    //     printf("pass!!\n");
-    
-    
-    // const libff::G1_precomp<ppT> proof_g_Proof_precomp = ppT::precompute_G1(proof.proof_G1);
-    // const libff::G1_precomp<ppT> acc_precomp = ppT::precompute_G1(cm1);
-    // const libff::G1_precomp<ppT> acc_precomp2 = ppT::precompute_G1(cm2);
+    snark_for_completment_verification_key<ppT> completment_vk = snark_for_completment_verification_key<ppT>(
+        std::move(vk.alpha_g1_beta_g2),
+        std::move(vk.delta_g2)
+        );
 
-    // const libff::G2_precomp<ppT> vk_C1_g2_precomp = ppT::precompute_G2(vk.C1_g2);
-    // const libff::G2_precomp<ppT> vk_C2_g2_precomp = ppT::precompute_G2(vk.C2_g2);
-    // const libff::G2_precomp<ppT> vk_a_g2_precomp = ppT::precompute_G2(vk.a_g2);
-
-    // libff::Fqk<ppT> vf_right_one = ppT::miller_loop(proof_g_Proof_precomp, vk_a_g2_precomp);
-
-    // libff::Fqk<ppT> vf_left_one = ppT::double_miller_loop(
-    //     acc_precomp, vk_C1_g2_precomp,
-    //     acc_precomp2, vk_C2_g2_precomp
-    // );
-
-    // libff::Fqk<ppT> vf_left_one2 = ppT::double_miller_loop(
-    //     acc_precomp2, vk_C1_g2_precomp,
-    //     acc_precomp, vk_C2_g2_precomp
-    // ); 
-
-    // vk.C1_g2.print();
-    // vk.C2_g2.print();
-    // vk.a_g2.print();
-
-    // printf("vf_right_one<<\n");
-    // vf_right_one.print();
-    // printf("vf_left_one<<\n");
-    // vf_left_one.print();
-    // printf("vf_left_one2<<\n");
-    // vf_left_one2.print();
-    // return (vf_right_one == vf_left_one);
+    return (left == (right0 *  right1 * right2) &&
+            snark_for_completment_affine_verifier_weak_IC(completment_vk, proof._C_x, c_x, proof.completment_proof));
 }
 }// libsnark
 
