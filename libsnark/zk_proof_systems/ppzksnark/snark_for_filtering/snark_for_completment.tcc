@@ -653,9 +653,7 @@ bool snark_for_completment_verifier_strong_IC(const snark_for_completment_verifi
     libff::leave_block("Call to snark_for_completment_verifier_strong_IC");
     return result;
 }
-/**
- * affine은 수정에 문제 있어 snark_for_completment_verifier_strong_IC를 return 하도록 함
- */
+
 template<typename ppT>
 bool snark_for_completment_affine_verifier_weak_IC(const snark_for_completment_verification_key<ppT> &vk,
                                                //const snark_for_completment_primary_input<ppT> &primary_input,
@@ -663,57 +661,55 @@ bool snark_for_completment_affine_verifier_weak_IC(const snark_for_completment_v
                                                const snark_for_completment_proof<ppT> &proof)
 {
 
-    return snark_for_completment_verifier_strong_IC(vk, /*primary_input,*/ C_x, _C_x, proof);
+    libff::enter_block("Call to snark_for_completment_affine_verifier_weak_IC");
+    //assert(vk.gamma_ABC_g1.domain_size() >= primary_input.size());
 
-    // libff::enter_block("Call to snark_for_completment_affine_verifier_weak_IC");
-    // //assert(vk.gamma_ABC_g1.domain_size() >= primary_input.size());
+    //libff::affine_ate_G2_precomp<ppT> pvk_vk_gamma_g2_precomp = ppT::affine_ate_precompute_G2(vk.gamma_g2);
+    libff::affine_ate_G2_precomp<ppT> pvk_vk_delta_g2_precomp = ppT::affine_ate_precompute_G2(vk.delta_g2);
 
-    // //libff::affine_ate_G2_precomp<ppT> pvk_vk_gamma_g2_precomp = ppT::affine_ate_precompute_G2(vk.gamma_g2);
-    // libff::affine_ate_G2_precomp<ppT> pvk_vk_delta_g2_precomp = ppT::affine_ate_precompute_G2(vk.delta_g2);
+    // libff::enter_block("Accumulate input");
+    // const accumulation_vector<libff::G1<ppT> > accumulated_IC = vk.gamma_ABC_g1.template accumulate_chunk<libff::Fr<ppT> >(primary_input.begin(), primary_input.end(), 0);
+    // const libff::G1<ppT> &acc = accumulated_IC.first;
+    // libff::leave_block("Accumulate input");
 
-    // // libff::enter_block("Accumulate input");
-    // // const accumulation_vector<libff::G1<ppT> > accumulated_IC = vk.gamma_ABC_g1.template accumulate_chunk<libff::Fr<ppT> >(primary_input.begin(), primary_input.end(), 0);
-    // // const libff::G1<ppT> &acc = accumulated_IC.first;
-    // // libff::leave_block("Accumulate input");
+    bool result = true;
 
-    // bool result = true;
+    libff::enter_block("Check if the proof is well-formed");
+    if (!proof.is_well_formed())
+    {
+        if (!libff::inhibit_profiling_info)
+        {
+            libff::print_indent(); printf("At least one of the proof elements does not lie on the curve.\n");
+        }
+        result = false;
+    }
+    libff::leave_block("Check if the proof is well-formed");
 
-    // libff::enter_block("Check if the proof is well-formed");
-    // if (!proof.is_well_formed())
-    // {
-    //     if (!libff::inhibit_profiling_info)
-    //     {
-    //         libff::print_indent(); printf("At least one of the proof elements does not lie on the curve.\n");
-    //     }
-    //     result = false;
-    // }
-    // libff::leave_block("Check if the proof is well-formed");
+    libff::enter_block("Check QAP divisibility");
+    const libff::affine_ate_G1_precomp<ppT> proof_g_A_precomp = ppT::affine_ate_precompute_G1(proof.g_A);
+    const libff::affine_ate_G2_precomp<ppT> proof_g_B_precomp = ppT::affine_ate_precompute_G2(proof.g_B);
+    const libff::affine_ate_G1_precomp<ppT> proof_g_C_precomp = ppT::affine_ate_precompute_G1(proof.g_C);
+    //const libff::affine_ate_G1_precomp<ppT> acc_precomp = ppT::affine_ate_precompute_G1(acc);
 
-    // libff::enter_block("Check QAP divisibility");
-    // const libff::affine_ate_G1_precomp<ppT> proof_g_A_precomp = ppT::affine_ate_precompute_G1(proof.g_A);
-    // const libff::affine_ate_G2_precomp<ppT> proof_g_B_precomp = ppT::affine_ate_precompute_G2(proof.g_B);
-    // const libff::affine_ate_G1_precomp<ppT> proof_g_C_precomp = ppT::affine_ate_precompute_G1(proof.g_C);
-    // //const libff::affine_ate_G1_precomp<ppT> acc_precomp = ppT::affine_ate_precompute_G1(acc);
-
-    // const libff::Fqk<ppT> QAP_miller = ppT::affine_ate_e_times_e_over_e_miller_loop(
-    //     libff::G1<ppT>::one(), libff::G2<ppT>::one(),
-    //     proof_g_C_precomp + C_x + _C_x,  pvk.vk_delta_g2_precomp,
-    //     proof_g_A_precomp,  proof_g_B_precomp);
-    // const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP_miller.unitary_inverse());
+    const libff::Fqk<ppT> QAP_miller = ppT::affine_ate_e_times_e_over_e_miller_loop(
+        libff::G1<ppT>::one(), libff::G2<ppT>::one(),
+        proof_g_C_precomp + C_x + _C_x,  pvk.vk_delta_g2_precomp,
+        proof_g_A_precomp,  proof_g_B_precomp);
+    const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP_miller.unitary_inverse());
     
-    // if (QAP != vk.alpha_g1_beta_g2)
-    // {
-    //     if (!libff::inhibit_profiling_info)
-    //     {
-    //         libff::print_indent(); printf("QAP divisibility check failed.\n");
-    //     }
-    //     result = false;
-    // }
-    // libff::leave_block("Check QAP divisibility");
+    if (QAP != vk.alpha_g1_beta_g2)
+    {
+        if (!libff::inhibit_profiling_info)
+        {
+            libff::print_indent(); printf("QAP divisibility check failed.\n");
+        }
+        result = false;
+    }
+    libff::leave_block("Check QAP divisibility");
 
-    // libff::leave_block("Call to snark_for_completment_affine_verifier_weak_IC");
+    libff::leave_block("Call to snark_for_completment_affine_verifier_weak_IC");
 
-    // return result;
+    return result;
 }
 
 } // libsnark
