@@ -259,7 +259,7 @@ template <typename ppT>
 snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filtering_proving_key<ppT> &pk, 
                                                     const snark_for_completment_primary_input<ppT> &primary_input,
                                                     const snark_for_completment_auxiliary_input<ppT> &auxiliary_input,
-                                                    libff::Fr_vector<ppT> u1_vector, libff::Fr_vector<ppT> u2_vector, libff::Fr<ppT> x0 ){
+                                                    libff::Fr_vector<ppT> u1_vector, libff::Fr_vector<ppT> u2_vector, libff::Fr<ppT> x0){
     libff::Fr<ppT> o2 = libff::Fr<ppT>::random_element();
     libff::Fr<ppT> o1 = libff::Fr<ppT>::zero();
     libff::G1<ppT> _C_x = o2 * pk.f_vector.rest.values[0];

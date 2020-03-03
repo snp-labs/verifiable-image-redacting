@@ -112,7 +112,7 @@ public:
 
     size_t G1_size() const
     {
-        return 1 + A_query.size() + B_query.domain_size() + H_query.size() //+ L_query.size();
+        return 1 + A_query.size() + B_query.domain_size() + H_query.size(); //+ L_query.size();
     }
 
     size_t G2_size() const
@@ -122,7 +122,7 @@ public:
 
     size_t G1_sparse_size() const
     {
-        return 1 + A_query.size() + B_query.size() + H_query.size() //+ L_query.size();
+        return 1 + A_query.size() + B_query.size() + H_query.size(); //+ L_query.size();
     }
 
     size_t G2_sparse_size() const

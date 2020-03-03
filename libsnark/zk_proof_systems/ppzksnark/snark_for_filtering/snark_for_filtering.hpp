@@ -7,7 +7,7 @@
 #include <libsnark/knowledge_commitment/knowledge_commitment.hpp>
 #include <libsnark/relations/constraint_satisfaction_problems/r1cs/r1cs.hpp>
 #include <libsnark/zk_proof_systems/ppzkadsnark/snark_for_filtering/snark_for_completment_params.hpp>
-/*
+
 namespace libsnark{
 
 	template <typename ppT>
@@ -22,32 +22,88 @@ namespace libsnark{
 	template <typename ppT>
 	class snark_for_filtering_proving_key{
 	public:
-		libff::G1_vector<ppT> P_g1;
+		libff::G1_vector<ppT> P_vector;
+		libff::G1_vector<ppT> f_vector;
+		libff::G1<ppT> alpha_g1;
+    	libff::G1<ppT> beta_g1;
+    	libff::G2<ppT> beta_g2;
+    	libff::G1<ppT> delta_g1;
+    	libff::G2<ppT> delta_g2;
 
-		snark_for_filtering_proving_key(){};
-		snark_for_filtering_proving_key<ppT> &operator=(const snark_for_filtering_proving_key<ppT> &other) = default;
-		snark_for_filtering_proving_key(const snark_for_filtering_proving_key<ppT> &other) = default;
-		snark_for_filtering_proving_key(snark_for_filtering_proving_key<ppT> &&other) = default;
-		snark_for_filtering_proving_key(const libff::G1_vector<ppT> &P_g1) : 
-										P_g1(P_g1)
-										{};
+		libff::G1_vector<ppT> A_query; // this could be a sparse vector if we had multiexp for those
+    	knowledge_commitment_vector<libff::G2<ppT>, libff::G1<ppT> > B_query;
+    	libff::G1_vector<ppT> H_query;
+	    snark_for_completment_constraint_system<ppT> constraint_system;
 
-		size_t P_g1_size_in_bits() const
-		{
-			return P_g1.size()*libff::G1<ppT>::size_in_bits();
-		}
-		size_t size_in_bits() const
-		{
-			return P_g1_size_in_bits();
-		}
-		void print_size() const
-		{
-			libff::print_indent(); printf("Snark for Filtering PK size in bits: %zu\n",this->size_in_bits());
-		}
+    snark_for_filtering_proving_key() {};
+    snark_for_filtering_proving_key<ppT>& operator=(const snark_for_filtering_proving_key<ppT> &other) = default;
+    snark_for_filtering_proving_key(const snark_for_filtering_proving_key<ppT> &other) = default;
+    snark_for_filtering_proving_key(snark_for_filtering_proving_key<ppT> &&other) = default;
+    snark_for_filtering_proving_key(libff::G1_vector<ppT> P_vector,
+								  libff::G1_vector<ppT> f_vector,
+								  libff::G1<ppT> &&alpha_g1,
+                                  libff::G1<ppT> &&beta_g1,
+                                  libff::G2<ppT> &&beta_g2,
+                                  libff::G1<ppT> &&delta_g1,
+                                  libff::G2<ppT> &&delta_g2,
+                                  libff::G1_vector<ppT> &&A_query,
+                                  knowledge_commitment_vector<libff::G2<ppT>, libff::G1<ppT> > &&B_query,
+                                  libff::G1_vector<ppT> &&H_query,
+                                //   libff::G1_vector<ppT> &&L_query,
+                                  snark_for_completment_constraint_system<ppT> &&constraint_system) :
+        P_vector(std::move(P_vector)),
+		f_vector(std::move(f_vector)),
+		alpha_g1(std::move(alpha_g1)),
+        beta_g1(std::move(beta_g1)),
+        beta_g2(std::move(beta_g2)),
+        delta_g1(std::move(delta_g1)),
+        delta_g2(std::move(delta_g2)),
+        A_query(std::move(A_query)),
+        B_query(std::move(B_query)),
+        H_query(std::move(H_query)),
+        // L_query(std::move(L_query)),
+        constraint_system(std::move(constraint_system))
+    {};
 
-    	bool operator==(const snark_for_filtering_proving_key<ppT> &other) const;
-    	friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_filtering_proving_key<ppT> &pk);
-    	friend std::istream& operator>> <ppT>(std::istream &in, snark_for_filtering_proving_key<ppT> &pk);
+    size_t G1_size() const
+    {
+        return 1 + A_query.size() + B_query.domain_size() + H_query.size() + P_vector.size() + f_vector.size();
+    }
+
+    size_t G2_size() const
+    {
+        return 1 + B_query.domain_size();
+    }
+
+    size_t G1_sparse_size() const
+    {
+        return 1 + A_query.size() + B_query.size() + H_query.size() + P_vector.size() + f_vector.size();
+    }
+
+    size_t G2_sparse_size() const
+    {
+        return 1 + B_query.size();
+    }
+
+    size_t size_in_bits() const
+    {
+        return (libff::size_in_bits(A_query) + B_query.size_in_bits() +
+                libff::size_in_bits(H_query) + libff::size_in_bits(P_vector) + libff::size_in_bits(f_vector)
+                1 * libff::G1<ppT>::size_in_bits() + 1 * libff::G2<ppT>::size_in_bits());
+    }
+
+    void print_size() const
+    {
+        libff::print_indent(); printf("* G1 elements in PK: %zu\n", this->G1_size());
+        libff::print_indent(); printf("* Non-zero G1 elements in PK: %zu\n", this->G1_sparse_size());
+        libff::print_indent(); printf("* G2 elements in PK: %zu\n", this->G2_size());
+        libff::print_indent(); printf("* Non-zero G2 elements in PK: %zu\n", this->G2_sparse_size());
+        libff::print_indent(); printf("* PK size in bits: %zu\n", this->size_in_bits());
+    }
+
+    bool operator==(const snark_for_filtering_proving_key<ppT> &other) const;
+    friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_filtering_proving_key<ppT> &pk);
+    friend std::istream& operator>> <ppT>(std::istream &in, snark_for_filtering_proving_key<ppT> &pk);
 	};
 
 	template <typename ppT>
@@ -62,45 +118,64 @@ namespace libsnark{
 	template <typename ppT>
 	class snark_for_filtering_verification_key{
 	public:
-		libff::G2<ppT> C1_g2; // g2^(k1 * a)
-		libff::G2<ppT> C2_g2; // g2^(k2 * a)
-		libff::G2<ppT> a_g2; // g2^a
+		libff::G2<ppT> c0_g2;
+		libff::G2<ppT> c1_g2;
+		libff::G2<ppT> c2_g2;
+		libff::G2<ppT> a_g2;
+		libff::GT<ppT> alpha_g1_beta_g2;
+    	libff::G2<ppT> delta_g2;
+
 
 		snark_for_filtering_verification_key() = default;
-		snark_for_filtering_verification_key(const libff::G2<ppT> &&C1_g2,
-												 const libff::G2<ppT> &&C2_g2,
-												 const libff::G2<ppT> &&a_g2) :
-			C1_g2(std::move(C1_g2)),
-			C2_g2(std::move(C2_g2)),
-			a_g2(std::move(a_g2))
+		snark_for_filtering_verification_key(const libff::G2<ppT> &&c0_g2,
+											const libff::G2<ppT> &&c1_g2,
+											const libff::G2<ppT> &&c2_g2,
+											const libff::G2<ppT> &&a_g2,
+											const libff::GT<ppT> &alpha_g1_beta_g2,
+                                       		const libff::G2<ppT> &delta_g2) :
+			c0_g2(std::move(c0_g2)),
+			c1_g2(std::move(c1_g2)),
+			c2_g2(std::move(c2_g2)),
+			a_g2(std::move(a_g2)),
+			alpha_g1_beta_g2(alpha_g1_beta_g2),
+        	delta_g2(delta_g2)
 		{};
 
-		size_t C1_g2_size() const
+		size_t G1_size() const
 		{
-			return 2;
+			return 0;
 		}
-		size_t C2_g2_size() const
+
+		size_t G2_size() const
 		{
-			return 2;
+			return 6;
 		}
-		size_t a_g2_size() const
+
+		size_t GT_size() const
 		{
-			return 2;
+			return 1;
 		}
+
 		size_t size_in_bits() const
 		{
-			return C1_g2_size() * libff::G2<ppT>::size_in_bits() 
-				+ C2_g2_size() * libff::G2<ppT>::size_in_bits() 
-				+ a_g2_size() * libff::G2<ppT>::size_in_bits();
+			// TODO: include GT size
+			return (2 * libff::G2<ppT>::size_in_bits());
 		}
+
 		void print_size() const
 		{
-			libff::print_indent(); printf("* LEGO VK size in bits: %zu\n",this->size_in_bits());
+			libff::print_indent(); printf("* G1 elements in VK: %zu\n", this->G1_size());
+			libff::print_indent(); printf("* G2 elements in VK: %zu\n", this->G2_size());
+			libff::print_indent(); printf("* GT elements in VK: %zu\n", this->GT_size());
+			libff::print_indent(); printf("* VK size in bits: %zu\n", this->size_in_bits());
 		}
-    	bool operator==(const snark_for_filtering_verification_key<ppT> &other) const;
-    	friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_filtering_verification_key<ppT> &pk);
-    	friend std::istream& operator>> <ppT>(std::istream &in, snark_for_filtering_verification_key<ppT> &pk);
-	};
+
+		bool operator==(const snark_for_filtering_verification_key<ppT> &other) const;
+		friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_filtering_verification_key<ppT> &vk);
+		friend std::istream& operator>> <ppT>(std::istream &in, snark_for_filtering_verification_key<ppT> &vk);
+
+		static snark_for_filtering_verification_key<ppT> dummy_verification_key(const size_t input_size);
+};
 
 	template <typename ppT>
 	class snark_for_filtering_keypair;
@@ -146,20 +221,20 @@ namespace libsnark{
 	class snark_for_filtering_proof
 	{
 	  public:
-	  	libff::G1<ppT> proof_G1;
+	  	libff::G1<ppT> proof;
 
 		snark_for_filtering_proof();
-		snark_for_filtering_proof(libff::G1<ppT> &&proof_G1) :
-			proof_G1(std::move(proof_G1))
+		snark_for_filtering_proof(libff::G1<ppT> &&proof) :
+			proof(std::move(proof))
 		{};
 
-		size_t proof_G1_size() const
+		size_t proof_size() const
 		{
 			return 1;
 		}
 		size_t size_in_bits() const
 		{
-			return proof_G1_size() * libff::G1<ppT>::size_in_bits();
+			return proof_size() * libff::G1<ppT>::size_in_bits();
 		}
 		void print_size() const
 		{
@@ -173,17 +248,19 @@ namespace libsnark{
 	};
 
 	template<typename ppT>
-	snark_for_filtering_keypair<ppT> snark_for_filtering_generator(accumulation_vector<libff::G1<ppT> > &gamma_H, accumulation_vector<libff::G1<ppT> > &gamma_F, size_t len);
+	snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const snark_for_completment_constraint_system<ppT> &r1cs);
 	
 	template<typename ppT>
-	snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filtering_proving_key<ppT> &pk,
-																  const r1cs_gg_ppzksnark_primary_input<ppT> &r1cs_gg_ppzksnark_primary_input, size_t len);
+	snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filtering_proving_key<ppT> &pk, 
+                                                    const snark_for_completment_primary_input<ppT> &primary_input,
+                                                    const snark_for_completment_auxiliary_input<ppT> &auxiliary_input,
+                                                    libff::Fr_vector<ppT> u1_vector, libff::Fr_vector<ppT> u2_vector, libff::Fr<ppT> x0);
 
 	template<typename ppT>
 	bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT> &vk, 
-                                    const libff::G1<ppT> &cm1, 
-                                    const libff::G1<ppT> &cm2,
+                                    const libff::G1<ppT> &sigma_x, 
+                                    const libff::G1<ppT> &c_x,
                                     const snark_for_filtering_proof<ppT> &proof);    
 }
-*/
+
 #endif
