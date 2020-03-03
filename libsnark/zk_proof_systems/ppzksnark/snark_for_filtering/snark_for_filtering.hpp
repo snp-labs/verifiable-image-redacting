@@ -6,7 +6,8 @@
 #include <libsnark/common/data_structures/accumulation_vector.hpp>
 #include <libsnark/knowledge_commitment/knowledge_commitment.hpp>
 #include <libsnark/relations/constraint_satisfaction_problems/r1cs/r1cs.hpp>
-#include <libsnark/zk_proof_systems/ppzkadsnark/snark_for_filtering/snark_for_completment_params.hpp>
+#include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment_params.hpp>
+
 
 namespace libsnark{
 

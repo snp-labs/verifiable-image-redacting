@@ -19,7 +19,10 @@
 #include <libsnark/reductions/r1cs_to_qap/r1cs_to_qap.hpp>
 
 
+#include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment_params.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment.hpp>
+#include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp>
+
 
 namespace libsnark
 {
