@@ -7,9 +7,30 @@
 #include <libsnark/knowledge_commitment/knowledge_commitment.hpp>
 #include <libsnark/relations/constraint_satisfaction_problems/r1cs/r1cs.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment_params.hpp>
-
+#include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment.hpp>
 
 namespace libsnark{
+
+	template<typename ppT>
+	class snark_for_filtering_Commit;
+
+	template<typename ppT>
+	std::ostream& operator<<(std::ostream &out, const snark_for_filtering_Commit<ppT> &commit);
+
+	template<typename ppT>
+	std::istream& operator>>(std::istream &in, snark_for_filtering_Commit<ppT> &commit);
+
+	template<typename ppT>
+	class snark_for_filtering_Commit {
+	public:
+		libff::G2<ppT> sigma_x;
+		libff::Fr<ppT> x0;
+
+
+		bool operator==(const snark_for_filtering_Commit &other) const;
+		friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_filtering_Commit<ppT> &commit);
+		friend std::istream& operator>> <ppT>(std::istream &in, snark_for_filtering_Commit<ppT> &commit);
+	};
 
 	template <typename ppT>
 	class snark_for_filtering_proving_key;
@@ -178,6 +199,100 @@ namespace libsnark{
 		static snark_for_filtering_verification_key<ppT> dummy_verification_key(const size_t input_size);
 };
 
+template <typename ppT>
+	class snark_for_filtering_public_parameter;
+
+	template <typename ppT>
+	std::ostream &operator<<(std::ostream &out, const snark_for_filtering_public_parameter<ppT> &pp);
+
+	template <typename ppT>
+	std::istream &operator>>(std::istream &in, snark_for_filtering_public_parameter<ppT> &pp);
+
+	template <typename ppT>
+	class snark_for_filtering_public_parameter{
+	public:
+		libff::G1<ppT> g1_generator;
+		libff::G2<ppT> G2_gen;
+		libff::G1_vector<ppT> h_vector;
+
+		snark_for_filtering_public_parameter() = default;
+		snark_for_filtering_public_parameter(const libff::G1<ppT> &&g1_generator,
+											const libff::G2<ppT> &&G2_gen,
+											const libff::G1_vector<ppT> &&h_vector) :
+			g1_generator(std::move(g1_generator)),
+			G2_gen(std::move(G2_gen)),
+			h_vector(std::move(h_vector))
+		{};
+
+		size_t G1_size() const
+		{
+			return 1 + h_vector.size();
+		}
+
+		size_t G2_size() const
+		{
+			return 1;
+		}
+
+		size_t GT_size() const
+		{
+			return 0;
+		}
+
+		size_t size_in_bits() const
+		{
+			// TODO: include GT size
+			return (2 * libff::G2<ppT>::size_in_bits());
+		}
+
+		void print_size() const
+		{
+			libff::print_indent(); printf("* G1 elements in VK: %zu\n", this->G1_size());
+			libff::print_indent(); printf("* G2 elements in VK: %zu\n", this->G2_size());
+			libff::print_indent(); printf("* GT elements in VK: %zu\n", this->GT_size());
+			libff::print_indent(); printf("* PP size in bits: %zu\n", this->size_in_bits());
+		}
+
+		bool operator==(const snark_for_filtering_public_parameter<ppT> &other) const;
+		friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_filtering_public_parameter<ppT> &vk);
+		friend std::istream& operator>> <ppT>(std::istream &in, snark_for_filtering_public_parameter<ppT> &vk);
+};
+
+/************************ Processed verification key *************************/
+
+template<typename ppT>
+class snark_for_filtering_processed_verification_key;
+
+template<typename ppT>
+std::ostream& operator<<(std::ostream &out, const snark_for_filtering_processed_verification_key<ppT> &pvk);
+
+template<typename ppT>
+std::istream& operator>>(std::istream &in, snark_for_filtering_processed_verification_key<ppT> &pvk);
+
+/**
+ * A processed verification key for the R1CS GG-ppzkSNARK.
+ *
+ * Compared to a (non-processed) verification key, a processed verification key
+ * contains a small constant amount of additional pre-computed information that
+ * enables a faster verification time.
+ */
+template<typename ppT>
+class snark_for_filtering_processed_verification_key {
+public:
+    libff::G2<ppT> a_g2;
+    libff::G2<ppT> c0_g2;
+    libff::G2<ppT> c1_g2;
+    libff::G2<ppT> c2_g2;
+    libff::GT<ppT> vk_alpha_g1_beta_g2;
+    libff::G2_precomp<ppT> vk_delta_g2_precomp;
+
+
+    bool operator==(const snark_for_filtering_processed_verification_key &other) const;
+    friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_filtering_processed_verification_key<ppT> &pvk);
+    friend std::istream& operator>> <ppT>(std::istream &in, snark_for_filtering_processed_verification_key<ppT> &pvk);
+};
+
+
 	template <typename ppT>
 	class snark_for_filtering_keypair;
 
@@ -193,15 +308,20 @@ namespace libsnark{
 	  public:
 		snark_for_filtering_proving_key<ppT> pk;
 		snark_for_filtering_verification_key<ppT> vk;
+		snark_for_filtering_public_parameter pp;
 
 		snark_for_filtering_keypair(const snark_for_filtering_keypair<ppT> &other):
 			pk(std::move(other.pk)),
-			vk(std::move(other.vk))
+			vk(std::move(other.vk)),
+			pp(std::move(other.pp))
 		{};
 		snark_for_filtering_keypair(snark_for_filtering_proving_key<ppT> &&pk,
-									snark_for_filtering_verification_key<ppT> &&vk) : 
+									snark_for_filtering_verification_key<ppT> &&vk,
+									snark_for_filtering_public_parameter<ppT> &&pp) : 
 				pk(std::move(pk)),
-				vk(std::move(vk))
+				vk(std::move(vk)),
+				pp(std::move(pp))
+
 		{};
 
 		bool operator==(const snark_for_filtering_keypair<ppT> &other) const;
@@ -222,16 +342,20 @@ namespace libsnark{
 	class snark_for_filtering_proof
 	{
 	  public:
-	  	libff::G1<ppT> proof;
+	  	snark_for_completment_proof<ppT> completment_proof;
+		libff::G1<ppT> ss_proof_g1;
+		libff::G1<ppT> _C_x;
 
 		snark_for_filtering_proof();
-		snark_for_filtering_proof(libff::G1<ppT> &&proof) :
-			proof(std::move(proof))
+		snark_for_filtering_proof(snark_for_completment_proof<ppT> &&completment_proof, libff::G1<ppT> &&ss_proof_g1, libff::G1<ppT> &&_C_x) :
+			completment_proof(std::move(completment_proof)),
+			ss_proof_g1(std::move(ss_proof_g1)),
+			_C_x(std::move(_C_x))
 		{};
 
 		size_t proof_size() const
 		{
-			return 1;
+			return 5;
 		}
 		size_t size_in_bits() const
 		{
@@ -239,7 +363,7 @@ namespace libsnark{
 		}
 		void print_size() const
 		{
-			libff::print_indent(); printf("* LEGO Proof size in bits: %zu\n", this->size_in_bits());
+			libff::print_indent(); printf("* snark_for_filtering_proof size in bits: %zu\n", this->size_in_bits());
 		}
 
 
@@ -249,13 +373,21 @@ namespace libsnark{
 	};
 
 	template<typename ppT>
+	snark_for_filtering_Commit<ppT> Commit(const snark_for_filtering_public_parameter<ppT> &pp,
+                                       const libff::Fr_vector<ppT> xi_vector);
+
+	template<typename ppT>
 	snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const snark_for_completment_constraint_system<ppT> &r1cs);
 	
 	template<typename ppT>
 	snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filtering_proving_key<ppT> &pk, 
                                                     const snark_for_completment_primary_input<ppT> &primary_input,
                                                     const snark_for_completment_auxiliary_input<ppT> &auxiliary_input,
-                                                    libff::Fr_vector<ppT> u1_vector, libff::Fr_vector<ppT> u2_vector, libff::Fr<ppT> x0);
+                                                    libff::Fr<ppT> x0);
+
+	template<typename ppT>
+	snark_for_filtering_processed_verification_key<ppT> 
+	snark_for_filtering_verifier_process_vk	(const snark_for_filtering_verification_key<ppT> &vk);
 
 	template<typename ppT>
 	bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT> &vk, 

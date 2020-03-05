@@ -21,6 +21,8 @@
 #include <libff/common/profiling.hpp>
 
 #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment.hpp>
+#include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp>
+
 
 namespace libsnark {
 
