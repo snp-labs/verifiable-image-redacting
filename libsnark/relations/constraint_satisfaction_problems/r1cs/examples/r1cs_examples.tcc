@@ -159,6 +159,116 @@ r1cs_example<FieldT> generate_r1cs_example_with_binary_input(const size_t num_co
     return r1cs_example<FieldT>(std::move(cs), std::move(primary_input), std::move(auxiliary_input));
 }
 
+template<typename FieldT>
+r1cs_example<FieldT> generate_r1cs_filtering_example()
+{
+
+    libff::enter_block("Call to generate_filtering_example");
+    FieldT original[16][16] =
+    {
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,255,255,255,0,0,0,0,
+    0,0,255,0,0,0,0,0,255,0,0,0,255,0,0,0,
+    0,0,255,0,0,0,0,255,0,0,0,0,0,255,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,255,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,255,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,255,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,255,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,255,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,255,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,255,255,255,255,255,255,255,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    };
+    FieldT u1[16][16] =
+    {
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    };
+    FieldT u2[16][16] =
+    {
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,255,255,255,0,0,0,0,
+    0,0,0,0,0,0,0,0,255,0,0,0,255,0,0,0,
+    0,0,0,0,0,0,0,255,0,0,0,0,0,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,255,255,255,255,255,255,255,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    };
+    r1cs_constraint_system<FieldT> cs;
+    cs.primary_input_size = 0;
+    cs.auxiliary_input_size = 512; // TODO: explain this
+
+    r1cs_variable_assignment<FieldT> full_variable_assignment;
+ //여기서부터
+    for (size_t i = 0; i < 256; i++)
+    {
+        linear_combination<FieldT> A, B, C;
+
+        A.add_term(i,1);
+        B.add_term(i,1);
+        C.add_term(i,1);
+
+        FieldT tmp = u1[i] * u2[i];
+        full_variable_assignment.push_back(tmp);
+
+        cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
+    }
+
+    linear_combination<FieldT> A, B, C;
+    FieldT fin = FieldT::zero();
+    for (size_t i = 1; i < cs.num_variables(); ++i)
+    {
+        A.add_term(i, 1);
+        B.add_term(i, 1);
+        fin = fin + full_variable_assignment[i-1];
+    }
+    C.add_term(cs.num_variables(), 1);
+    cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
+    full_variable_assignment.push_back(fin.squared());
+
+    /* split variable assignment */
+    r1cs_primary_input<FieldT> primary_input(full_variable_assignment.begin(), full_variable_assignment.begin() + num_inputs);
+    r1cs_primary_input<FieldT> auxiliary_input(full_variable_assignment.begin() + num_inputs, full_variable_assignment.end());
+
+    /* sanity checks */
+    assert(cs.num_variables() == full_variable_assignment.size());
+    assert(cs.num_variables() >= num_inputs);
+    assert(cs.num_inputs() == num_inputs);
+    assert(cs.num_constraints() == num_constraints);
+    assert(cs.is_satisfied(primary_input, auxiliary_input));
+
+    libff::leave_block("Call to generate_r1cs_example_with_field_input");
+
+    return r1cs_example<FieldT>(std::move(cs), std::move(primary_input), std::move(auxiliary_input));
+}
+
 } // libsnark
 
 #endif // R1CS_EXAMPLES_TCC
