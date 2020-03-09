@@ -1,4 +1,4 @@
-# Install script for directory: /home/itsp/jsnark/libsnark/libsnark
+# Install script for directory: /home/itsp/snark_for_filtering/libsnark
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,14 +33,14 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/libsnark" TYPE DIRECTORY FILES "/home/itsp/jsnark/libsnark/libsnark/" FILES_MATCHING REGEX "/[^/]*\\.hpp$" REGEX "/[^/]*\\.tcc$" REGEX "/tests$" EXCLUDE REGEX "/examples$" EXCLUDE)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/libsnark" TYPE DIRECTORY FILES "/home/itsp/snark_for_filtering/libsnark/" FILES_MATCHING REGEX "/[^/]*\\.hpp$" REGEX "/[^/]*\\.tcc$" REGEX "/tests$" EXCLUDE REGEX "/examples$" EXCLUDE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/itsp/jsnark/libsnark/build/libsnark/libsnark.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/itsp/snark_for_filtering/build/libsnark/libsnark.a")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/itsp/jsnark/libsnark/build/libsnark/libsnark_adsnark.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/itsp/snark_for_filtering/build/libsnark/libsnark_adsnark.a")
 endif()
 

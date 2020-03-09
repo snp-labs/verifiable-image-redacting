@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itsp/jsnark/libsnark
+CMAKE_SOURCE_DIR = /home/itsp/snark_for_filtering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itsp/jsnark/libsnark/build
+CMAKE_BINARY_DIR = /home/itsp/snark_for_filtering/build
 
 # Include any dependencies generated for this target.
 include depends/libff/libff/CMakeFiles/ff.dir/depend.make
@@ -59,16 +59,16 @@ include depends/libff/libff/CMakeFiles/ff.dir/flags.make
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.o: ../depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.o.requires:
 
@@ -83,16 +83,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.o: ../depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.o.requires:
 
@@ -107,16 +107,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.o: ../depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.o.requires:
 
@@ -131,16 +131,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.o: ../depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.o.requires:
 
@@ -155,16 +155,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.o: ../depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp > CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.o.requires:
 
@@ -179,16 +179,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o: ../depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o.requires:
 
@@ -203,16 +203,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o.pr
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o: ../depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o.requires:
 
@@ -227,16 +227,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o.pr
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o: ../depends/libff/libff/algebra/curves/edwards/edwards_init.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o.requires:
 
@@ -251,16 +251,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o.
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.o: ../depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.o.requires:
 
@@ -275,16 +275,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o: ../depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp > CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o.requires:
 
@@ -299,16 +299,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o.pr
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o.requires:
 
@@ -323,16 +323,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o.prov
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o.requires:
 
@@ -347,16 +347,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o.prov
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o.requires:
 
@@ -371,16 +371,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o.pr
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o.requires:
 
@@ -395,16 +395,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o.requires:
 
@@ -419,16 +419,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o.prov
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o.requires:
 
@@ -443,16 +443,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o.prov
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o.requires:
 
@@ -467,16 +467,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o.prov
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o.requires:
 
@@ -491,16 +491,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o.prov
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o.requires:
 
@@ -515,16 +515,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o.pr
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o.requires:
 
@@ -539,16 +539,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o: ../depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp > CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o.requires:
 
@@ -563,16 +563,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o.prov
 
 depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.o: ../depends/libff/libff/common/double.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/common/double.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/common/double.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/common/double.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/common/double.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/common/double.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/common/double.cpp > CMakeFiles/ff.dir/common/double.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/common/double.cpp > CMakeFiles/ff.dir/common/double.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/common/double.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/common/double.cpp -o CMakeFiles/ff.dir/common/double.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/common/double.cpp -o CMakeFiles/ff.dir/common/double.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.o.requires:
 
@@ -587,16 +587,16 @@ depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.o.provides.build: depend
 
 depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.o: ../depends/libff/libff/common/profiling.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/common/profiling.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/common/profiling.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/common/profiling.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/common/profiling.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/common/profiling.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/common/profiling.cpp > CMakeFiles/ff.dir/common/profiling.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/common/profiling.cpp > CMakeFiles/ff.dir/common/profiling.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/common/profiling.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/common/profiling.cpp -o CMakeFiles/ff.dir/common/profiling.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/common/profiling.cpp -o CMakeFiles/ff.dir/common/profiling.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.o.requires:
 
@@ -611,16 +611,16 @@ depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.o.provides.build: dep
 
 depends/libff/libff/CMakeFiles/ff.dir/common/utils.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/common/utils.cpp.o: ../depends/libff/libff/common/utils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/common/utils.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/common/utils.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/common/utils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/common/utils.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/common/utils.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/common/utils.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/common/utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/common/utils.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/common/utils.cpp > CMakeFiles/ff.dir/common/utils.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/common/utils.cpp > CMakeFiles/ff.dir/common/utils.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/common/utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/common/utils.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/common/utils.cpp -o CMakeFiles/ff.dir/common/utils.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/common/utils.cpp -o CMakeFiles/ff.dir/common/utils.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/common/utils.cpp.o.requires:
 
@@ -635,16 +635,16 @@ depends/libff/libff/CMakeFiles/ff.dir/common/utils.cpp.o.provides.build: depends
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o: ../depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o.requires:
 
@@ -659,16 +659,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o.provid
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o: ../depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o.requires:
 
@@ -683,16 +683,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o.provid
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o: ../depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o.requires:
 
@@ -707,16 +707,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o.provid
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o: ../depends/libff/libff/algebra/curves/bn128/bn128_init.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o.requires:
 
@@ -731,16 +731,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o.prov
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o: ../depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o.requires:
 
@@ -755,16 +755,16 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o.p
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o: depends/libff/libff/CMakeFiles/ff.dir/flags.make
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o: ../depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o -c /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o -c /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp > CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.i
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp -o CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.s
 
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o.requires:
 
@@ -845,9 +845,9 @@ depends/libff/libff/libff.a: depends/libff/libff/CMakeFiles/ff.dir/algebra/curve
 depends/libff/libff/libff.a: depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o
 depends/libff/libff/libff.a: depends/libff/libff/CMakeFiles/ff.dir/build.make
 depends/libff/libff/libff.a: depends/libff/libff/CMakeFiles/ff.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX static library libff.a"
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && $(CMAKE_COMMAND) -P CMakeFiles/ff.dir/cmake_clean_target.cmake
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ff.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX static library libff.a"
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && $(CMAKE_COMMAND) -P CMakeFiles/ff.dir/cmake_clean_target.cmake
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ff.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 depends/libff/libff/CMakeFiles/ff.dir/build: depends/libff/libff/libff.a
@@ -888,10 +888,10 @@ depends/libff/libff/CMakeFiles/ff.dir/requires: depends/libff/libff/CMakeFiles/f
 .PHONY : depends/libff/libff/CMakeFiles/ff.dir/requires
 
 depends/libff/libff/CMakeFiles/ff.dir/clean:
-	cd /home/itsp/jsnark/libsnark/build/depends/libff/libff && $(CMAKE_COMMAND) -P CMakeFiles/ff.dir/cmake_clean.cmake
+	cd /home/itsp/snark_for_filtering/build/depends/libff/libff && $(CMAKE_COMMAND) -P CMakeFiles/ff.dir/cmake_clean.cmake
 .PHONY : depends/libff/libff/CMakeFiles/ff.dir/clean
 
 depends/libff/libff/CMakeFiles/ff.dir/depend:
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/jsnark/libsnark /home/itsp/jsnark/libsnark/depends/libff/libff /home/itsp/jsnark/libsnark/build /home/itsp/jsnark/libsnark/build/depends/libff/libff /home/itsp/jsnark/libsnark/build/depends/libff/libff/CMakeFiles/ff.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/snark_for_filtering /home/itsp/snark_for_filtering/depends/libff/libff /home/itsp/snark_for_filtering/build /home/itsp/snark_for_filtering/build/depends/libff/libff /home/itsp/snark_for_filtering/build/depends/libff/libff/CMakeFiles/ff.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : depends/libff/libff/CMakeFiles/ff.dir/depend
 

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itsp/jsnark/libsnark
+CMAKE_SOURCE_DIR = /home/itsp/snark_for_filtering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itsp/jsnark/libsnark/build
+CMAKE_BINARY_DIR = /home/itsp/snark_for_filtering/build
 
 # Utility rule file for doc.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/itsp/jsnark/libsnark/build
 include CMakeFiles/doc.dir/progress.make
 
 CMakeFiles/doc:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Translating from markdown to HTML"
-	/usr/bin/markdown_py -f /home/itsp/jsnark/libsnark/build/README.html -x toc -x extra --noisy /home/itsp/jsnark/libsnark/README.md
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Translating from markdown to HTML"
+	/usr/bin/markdown_py -f /home/itsp/snark_for_filtering/build/README.html -x toc -x extra --noisy /home/itsp/snark_for_filtering/README.md
 
 doc: CMakeFiles/doc
 doc: CMakeFiles/doc.dir/build.make
@@ -72,6 +72,6 @@ CMakeFiles/doc.dir/clean:
 .PHONY : CMakeFiles/doc.dir/clean
 
 CMakeFiles/doc.dir/depend:
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/jsnark/libsnark /home/itsp/jsnark/libsnark /home/itsp/jsnark/libsnark/build /home/itsp/jsnark/libsnark/build /home/itsp/jsnark/libsnark/build/CMakeFiles/doc.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/snark_for_filtering /home/itsp/snark_for_filtering /home/itsp/snark_for_filtering/build /home/itsp/snark_for_filtering/build /home/itsp/snark_for_filtering/build/CMakeFiles/doc.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doc.dir/depend
 

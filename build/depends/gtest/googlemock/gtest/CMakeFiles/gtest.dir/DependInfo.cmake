@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/itsp/jsnark/libsnark/depends/gtest/googletest/src/gtest-all.cc" "/home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+  "/home/itsp/snark_for_filtering/depends/gtest/googletest/src/gtest-all.cc" "/home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

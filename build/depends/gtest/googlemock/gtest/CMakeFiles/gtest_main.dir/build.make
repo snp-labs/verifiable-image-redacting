@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itsp/jsnark/libsnark
+CMAKE_SOURCE_DIR = /home/itsp/snark_for_filtering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itsp/jsnark/libsnark/build
+CMAKE_BINARY_DIR = /home/itsp/snark_for_filtering/build
 
 # Include any dependencies generated for this target.
 include depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/depend.make
@@ -59,16 +59,16 @@ include depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/flags.make
 
 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o: depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/flags.make
 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o: ../depends/gtest/googletest/src/gtest_main.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/itsp/jsnark/libsnark/depends/gtest/googletest/src/gtest_main.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
+	cd /home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/itsp/snark_for_filtering/depends/gtest/googletest/src/gtest_main.cc
 
 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gtest_main.dir/src/gtest_main.cc.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/gtest/googletest/src/gtest_main.cc > CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
+	cd /home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/gtest/googletest/src/gtest_main.cc > CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
 
 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gtest_main.dir/src/gtest_main.cc.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/gtest/googletest/src/gtest_main.cc -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
+	cd /home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/gtest/googletest/src/gtest_main.cc -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
 
 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o.requires:
 
@@ -91,9 +91,9 @@ gtest_main_EXTERNAL_OBJECTS =
 depends/gtest/googlemock/gtest/libgtest_main.a: depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
 depends/gtest/googlemock/gtest/libgtest_main.a: depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make
 depends/gtest/googlemock/gtest/libgtest_main.a: depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libgtest_main.a"
-	cd /home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest && $(CMAKE_COMMAND) -P CMakeFiles/gtest_main.dir/cmake_clean_target.cmake
-	cd /home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gtest_main.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libgtest_main.a"
+	cd /home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest && $(CMAKE_COMMAND) -P CMakeFiles/gtest_main.dir/cmake_clean_target.cmake
+	cd /home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gtest_main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build: depends/gtest/googlemock/gtest/libgtest_main.a
@@ -105,10 +105,10 @@ depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/requires: depends/gtest
 .PHONY : depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/requires
 
 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/clean:
-	cd /home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest && $(CMAKE_COMMAND) -P CMakeFiles/gtest_main.dir/cmake_clean.cmake
+	cd /home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest && $(CMAKE_COMMAND) -P CMakeFiles/gtest_main.dir/cmake_clean.cmake
 .PHONY : depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/clean
 
 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/depend:
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/jsnark/libsnark /home/itsp/jsnark/libsnark/depends/gtest/googletest /home/itsp/jsnark/libsnark/build /home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest /home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/snark_for_filtering /home/itsp/snark_for_filtering/depends/gtest/googletest /home/itsp/snark_for_filtering/build /home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest /home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/depend
 

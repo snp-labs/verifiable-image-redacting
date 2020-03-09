@@ -64,7 +64,7 @@ int main(int argc, const char * argv[])
 
     libff::enter_block("Generate R1CS example");
     // r1cs_example<libff::Fr<default_r1cs_gg_ppzksnark_pp> > example = generate_r1cs_example_with_field_input<libff::Fr<default_r1cs_gg_ppzksnark_pp> >(num_constraints, input_size);
-    libff::Fr_vector<ppT> original{
+    libff::Fr_vector<libff::default_ec_pp> original{
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,255,0,0,0,0,0,0,255,255,255,0,0,0,0,
@@ -82,7 +82,7 @@ int main(int argc, const char * argv[])
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
-    libff::Fr_vector<ppT> u1{
+    libff::Fr_vector<libff::default_ec_pp> u1{
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -100,7 +100,7 @@ int main(int argc, const char * argv[])
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
-    libff::Fr_vector<ppT> u2{
+    libff::Fr_vector<libff::default_ec_pp> u2{
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,255,255,255,0,0,0,0,
@@ -122,7 +122,7 @@ int main(int argc, const char * argv[])
     libff::print_header("(enter) Test Snark for Filtering");
     
     const bool test_serialization = true;
-    r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
+    r1cs_example<libff::Fr<libff::default_ec_pp> > example = generate_r1cs_filtering_example<libff::Fr<libff::default_ec_pp> >(u1, u2);
     libff::leave_block("Generate R1CS example");
 
     libff::print_header("(enter) Profile R1CS GG-ppzkSNARK");

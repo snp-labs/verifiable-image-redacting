@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itsp/jsnark/libsnark
+CMAKE_SOURCE_DIR = /home/itsp/snark_for_filtering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itsp/jsnark/libsnark/build
+CMAKE_BINARY_DIR = /home/itsp/snark_for_filtering/build
 
 # Include any dependencies generated for this target.
 include depends/CMakeFiles/zm.dir/depend.make
@@ -59,16 +59,16 @@ include depends/CMakeFiles/zm.dir/flags.make
 
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o: depends/CMakeFiles/zm.dir/flags.make
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o: ../depends/ate-pairing/src/zm.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o -c /home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o -c /home/itsp/snark_for_filtering/depends/ate-pairing/src/zm.cpp
 
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm.cpp > CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/ate-pairing/src/zm.cpp > CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.i
 
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm.cpp -o CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/ate-pairing/src/zm.cpp -o CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.s
 
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o.requires:
 
@@ -83,16 +83,16 @@ depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o.provides.build: depends/CMake
 
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o: depends/CMakeFiles/zm.dir/flags.make
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o: ../depends/ate-pairing/src/zm2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o -c /home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o -c /home/itsp/snark_for_filtering/depends/ate-pairing/src/zm2.cpp
 
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm2.cpp > CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/ate-pairing/src/zm2.cpp > CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.i
 
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm2.cpp -o CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/ate-pairing/src/zm2.cpp -o CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.s
 
 depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o.requires:
 
@@ -117,9 +117,9 @@ depends/libzm.a: depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o
 depends/libzm.a: depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o
 depends/libzm.a: depends/CMakeFiles/zm.dir/build.make
 depends/libzm.a: depends/CMakeFiles/zm.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libzm.a"
-	cd /home/itsp/jsnark/libsnark/build/depends && $(CMAKE_COMMAND) -P CMakeFiles/zm.dir/cmake_clean_target.cmake
-	cd /home/itsp/jsnark/libsnark/build/depends && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/zm.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libzm.a"
+	cd /home/itsp/snark_for_filtering/build/depends && $(CMAKE_COMMAND) -P CMakeFiles/zm.dir/cmake_clean_target.cmake
+	cd /home/itsp/snark_for_filtering/build/depends && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/zm.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 depends/CMakeFiles/zm.dir/build: depends/libzm.a
@@ -132,10 +132,10 @@ depends/CMakeFiles/zm.dir/requires: depends/CMakeFiles/zm.dir/ate-pairing/src/zm
 .PHONY : depends/CMakeFiles/zm.dir/requires
 
 depends/CMakeFiles/zm.dir/clean:
-	cd /home/itsp/jsnark/libsnark/build/depends && $(CMAKE_COMMAND) -P CMakeFiles/zm.dir/cmake_clean.cmake
+	cd /home/itsp/snark_for_filtering/build/depends && $(CMAKE_COMMAND) -P CMakeFiles/zm.dir/cmake_clean.cmake
 .PHONY : depends/CMakeFiles/zm.dir/clean
 
 depends/CMakeFiles/zm.dir/depend:
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/jsnark/libsnark /home/itsp/jsnark/libsnark/depends /home/itsp/jsnark/libsnark/build /home/itsp/jsnark/libsnark/build/depends /home/itsp/jsnark/libsnark/build/depends/CMakeFiles/zm.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/snark_for_filtering /home/itsp/snark_for_filtering/depends /home/itsp/snark_for_filtering/build /home/itsp/snark_for_filtering/build/depends /home/itsp/snark_for_filtering/build/depends/CMakeFiles/zm.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : depends/CMakeFiles/zm.dir/depend
 

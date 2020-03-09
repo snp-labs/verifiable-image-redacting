@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm.cpp" "/home/itsp/jsnark/libsnark/build/depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o"
-  "/home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm2.cpp" "/home/itsp/jsnark/libsnark/build/depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o"
+  "/home/itsp/snark_for_filtering/depends/ate-pairing/src/zm.cpp" "/home/itsp/snark_for_filtering/build/depends/CMakeFiles/zm.dir/ate-pairing/src/zm.cpp.o"
+  "/home/itsp/snark_for_filtering/depends/ate-pairing/src/zm2.cpp" "/home/itsp/snark_for_filtering/build/depends/CMakeFiles/zm.dir/ate-pairing/src/zm2.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

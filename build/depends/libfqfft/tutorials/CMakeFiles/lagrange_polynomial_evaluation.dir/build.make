@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itsp/jsnark/libsnark
+CMAKE_SOURCE_DIR = /home/itsp/snark_for_filtering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itsp/jsnark/libsnark/build
+CMAKE_BINARY_DIR = /home/itsp/snark_for_filtering/build
 
 # Include any dependencies generated for this target.
 include depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/depend.make
@@ -59,16 +59,16 @@ include depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir
 
 depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.o: depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/flags.make
 depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.o: ../depends/libfqfft/tutorials/lagrange_polynomial_evaluation_example.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.o"
-	cd /home/itsp/jsnark/libsnark/build/depends/libfqfft/tutorials && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.o -c /home/itsp/jsnark/libsnark/depends/libfqfft/tutorials/lagrange_polynomial_evaluation_example.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.o"
+	cd /home/itsp/snark_for_filtering/build/depends/libfqfft/tutorials && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.o -c /home/itsp/snark_for_filtering/depends/libfqfft/tutorials/lagrange_polynomial_evaluation_example.cpp
 
 depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.i"
-	cd /home/itsp/jsnark/libsnark/build/depends/libfqfft/tutorials && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/jsnark/libsnark/depends/libfqfft/tutorials/lagrange_polynomial_evaluation_example.cpp > CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.i
+	cd /home/itsp/snark_for_filtering/build/depends/libfqfft/tutorials && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/itsp/snark_for_filtering/depends/libfqfft/tutorials/lagrange_polynomial_evaluation_example.cpp > CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.i
 
 depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.s"
-	cd /home/itsp/jsnark/libsnark/build/depends/libfqfft/tutorials && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/jsnark/libsnark/depends/libfqfft/tutorials/lagrange_polynomial_evaluation_example.cpp -o CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.s
+	cd /home/itsp/snark_for_filtering/build/depends/libfqfft/tutorials && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/itsp/snark_for_filtering/depends/libfqfft/tutorials/lagrange_polynomial_evaluation_example.cpp -o CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.s
 
 depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/lagrange_polynomial_evaluation_example.cpp.o.requires:
 
@@ -94,8 +94,8 @@ depends/libfqfft/tutorials/lagrange_polynomial_evaluation: depends/libff/libff/l
 depends/libfqfft/tutorials/lagrange_polynomial_evaluation: /home/itsp/anaconda3/lib/libgmp.so
 depends/libfqfft/tutorials/lagrange_polynomial_evaluation: depends/libzm.a
 depends/libfqfft/tutorials/lagrange_polynomial_evaluation: depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itsp/jsnark/libsnark/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable lagrange_polynomial_evaluation"
-	cd /home/itsp/jsnark/libsnark/build/depends/libfqfft/tutorials && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lagrange_polynomial_evaluation.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/itsp/snark_for_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable lagrange_polynomial_evaluation"
+	cd /home/itsp/snark_for_filtering/build/depends/libfqfft/tutorials && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lagrange_polynomial_evaluation.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/build: depends/libfqfft/tutorials/lagrange_polynomial_evaluation
@@ -107,10 +107,10 @@ depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/require
 .PHONY : depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/requires
 
 depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/clean:
-	cd /home/itsp/jsnark/libsnark/build/depends/libfqfft/tutorials && $(CMAKE_COMMAND) -P CMakeFiles/lagrange_polynomial_evaluation.dir/cmake_clean.cmake
+	cd /home/itsp/snark_for_filtering/build/depends/libfqfft/tutorials && $(CMAKE_COMMAND) -P CMakeFiles/lagrange_polynomial_evaluation.dir/cmake_clean.cmake
 .PHONY : depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/clean
 
 depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/depend:
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/jsnark/libsnark /home/itsp/jsnark/libsnark/depends/libfqfft/tutorials /home/itsp/jsnark/libsnark/build /home/itsp/jsnark/libsnark/build/depends/libfqfft/tutorials /home/itsp/jsnark/libsnark/build/depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/itsp/snark_for_filtering /home/itsp/snark_for_filtering/depends/libfqfft/tutorials /home/itsp/snark_for_filtering/build /home/itsp/snark_for_filtering/build/depends/libfqfft/tutorials /home/itsp/snark_for_filtering/build/depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : depends/libfqfft/tutorials/CMakeFiles/lagrange_polynomial_evaluation.dir/depend
 

@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/itsp/jsnark/libsnark
-BuildDirectory: /home/itsp/jsnark/libsnark/build
+SourceDirectory: /home/itsp/snark_for_filtering
+BuildDirectory: /home/itsp/snark_for_filtering/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -33,7 +33,7 @@ ScpCommand: /usr/bin/scp
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/itsp/jsnark/libsnark"
+ConfigureCommand: "/usr/bin/cmake" "/home/itsp/snark_for_filtering"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 

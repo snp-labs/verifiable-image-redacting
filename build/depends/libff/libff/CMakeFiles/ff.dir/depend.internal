@@ -28,7 +28,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g1.cpp.
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/alt_bn128/alt_bn128_g2.hpp
  ../depends/libff/libff/../libff/algebra/curves/alt_bn128/alt_bn128_init.hpp
@@ -56,7 +56,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_g2.cpp.
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/alt_bn128/alt_bn128_g1.hpp
  ../depends/libff/libff/../libff/algebra/curves/alt_bn128/alt_bn128_g2.hpp
@@ -85,7 +85,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_init.cp
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/alt_bn128/alt_bn128_g1.hpp
  ../depends/libff/libff/../libff/algebra/curves/alt_bn128/alt_bn128_g2.hpp
@@ -116,7 +116,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pairing
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/alt_bn128/alt_bn128_g1.hpp
  ../depends/libff/libff/../libff/algebra/curves/alt_bn128/alt_bn128_g2.hpp
@@ -147,7 +147,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/alt_bn128/alt_bn128_pp.cpp.
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o
  .././depends/ate-pairing/include/bn.h
  .././depends/ate-pairing/include/zm.h
@@ -175,7 +175,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g1.cpp.o
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
  /home/itsp/anaconda3/include/gmpxx.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o
  .././depends/ate-pairing/include/bn.h
  .././depends/ate-pairing/include/zm.h
@@ -203,7 +203,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_g2.cpp.o
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
  /home/itsp/anaconda3/include/gmpxx.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o
  .././depends/ate-pairing/include/bn.h
  .././depends/ate-pairing/include/zm.h
@@ -225,7 +225,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_gt.cpp.o
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
  /home/itsp/anaconda3/include/gmpxx.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o
  .././depends/ate-pairing/include/bn.h
  .././depends/ate-pairing/include/zm.h
@@ -253,7 +253,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_init.cpp.o
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
  /home/itsp/anaconda3/include/gmpxx.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o
  .././depends/ate-pairing/include/bn.h
  .././depends/ate-pairing/include/zm.h
@@ -283,7 +283,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pairing.cpp.o
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
  /home/itsp/anaconda3/include/gmpxx.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o
  .././depends/ate-pairing/include/bn.h
  .././depends/ate-pairing/include/zm.h
@@ -314,7 +314,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/bn128/bn128_pp.cpp.o
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
  /home/itsp/anaconda3/include/gmpxx.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -344,7 +344,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g1.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -374,7 +374,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_g2.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -405,7 +405,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_init.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -438,7 +438,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pairing.cpp
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -471,7 +471,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/edwards/edwards_pp.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -500,7 +500,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g1.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -529,7 +529,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_g2.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -559,7 +559,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_init.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -591,7 +591,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pairing.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -623,7 +623,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt4/mnt4_pp.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/mnt/mnt46_common.hpp
  ../depends/libff/libff/../libff/algebra/fields/bigint.hpp
@@ -633,7 +633,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt46_common.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -664,7 +664,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g1.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -695,7 +695,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_g2.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -727,7 +727,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_init.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -761,7 +761,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pairing.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp
 depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.hpp
  ../depends/libff/libff/../libff/algebra/curves/curve_utils.tcc
@@ -795,7 +795,7 @@ depends/libff/libff/CMakeFiles/ff.dir/algebra/curves/mnt/mnt6/mnt6_pp.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp
 depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.o
  ../depends/libff/libff/../libff/algebra/fields/bigint.hpp
  ../depends/libff/libff/../libff/algebra/fields/bigint.tcc
@@ -805,7 +805,7 @@ depends/libff/libff/CMakeFiles/ff.dir/common/double.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/common/double.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/common/double.cpp
 depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.o
  .././depends/ate-pairing/include/bn.h
  .././depends/ate-pairing/include/zm.h
@@ -872,8 +872,8 @@ depends/libff/libff/CMakeFiles/ff.dir/common/profiling.cpp.o
  ../depends/libff/libff/../libff/common/utils.tcc
  /home/itsp/anaconda3/include/gmp.h
  /home/itsp/anaconda3/include/gmpxx.h
- /home/itsp/jsnark/libsnark/depends/libff/libff/common/profiling.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/common/profiling.cpp
 depends/libff/libff/CMakeFiles/ff.dir/common/utils.cpp.o
  ../depends/libff/libff/../libff/common/utils.hpp
  ../depends/libff/libff/../libff/common/utils.tcc
- /home/itsp/jsnark/libsnark/depends/libff/libff/common/utils.cpp
+ /home/itsp/snark_for_filtering/depends/libff/libff/common/utils.cpp

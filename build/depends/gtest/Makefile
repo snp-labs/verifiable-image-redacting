@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itsp/jsnark/libsnark
+CMAKE_SOURCE_DIR = /home/itsp/snark_for_filtering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itsp/jsnark/libsnark/build
+CMAKE_BINARY_DIR = /home/itsp/snark_for_filtering/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -135,14 +135,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/jsnark/libsnark/build/CMakeFiles /home/itsp/jsnark/libsnark/build/depends/gtest/CMakeFiles/progress.marks
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/jsnark/libsnark/build/CMakeFiles 0
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/snark_for_filtering/build/CMakeFiles /home/itsp/snark_for_filtering/build/depends/gtest/CMakeFiles/progress.marks
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/snark_for_filtering/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/clean
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/clean
 .PHONY : clean
 
 # The main clean target
@@ -152,17 +152,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/preinstall
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/preinstall
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -189,6 +189,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

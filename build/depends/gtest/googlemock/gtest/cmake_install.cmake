@@ -1,4 +1,4 @@
-# Install script for directory: /home/itsp/jsnark/libsnark/depends/gtest/googletest
+# Install script for directory: /home/itsp/snark_for_filtering/depends/gtest/googletest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,21 +33,21 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest/libgtest.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest/libgtest.a")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest/libgtest_main.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest/libgtest_main.a")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/itsp/jsnark/libsnark/depends/gtest/googletest/include/gtest")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/itsp/snark_for_filtering/depends/gtest/googletest/include/gtest")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES
-    "/home/itsp/jsnark/libsnark/build/gtest.pc"
-    "/home/itsp/jsnark/libsnark/build/gtest_main.pc"
+    "/home/itsp/snark_for_filtering/build/gtest.pc"
+    "/home/itsp/snark_for_filtering/build/gtest_main.pc"
     )
 endif()
 

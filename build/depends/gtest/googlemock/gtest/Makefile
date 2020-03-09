@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itsp/jsnark/libsnark
+CMAKE_SOURCE_DIR = /home/itsp/snark_for_filtering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itsp/jsnark/libsnark/build
+CMAKE_BINARY_DIR = /home/itsp/snark_for_filtering/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -135,14 +135,14 @@ install/local/fast: install/local
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/jsnark/libsnark/build/CMakeFiles /home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest/CMakeFiles/progress.marks
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/jsnark/libsnark/build/CMakeFiles 0
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/snark_for_filtering/build/CMakeFiles /home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest/CMakeFiles/progress.marks
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/snark_for_filtering/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/clean
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/clean
 .PHONY : clean
 
 # The main clean target
@@ -152,22 +152,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/preinstall
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/preinstall
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule
 .PHONY : depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule
 
 # Convenience name for target.
@@ -177,12 +177,12 @@ gtest: depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule
 
 # fast build rule for target.
 gtest/fast:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
 # Convenience name for target.
 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f CMakeFiles/Makefile2 depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule
 .PHONY : depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule
 
 # Convenience name for target.
@@ -192,7 +192,7 @@ gtest_main: depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule
 
 # fast build rule for target.
 gtest_main/fast:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
 src/gtest-all.o: src/gtest-all.cc.o
@@ -201,7 +201,7 @@ src/gtest-all.o: src/gtest-all.cc.o
 
 # target to build an object file
 src/gtest-all.cc.o:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
 .PHONY : src/gtest-all.cc.o
 
 src/gtest-all.i: src/gtest-all.cc.i
@@ -210,7 +210,7 @@ src/gtest-all.i: src/gtest-all.cc.i
 
 # target to preprocess a source file
 src/gtest-all.cc.i:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.i
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.i
 .PHONY : src/gtest-all.cc.i
 
 src/gtest-all.s: src/gtest-all.cc.s
@@ -219,7 +219,7 @@ src/gtest-all.s: src/gtest-all.cc.s
 
 # target to generate assembly for a file
 src/gtest-all.cc.s:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.s
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.s
 .PHONY : src/gtest-all.cc.s
 
 src/gtest_main.o: src/gtest_main.cc.o
@@ -228,7 +228,7 @@ src/gtest_main.o: src/gtest_main.cc.o
 
 # target to build an object file
 src/gtest_main.cc.o:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
 .PHONY : src/gtest_main.cc.o
 
 src/gtest_main.i: src/gtest_main.cc.i
@@ -237,7 +237,7 @@ src/gtest_main.i: src/gtest_main.cc.i
 
 # target to preprocess a source file
 src/gtest_main.cc.i:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
 .PHONY : src/gtest_main.cc.i
 
 src/gtest_main.s: src/gtest_main.cc.s
@@ -246,7 +246,7 @@ src/gtest_main.s: src/gtest_main.cc.s
 
 # target to generate assembly for a file
 src/gtest_main.cc.s:
-	cd /home/itsp/jsnark/libsnark/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
+	cd /home/itsp/snark_for_filtering/build && $(MAKE) -f depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
 .PHONY : src/gtest_main.cc.s
 
 # Help Target
@@ -281,6 +281,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/itsp/jsnark/libsnark/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/itsp/snark_for_filtering/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

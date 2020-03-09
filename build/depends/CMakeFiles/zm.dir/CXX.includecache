@@ -100,25 +100,25 @@ intrin.h
 cpuid.h
 -
 
-/home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm.cpp
+/home/itsp/snark_for_filtering/depends/ate-pairing/src/zm.cpp
 zm.h
-/home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm.h
+/home/itsp/snark_for_filtering/depends/ate-pairing/src/zm.h
 cstdio
 -
 xbyak/xbyak.h
-/home/itsp/jsnark/libsnark/depends/ate-pairing/src/xbyak/xbyak.h
+/home/itsp/snark_for_filtering/depends/ate-pairing/src/xbyak/xbyak.h
 
-/home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm2.cpp
+/home/itsp/snark_for_filtering/depends/ate-pairing/src/zm2.cpp
 iostream
 -
 zm.h
-/home/itsp/jsnark/libsnark/depends/ate-pairing/src/zm.h
+/home/itsp/snark_for_filtering/depends/ate-pairing/src/zm.h
 xbyak/xbyak.h
-/home/itsp/jsnark/libsnark/depends/ate-pairing/src/xbyak/xbyak.h
+/home/itsp/snark_for_filtering/depends/ate-pairing/src/xbyak/xbyak.h
 xbyak/xbyak_util.h
-/home/itsp/jsnark/libsnark/depends/ate-pairing/src/xbyak/xbyak_util.h
+/home/itsp/snark_for_filtering/depends/ate-pairing/src/xbyak/xbyak_util.h
 bn.h
-/home/itsp/jsnark/libsnark/depends/ate-pairing/src/bn.h
+/home/itsp/snark_for_filtering/depends/ate-pairing/src/bn.h
 stdint.h
 -
 

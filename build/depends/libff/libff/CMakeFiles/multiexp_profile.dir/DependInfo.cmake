@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/scalar_multiplication/multiexp_profile.cpp" "/home/itsp/jsnark/libsnark/build/depends/libff/libff/CMakeFiles/multiexp_profile.dir/algebra/scalar_multiplication/multiexp_profile.cpp.o"
+  "/home/itsp/snark_for_filtering/depends/libff/libff/algebra/scalar_multiplication/multiexp_profile.cpp" "/home/itsp/snark_for_filtering/build/depends/libff/libff/CMakeFiles/multiexp_profile.dir/algebra/scalar_multiplication/multiexp_profile.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -29,8 +29,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/itsp/jsnark/libsnark/build/depends/libff/libff/CMakeFiles/ff.dir/DependInfo.cmake"
-  "/home/itsp/jsnark/libsnark/build/depends/CMakeFiles/zm.dir/DependInfo.cmake"
+  "/home/itsp/snark_for_filtering/build/depends/libff/libff/CMakeFiles/ff.dir/DependInfo.cmake"
+  "/home/itsp/snark_for_filtering/build/depends/CMakeFiles/zm.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

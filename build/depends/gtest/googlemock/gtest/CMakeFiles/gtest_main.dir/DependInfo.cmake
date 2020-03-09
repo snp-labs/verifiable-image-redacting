@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/itsp/jsnark/libsnark/depends/gtest/googletest/src/gtest_main.cc" "/home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
+  "/home/itsp/snark_for_filtering/depends/gtest/googletest/src/gtest_main.cc" "/home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -26,7 +26,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/itsp/jsnark/libsnark/build/depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
+  "/home/itsp/snark_for_filtering/build/depends/gtest/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

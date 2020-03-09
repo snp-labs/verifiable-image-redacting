@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -Wall -Wextra -Wfatal-errors -ggdb3 -O2 -march=native -m
 
 CXX_DEFINES = -DBINARY_OUTPUT -DBN_SUPPORT_SNARK=1 -DCURVE_BN128 -DMONTGOMERY_OUTPUT -DUSE_ASM
 
-CXX_INCLUDES = -I/home/itsp/jsnark/libsnark/. -isystem /home/itsp/jsnark/libsnark/depends/gtest/googlemock/include -I/home/itsp/jsnark/libsnark/depends/gtest/googlemock -isystem /home/itsp/jsnark/libsnark/depends/gtest/googletest/include -I/home/itsp/jsnark/libsnark/depends/gtest/googletest 
+CXX_INCLUDES = -I/home/itsp/snark_for_filtering/. -isystem /home/itsp/snark_for_filtering/depends/gtest/googlemock/include -I/home/itsp/snark_for_filtering/depends/gtest/googlemock -isystem /home/itsp/snark_for_filtering/depends/gtest/googletest/include -I/home/itsp/snark_for_filtering/depends/gtest/googletest 
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/itsp/jsnark/libsnark/depends/libfqfft/tutorials
+# Install script for directory: /home/itsp/snark_for_filtering/depends/libfqfft/tutorials
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

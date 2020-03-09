@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/itsp/jsnark/libsnark
+CMAKE_SOURCE_DIR = /home/itsp/snark_for_filtering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/itsp/jsnark/libsnark/build
+CMAKE_BINARY_DIR = /home/itsp/snark_for_filtering/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -135,9 +135,9 @@ install/strip/fast: install/strip
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/jsnark/libsnark/build/CMakeFiles /home/itsp/jsnark/libsnark/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/snark_for_filtering/build/CMakeFiles /home/itsp/snark_for_filtering/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/jsnark/libsnark/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/itsp/snark_for_filtering/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -439,32 +439,6 @@ ExperimentalConfigure/fast:
 .PHONY : ExperimentalConfigure/fast
 
 #=============================================================================
-# Target rules for targets named ContinuousMemCheck
-
-# Build rule for target.
-ContinuousMemCheck: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ContinuousMemCheck
-.PHONY : ContinuousMemCheck
-
-# fast build rule for target.
-ContinuousMemCheck/fast:
-	$(MAKE) -f libsnark/CMakeFiles/ContinuousMemCheck.dir/build.make libsnark/CMakeFiles/ContinuousMemCheck.dir/build
-.PHONY : ContinuousMemCheck/fast
-
-#=============================================================================
-# Target rules for targets named ExperimentalUpdate
-
-# Build rule for target.
-ExperimentalUpdate: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ExperimentalUpdate
-.PHONY : ExperimentalUpdate
-
-# fast build rule for target.
-ExperimentalUpdate/fast:
-	$(MAKE) -f libsnark/CMakeFiles/ExperimentalUpdate.dir/build.make libsnark/CMakeFiles/ExperimentalUpdate.dir/build
-.PHONY : ExperimentalUpdate/fast
-
-#=============================================================================
 # Target rules for targets named NightlyTest
 
 # Build rule for target.
@@ -595,17 +569,17 @@ test_set_commitment_gadget/fast:
 .PHONY : test_set_commitment_gadget/fast
 
 #=============================================================================
-# Target rules for targets named gadgetlib1_simple_test
+# Target rules for targets named test_merkle_tree_gadgets
 
 # Build rule for target.
-gadgetlib1_simple_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gadgetlib1_simple_test
-.PHONY : gadgetlib1_simple_test
+test_merkle_tree_gadgets: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_merkle_tree_gadgets
+.PHONY : test_merkle_tree_gadgets
 
 # fast build rule for target.
-gadgetlib1_simple_test/fast:
-	$(MAKE) -f libsnark/CMakeFiles/gadgetlib1_simple_test.dir/build.make libsnark/CMakeFiles/gadgetlib1_simple_test.dir/build
-.PHONY : gadgetlib1_simple_test/fast
+test_merkle_tree_gadgets/fast:
+	$(MAKE) -f libsnark/CMakeFiles/test_merkle_tree_gadgets.dir/build.make libsnark/CMakeFiles/test_merkle_tree_gadgets.dir/build
+.PHONY : test_merkle_tree_gadgets/fast
 
 #=============================================================================
 # Target rules for targets named common_routing_algorithms_test
@@ -827,6 +801,19 @@ profile_bacs_ppzksnark: cmake_check_build_system
 profile_bacs_ppzksnark/fast:
 	$(MAKE) -f libsnark/CMakeFiles/profile_bacs_ppzksnark.dir/build.make libsnark/CMakeFiles/profile_bacs_ppzksnark.dir/build
 .PHONY : profile_bacs_ppzksnark/fast
+
+#=============================================================================
+# Target rules for targets named profile_r1cs_se_ppzksnark
+
+# Build rule for target.
+profile_r1cs_se_ppzksnark: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 profile_r1cs_se_ppzksnark
+.PHONY : profile_r1cs_se_ppzksnark
+
+# fast build rule for target.
+profile_r1cs_se_ppzksnark/fast:
+	$(MAKE) -f libsnark/CMakeFiles/profile_r1cs_se_ppzksnark.dir/build.make libsnark/CMakeFiles/profile_r1cs_se_ppzksnark.dir/build
+.PHONY : profile_r1cs_se_ppzksnark/fast
 
 #=============================================================================
 # Target rules for targets named NightlyCoverage
@@ -1063,6 +1050,19 @@ demo_ram_ppzksnark/fast:
 .PHONY : demo_ram_ppzksnark/fast
 
 #=============================================================================
+# Target rules for targets named gadgetlib1_simple_test
+
+# Build rule for target.
+gadgetlib1_simple_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gadgetlib1_simple_test
+.PHONY : gadgetlib1_simple_test
+
+# fast build rule for target.
+gadgetlib1_simple_test/fast:
+	$(MAKE) -f libsnark/CMakeFiles/gadgetlib1_simple_test.dir/build.make libsnark/CMakeFiles/gadgetlib1_simple_test.dir/build
+.PHONY : gadgetlib1_simple_test/fast
+
+#=============================================================================
 # Target rules for targets named gadgetlib1_fooram_test
 
 # Build rule for target.
@@ -1100,6 +1100,19 @@ gadgetlib1_r1cs_ppzksnark_verifier_gadget_test: cmake_check_build_system
 gadgetlib1_r1cs_ppzksnark_verifier_gadget_test/fast:
 	$(MAKE) -f libsnark/CMakeFiles/gadgetlib1_r1cs_ppzksnark_verifier_gadget_test.dir/build.make libsnark/CMakeFiles/gadgetlib1_r1cs_ppzksnark_verifier_gadget_test.dir/build
 .PHONY : gadgetlib1_r1cs_ppzksnark_verifier_gadget_test/fast
+
+#=============================================================================
+# Target rules for targets named zk_proof_systems_snark_for_filtering
+
+# Build rule for target.
+zk_proof_systems_snark_for_filtering: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 zk_proof_systems_snark_for_filtering
+.PHONY : zk_proof_systems_snark_for_filtering
+
+# fast build rule for target.
+zk_proof_systems_snark_for_filtering/fast:
+	$(MAKE) -f libsnark/CMakeFiles/zk_proof_systems_snark_for_filtering.dir/build.make libsnark/CMakeFiles/zk_proof_systems_snark_for_filtering.dir/build
+.PHONY : zk_proof_systems_snark_for_filtering/fast
 
 #=============================================================================
 # Target rules for targets named demo_ram_ppzksnark_verifier
@@ -1180,6 +1193,45 @@ gadgetlib2_integration_test/fast:
 .PHONY : gadgetlib2_integration_test/fast
 
 #=============================================================================
+# Target rules for targets named ContinuousMemCheck
+
+# Build rule for target.
+ContinuousMemCheck: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ContinuousMemCheck
+.PHONY : ContinuousMemCheck
+
+# fast build rule for target.
+ContinuousMemCheck/fast:
+	$(MAKE) -f libsnark/CMakeFiles/ContinuousMemCheck.dir/build.make libsnark/CMakeFiles/ContinuousMemCheck.dir/build
+.PHONY : ContinuousMemCheck/fast
+
+#=============================================================================
+# Target rules for targets named ExperimentalUpdate
+
+# Build rule for target.
+ExperimentalUpdate: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ExperimentalUpdate
+.PHONY : ExperimentalUpdate
+
+# fast build rule for target.
+ExperimentalUpdate/fast:
+	$(MAKE) -f libsnark/CMakeFiles/ExperimentalUpdate.dir/build.make libsnark/CMakeFiles/ExperimentalUpdate.dir/build
+.PHONY : ExperimentalUpdate/fast
+
+#=============================================================================
+# Target rules for targets named zk_proof_systems_snark_for_filtering_test
+
+# Build rule for target.
+zk_proof_systems_snark_for_filtering_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 zk_proof_systems_snark_for_filtering_test
+.PHONY : zk_proof_systems_snark_for_filtering_test
+
+# fast build rule for target.
+zk_proof_systems_snark_for_filtering_test/fast:
+	$(MAKE) -f libsnark/CMakeFiles/zk_proof_systems_snark_for_filtering_test.dir/build.make libsnark/CMakeFiles/zk_proof_systems_snark_for_filtering_test.dir/build
+.PHONY : zk_proof_systems_snark_for_filtering_test/fast
+
+#=============================================================================
 # Target rules for targets named NightlySubmit
 
 # Build rule for target.
@@ -1258,32 +1310,6 @@ zk_proof_systems_r1cs_ppzksnark_test/fast:
 .PHONY : zk_proof_systems_r1cs_ppzksnark_test/fast
 
 #=============================================================================
-# Target rules for targets named profile_r1cs_se_ppzksnark
-
-# Build rule for target.
-profile_r1cs_se_ppzksnark: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 profile_r1cs_se_ppzksnark
-.PHONY : profile_r1cs_se_ppzksnark
-
-# fast build rule for target.
-profile_r1cs_se_ppzksnark/fast:
-	$(MAKE) -f libsnark/CMakeFiles/profile_r1cs_se_ppzksnark.dir/build.make libsnark/CMakeFiles/profile_r1cs_se_ppzksnark.dir/build
-.PHONY : profile_r1cs_se_ppzksnark/fast
-
-#=============================================================================
-# Target rules for targets named zk_proof_systems_snark_for_completment_test
-
-# Build rule for target.
-zk_proof_systems_snark_for_completment_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 zk_proof_systems_snark_for_completment_test
-.PHONY : zk_proof_systems_snark_for_completment_test
-
-# fast build rule for target.
-zk_proof_systems_snark_for_completment_test/fast:
-	$(MAKE) -f libsnark/CMakeFiles/zk_proof_systems_snark_for_completment_test.dir/build.make libsnark/CMakeFiles/zk_proof_systems_snark_for_completment_test.dir/build
-.PHONY : zk_proof_systems_snark_for_completment_test/fast
-
-#=============================================================================
 # Target rules for targets named zk_proof_systems_tbcs_ppzksnark_test
 
 # Build rule for target.
@@ -1322,19 +1348,6 @@ test_knapsack_gadget/fast:
 	$(MAKE) -f libsnark/CMakeFiles/test_knapsack_gadget.dir/build.make libsnark/CMakeFiles/test_knapsack_gadget.dir/build
 .PHONY : test_knapsack_gadget/fast
 
-#=============================================================================
-# Target rules for targets named test_merkle_tree_gadgets
-
-# Build rule for target.
-test_merkle_tree_gadgets: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_merkle_tree_gadgets
-.PHONY : test_merkle_tree_gadgets
-
-# fast build rule for target.
-test_merkle_tree_gadgets/fast:
-	$(MAKE) -f libsnark/CMakeFiles/test_merkle_tree_gadgets.dir/build.make libsnark/CMakeFiles/test_merkle_tree_gadgets.dir/build
-.PHONY : test_merkle_tree_gadgets/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1369,8 +1382,6 @@ help:
 	@echo "... ContinuousStart"
 	@echo "... ExperimentalCoverage"
 	@echo "... ExperimentalConfigure"
-	@echo "... ContinuousMemCheck"
-	@echo "... ExperimentalUpdate"
 	@echo "... NightlyTest"
 	@echo "... NightlyBuild"
 	@echo "... NightlyConfigure"
@@ -1381,7 +1392,7 @@ help:
 	@echo "... Nightly"
 	@echo "... run_ppzksnark"
 	@echo "... test_set_commitment_gadget"
-	@echo "... gadgetlib1_simple_test"
+	@echo "... test_merkle_tree_gadgets"
 	@echo "... common_routing_algorithms_test"
 	@echo "... NightlyMemCheck"
 	@echo "... demo_r1cs_ppzkadsnark"
@@ -1399,6 +1410,7 @@ help:
 	@echo "... zk_proof_systems_uscs_ppzksnark_test"
 	@echo "... zk_proof_systems_ram_zksnark_test"
 	@echo "... profile_bacs_ppzksnark"
+	@echo "... profile_r1cs_se_ppzksnark"
 	@echo "... NightlyCoverage"
 	@echo "... profile_tbcs_ppzksnark"
 	@echo "... ExperimentalSubmit"
@@ -1417,27 +1429,29 @@ help:
 	@echo "... zk_proof_systems_r1cs_se_ppzksnark_test"
 	@echo "... snark_adsnark"
 	@echo "... demo_ram_ppzksnark"
+	@echo "... gadgetlib1_simple_test"
 	@echo "... gadgetlib1_fooram_test"
 	@echo "... gadgetlib2_gadget_test"
 	@echo "... gadgetlib1_r1cs_ppzksnark_verifier_gadget_test"
+	@echo "... zk_proof_systems_snark_for_filtering"
 	@echo "... demo_ram_ppzksnark_verifier"
 	@echo "... gadgetlib2_adapters_test"
 	@echo "... ExperimentalMemCheck"
 	@echo "... zk_proof_systems_ram_ppzksnark_test"
 	@echo "... gadgetlib2_constraint_test"
 	@echo "... gadgetlib2_integration_test"
+	@echo "... ContinuousMemCheck"
+	@echo "... ExperimentalUpdate"
+	@echo "... zk_proof_systems_snark_for_filtering_test"
 	@echo "... NightlySubmit"
 	@echo "... relations_qap_test"
 	@echo "... relations_ssp_test"
 	@echo "... zk_proof_systems_r1cs_mp_ppzkpcd_test"
 	@echo "... zk_proof_systems_bacs_ppzksnark_test"
 	@echo "... zk_proof_systems_r1cs_ppzksnark_test"
-	@echo "... profile_r1cs_se_ppzksnark"
-	@echo "... zk_proof_systems_snark_for_completment_test"
 	@echo "... zk_proof_systems_tbcs_ppzksnark_test"
 	@echo "... profile_routing_algorithms"
 	@echo "... test_knapsack_gadget"
-	@echo "... test_merkle_tree_gadgets"
 .PHONY : help
 
 

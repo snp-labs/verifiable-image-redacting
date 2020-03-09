@@ -598,15 +598,15 @@ gmp.h
 type_traits
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.cpp
 libff/algebra/curves/alt_bn128/alt_bn128_g1.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.cpp
 libff/algebra/curves/alt_bn128/alt_bn128_g2.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.cpp
 libff/algebra/curves/alt_bn128/alt_bn128_g1.hpp
 -
 libff/algebra/curves/alt_bn128/alt_bn128_g2.hpp
@@ -614,7 +614,7 @@ libff/algebra/curves/alt_bn128/alt_bn128_g2.hpp
 libff/algebra/curves/alt_bn128/alt_bn128_init.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pairing.cpp
 cassert
 -
 libff/algebra/curves/alt_bn128/alt_bn128_g1.hpp
@@ -628,27 +628,27 @@ libff/algebra/curves/alt_bn128/alt_bn128_pairing.hpp
 libff/common/profiling.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_pp.cpp
 libff/algebra/curves/alt_bn128/alt_bn128_pp.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g1.cpp
 libff/algebra/curves/bn128/bn128_g1.hpp
 -
 libff/algebra/curves/bn128/bn_utils.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_g2.cpp
 libff/algebra/curves/bn128/bn128_g2.hpp
 -
 libff/algebra/curves/bn128/bn_utils.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_gt.cpp
 libff/algebra/curves/bn128/bn128_gt.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_init.cpp
 libff/algebra/curves/bn128/bn128_g1.hpp
 -
 libff/algebra/curves/bn128/bn128_g2.hpp
@@ -658,7 +658,7 @@ libff/algebra/curves/bn128/bn128_gt.hpp
 libff/algebra/curves/bn128/bn128_init.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pairing.cpp
 sstream
 -
 libff/algebra/curves/bn128/bn128_g1.hpp
@@ -674,21 +674,21 @@ libff/algebra/curves/bn128/bn128_pairing.hpp
 libff/common/profiling.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/bn128/bn128_pp.cpp
 libff/algebra/curves/bn128/bn128_pp.hpp
 -
 libff/common/profiling.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g1.cpp
 libff/algebra/curves/edwards/edwards_g1.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_g2.cpp
 libff/algebra/curves/edwards/edwards_g2.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_init.cpp
 libff/algebra/curves/edwards/edwards_g1.hpp
 -
 libff/algebra/curves/edwards/edwards_g2.hpp
@@ -696,7 +696,7 @@ libff/algebra/curves/edwards/edwards_g2.hpp
 libff/algebra/curves/edwards/edwards_init.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pairing.cpp
 cassert
 -
 libff/algebra/curves/edwards/edwards_g1.hpp
@@ -710,19 +710,19 @@ libff/algebra/curves/edwards/edwards_pairing.hpp
 libff/common/profiling.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/edwards/edwards_pp.cpp
 libff/algebra/curves/edwards/edwards_pp.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g1.cpp
 libff/algebra/curves/mnt/mnt4/mnt4_g1.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_g2.cpp
 libff/algebra/curves/mnt/mnt4/mnt4_g2.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_init.cpp
 libff/algebra/curves/mnt/mnt4/mnt4_g1.hpp
 -
 libff/algebra/curves/mnt/mnt4/mnt4_g2.hpp
@@ -730,7 +730,7 @@ libff/algebra/curves/mnt/mnt4/mnt4_g2.hpp
 libff/algebra/curves/mnt/mnt4/mnt4_init.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pairing.cpp
 cassert
 -
 libff/algebra/curves/mnt/mnt4/mnt4_g1.hpp
@@ -746,23 +746,23 @@ libff/algebra/scalar_multiplication/wnaf.hpp
 libff/common/profiling.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt4/mnt4_pp.cpp
 libff/algebra/curves/mnt/mnt4/mnt4_pp.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt46_common.cpp
 libff/algebra/curves/mnt/mnt46_common.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g1.cpp
 libff/algebra/curves/mnt/mnt6/mnt6_g1.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_g2.cpp
 libff/algebra/curves/mnt/mnt6/mnt6_g2.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_init.cpp
 libff/algebra/curves/mnt/mnt6/mnt6_g1.hpp
 -
 libff/algebra/curves/mnt/mnt6/mnt6_g2.hpp
@@ -770,7 +770,7 @@ libff/algebra/curves/mnt/mnt6/mnt6_g2.hpp
 libff/algebra/curves/mnt/mnt6/mnt6_init.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pairing.cpp
 cassert
 -
 libff/algebra/curves/mnt/mnt6/mnt6_g1.hpp
@@ -786,11 +786,11 @@ libff/algebra/scalar_multiplication/wnaf.hpp
 libff/common/profiling.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/algebra/curves/mnt/mnt6/mnt6_pp.cpp
 libff/algebra/curves/mnt/mnt6/mnt6_pp.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/common/double.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/common/double.cpp
 cmath
 -
 complex
@@ -802,7 +802,7 @@ libff/algebra/fields/bigint.hpp
 libff/common/double.hpp
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/common/profiling.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/common/profiling.cpp
 cassert
 -
 chrono
@@ -826,7 +826,7 @@ libff/common/utils.hpp
 proc/readproc.h
 -
 
-/home/itsp/jsnark/libsnark/depends/libff/libff/common/utils.cpp
+/home/itsp/snark_for_filtering/depends/libff/libff/common/utils.cpp
 algorithm
 -
 cassert
