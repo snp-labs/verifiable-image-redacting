@@ -88,15 +88,15 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example, const
 
     snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
     libff::Fr<ppT> o1 = libff::Fr<ppT>::zero();
-    libff::G1<ppT> C_x = o1 * keypair.pk.f_vector.rest.values[0];
-    const int len = auxiliary_input.size/2;
+    libff::G1<ppT> C_x = o1 * keypair.pk.f_vector[0];
+    const int len = example.auxiliary_input.size();
     for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
-		C_x += example.auxiliary_input.rest.values[i] * pk.f_vector.rest.values[i+1];
+		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i+1];
     }
 
 
     libff::print_header("snark_for_filtering Prover");
-    snark_for_filtering_proof<ppT> proof = snark_for_filtering_prover<ppT>(keypair.pk, example.primary_input, example.auxiliary_input,keypair.pp.x0);
+    snark_for_filtering_proof<ppT> proof = snark_for_filtering_prover<ppT>(keypair.pk, example.primary_input, example.auxiliary_input, commitment.x0);
     printf("\n"); libff::print_indent(); libff::print_mem("after prover");
 
     if (test_serialization)
@@ -107,7 +107,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example, const
     }
 
     libff::print_header("snark_for_filtering Verifier");
-    const bool ans = snark_for_filtering_verifier<ppT>(keypair.vk, commitment.sigma_x, c_x, proof);
+    const bool ans = snark_for_filtering_verifier(keypair.vk, commitment.sigma_x, C_x, proof);
     printf("\n"); libff::print_indent(); libff::print_mem("after verifier");
     printf("* The verification result is: %s\n", (ans ? "PASS" : "FAIL"));
 
@@ -115,7 +115,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example, const
     // const bool ans2 = snark_for_filtering_online_verifier_strong_IC<ppT>(pvk, example.primary_input, proof);
     // assert(ans == ans2);
 
-    test_affine_verifier<ppT>(keypair.vk, example.primary_input, proof, ans);
+    test_affine_verifier<ppT>(keypair.vk, commitment.sigma_x, C_x, proof, ans);
 
     libff::leave_block("Call to run_snark_for_filtering");
 

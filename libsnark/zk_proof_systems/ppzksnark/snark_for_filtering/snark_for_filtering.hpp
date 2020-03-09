@@ -23,7 +23,7 @@ namespace libsnark{
 	template<typename ppT>
 	class snark_for_filtering_Commit {
 	public:
-		libff::G2<ppT> sigma_x;
+		libff::G1<ppT> sigma_x;
 		libff::Fr<ppT> x0;
 
 
@@ -110,7 +110,7 @@ namespace libsnark{
     size_t size_in_bits() const
     {
         return (libff::size_in_bits(A_query) + B_query.size_in_bits() +
-                libff::size_in_bits(H_query) + libff::size_in_bits(P_vector) + libff::size_in_bits(f_vector)
+                libff::size_in_bits(H_query) + libff::size_in_bits(P_vector) + libff::size_in_bits(f_vector) +
                 1 * libff::G1<ppT>::size_in_bits() + 1 * libff::G2<ppT>::size_in_bits());
     }
 
@@ -308,7 +308,7 @@ public:
 	  public:
 		snark_for_filtering_proving_key<ppT> pk;
 		snark_for_filtering_verification_key<ppT> vk;
-		snark_for_filtering_public_parameter pp;
+		snark_for_filtering_public_parameter<ppT> pp;
 
 		snark_for_filtering_keypair(const snark_for_filtering_keypair<ppT> &other):
 			pk(std::move(other.pk)),
@@ -389,11 +389,11 @@ public:
 	snark_for_filtering_processed_verification_key<ppT> 
 	snark_for_filtering_verifier_process_vk	(const snark_for_filtering_verification_key<ppT> &vk);
 
-	template<typename ppT>
+	template <typename ppT>
 	bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT> &vk, 
                                     const libff::G1<ppT> &sigma_x, 
                                     const libff::G1<ppT> &c_x,
-                                    const snark_for_filtering_proof<ppT> &proof);    
+                                    const snark_for_filtering_proof<ppT> &proof);
 }
 
 #endif

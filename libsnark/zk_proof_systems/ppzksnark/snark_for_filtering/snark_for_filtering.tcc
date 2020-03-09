@@ -340,20 +340,20 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filter
                                                     libff::Fr<ppT> x0){
     libff::Fr<ppT> o2 = libff::Fr<ppT>::random_element();
     libff::Fr<ppT> o1 = libff::Fr<ppT>::zero();
-    libff::G1<ppT> _C_x = o2 * pk.f_vector.rest.values[0];
-    libff::G1<ppT> ss_proof_g1 = o1 * pk.P_vector.rest.values[0];
+    libff::G1<ppT> _C_x = o2 * pk.f_vector[0];
+    libff::G1<ppT> ss_proof_g1 = o1 * pk.P_vector[0];
     const int len = auxiliary_input.size;//len = n-1
     snark_for_completment_auxiliary_input<ppT> completment_auxiliary_input;
 
 
     for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
-		_C_x += auxiliary_input.rest.values[i] * pk.f_vector.rest.values[i+1];
+		_C_x += auxiliary_input[i] * pk.f_vectorues[i+1];
     }
 
-    ss_proof_g1 += o2 * pk.P_vector.rest.values[1];
-    ss_proof_g1 += x0 * pk.P_vector.rest.values[2];
+    ss_proof_g1 += o2 * pk.P_vector[1];
+    ss_proof_g1 += x0 * pk.P_vector[2];
     for(size_t i = 0; i <= len; i++){//0 ~ n-1까지
-		ss_proof_g1 += auxiliary_input.rest.values[i] * pk.P_vector.rest.values[i+3];
+		ss_proof_g1 += auxiliary_input[i] * pk.P_vector[i+3];
     }
 
     snark_for_filtering_proving_key<ppT> pk = snark_for_filtering_proving_key<ppT>(

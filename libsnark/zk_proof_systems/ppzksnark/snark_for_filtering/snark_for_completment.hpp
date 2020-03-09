@@ -187,11 +187,11 @@ public:
         //gamma_g2(gamma_g2),
         delta_g2(delta_g2)//,
        // gamma_ABC_g1(gamma_ABC_g1){}
-       ;
+       {};
 
     size_t G1_size() const
     {
-        return 0 //gamma_ABC_g1.size();
+        return 0; //gamma_ABC_g1.size();
     }
 
     size_t G2_size() const

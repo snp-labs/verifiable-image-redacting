@@ -293,7 +293,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
     Lt.reserve(qap.num_variables() - qap.num_inputs()); //witness 갯수
 
     const size_t Lt_offset = qap.num_inputs() + 1;
-    for (size_t i = 0; i < qap.num_variables() - qap.num_inputs(); ++i)evaluation_Lt
+    for (size_t i = 0; i < qap.num_variables() - qap.num_inputs(); ++i)
     {
         Lt.emplace_back((beta * At[Lt_offset + i] + alpha * Bt[Lt_offset + i] + Ct[Lt_offset + i]) * delta_inverse);
     }
@@ -693,7 +693,7 @@ bool snark_for_completment_affine_verifier_weak_IC(const snark_for_completment_v
 
     const libff::Fqk<ppT> QAP_miller = ppT::affine_ate_e_times_e_over_e_miller_loop(
         libff::G1<ppT>::one(), libff::G2<ppT>::one(),
-        proof_g_C_precomp + C_x + _C_x,  pvk.vk_delta_g2_precomp,
+        proof_g_C_precomp + C_x + _C_x,  pvk_vk_delta_g2_precomp,
         proof_g_A_precomp,  proof_g_B_precomp);
     const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP_miller.unitary_inverse());
     

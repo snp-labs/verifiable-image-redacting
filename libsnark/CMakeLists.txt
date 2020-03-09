@@ -275,6 +275,18 @@ target_link_libraries(
 )
 
 add_executable(
+  zk_proof_systems_snark_for_filtering
+  EXCLUDE_FROM_ALL
+
+  zk_proof_systems/ppzksnark/snark_for_filtering/profiling/profile_snark_for_filtering.cpp
+)
+target_link_libraries(
+  zk_proof_systems_snark_for_filtering
+
+  snark
+)
+
+add_executable(
   profile_r1cs_gg_ppzksnark
   EXCLUDE_FROM_ALL
 
@@ -581,14 +593,14 @@ target_link_libraries(
 )
 
 add_executable(
-  zk_proof_systems_snark_for_completment_test
+  zk_proof_systems_snark_for_filtering_test
   EXCLUDE_FROM_ALL
 
-  zk_proof_systems/ppzksnark/snark_for_filtering/tests/test_snark_for_completment.cpp
+  zk_proof_systems/ppzksnark/snark_for_filtering/tests/test_snark_for_filtering.cpp
 )
 
 target_link_libraries(
-  zk_proof_systems_snark_for_completment_test
+  zk_proof_systems_snark_for_filtering_test
 
   snark
 )
@@ -700,6 +712,9 @@ add_executable(
   jsnark_interface/CircuitReader.hpp
   jsnark_interface/CircuitReader.cpp
   jsnark_interface/run_ppzksnark.cpp
+
+  zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.tcc
+  zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp
 )
 target_link_libraries(
   run_ppzksnark
@@ -808,8 +823,12 @@ add_test(
   COMMAND test_sha256_gadget
 )
 add_test(
-  NAME zk_proof_systems_snark_for_completment_test
-  COMMAND   zk_proof_systems_snark_for_completment_test
+  NAME zk_proof_systems_snark_for_filtering
+  COMMAND zk_proof_systems_snark_for_filtering
+)
+add_test(
+  NAME zk_proof_systems_snark_for_filtering_test
+  COMMAND zk_proof_systems_snark_for_filtering_test
 )
 add_dependencies(check common_routing_algorithms_test)
 add_dependencies(check gadgetlib1_simple_test)
@@ -834,7 +853,7 @@ add_dependencies(check test_knapsack_gadget)
 add_dependencies(check test_merkle_tree_gadgets)
 add_dependencies(check test_set_commitment_gadget)
 add_dependencies(check test_sha256_gadget)
-add_dependencies(check   zk_proof_systems_snark_for_completment_test)
+add_dependencies(check zk_proof_systems_snark_for_filtering_test)
 
 # TODO (howardwu): Resolve runtime on targets:
 # gadgetlib1_fooram_test, zk_proof_systems_r1cs_mp_ppzkpcd_test, zk_proof_systems_r1cs_sp_ppzkpcd_test, zk_proof_systems_ram_zksnark_test

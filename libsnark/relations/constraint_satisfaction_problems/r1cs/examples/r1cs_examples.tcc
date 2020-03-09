@@ -160,102 +160,36 @@ r1cs_example<FieldT> generate_r1cs_example_with_binary_input(const size_t num_co
 }
 
 template<typename FieldT>
-r1cs_example<FieldT> generate_r1cs_filtering_example()
+r1cs_example<FieldT> generate_r1cs_filtering_example(libff::Fr_vector<FieldT> u1, libff::Fr_vector<FieldT> u2)
 {
 
     libff::enter_block("Call to generate_filtering_example");
-    FieldT original[16][16] =
-    {
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,255,255,255,0,0,0,0,
-    0,0,255,0,0,0,0,0,255,0,0,0,255,0,0,0,
-    0,0,255,0,0,0,0,255,0,0,0,0,0,255,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,255,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,255,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,255,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,255,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,255,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,255,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,255,255,255,255,255,255,255,255,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-    };
-    FieldT u1[16][16] =
-    {
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-    };
-    FieldT u2[16][16] =
-    {
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,255,255,255,0,0,0,0,
-    0,0,0,0,0,0,0,0,255,0,0,0,255,0,0,0,
-    0,0,0,0,0,0,0,255,0,0,0,0,0,255,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,255,255,255,255,255,255,255,255,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-    };
+ 
     r1cs_constraint_system<FieldT> cs;
     cs.primary_input_size = 0;
     cs.auxiliary_input_size = 512; // TODO: explain this
 
-    r1cs_variable_assignment<FieldT> full_variable_assignment;
+    r1cs_variable_assignment<FieldT> full_variable_assignment; 
+
  //여기서부터
-    for (size_t i = 0; i < 256; i++)
+    for (size_t i = 0; i < 255; i++)
     {
+        full_variable_assignment.push_back(u1[i]);
+
         linear_combination<FieldT> A, B, C;
-
         A.add_term(i,1);
-        B.add_term(i,1);
-        C.add_term(i,1);
-
-        FieldT tmp = u1[i] * u2[i];
-        full_variable_assignment.push_back(tmp);
+        B.add_term(i+255,1);
 
         cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
     }
-
-    linear_combination<FieldT> A, B, C;
-    FieldT fin = FieldT::zero();
-    for (size_t i = 1; i < cs.num_variables(); ++i)
+    for (size_t i = 0; i < 255; i++)
     {
-        A.add_term(i, 1);
-        B.add_term(i, 1);
-        fin = fin + full_variable_assignment[i-1];
+        full_variable_assignment.push_back(u2[i]);
     }
-    C.add_term(cs.num_variables(), 1);
-    cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
-    full_variable_assignment.push_back(fin.squared());
 
     /* split variable assignment */
-    r1cs_primary_input<FieldT> primary_input(full_variable_assignment.begin(), full_variable_assignment.begin() + num_inputs);
-    r1cs_primary_input<FieldT> auxiliary_input(full_variable_assignment.begin() + num_inputs, full_variable_assignment.end());
+    r1cs_primary_input<FieldT> primary_input(full_variable_assignment.begin(), full_variable_assignment.begin() + cs.primary_input_size);
+    r1cs_primary_input<FieldT> auxiliary_input(full_variable_assignment.begin() + cs.primary_input_size, full_variable_assignment.end());
 
     /* sanity checks */
     assert(cs.num_variables() == full_variable_assignment.size());

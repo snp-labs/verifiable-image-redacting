@@ -66,6 +66,9 @@ template<typename FieldT>
 r1cs_example<FieldT> generate_r1cs_example_with_binary_input(const size_t num_constraints,
                                                              const size_t num_inputs);
 
+template<typename FieldT>
+r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std::vector<FieldT> u2);
+
 } // libsnark
 
 #include <libsnark/relations/constraint_satisfaction_problems/r1cs/examples/r1cs_examples.tcc>

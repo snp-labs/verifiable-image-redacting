@@ -21,17 +21,73 @@
 using namespace libsnark;
 
 template<typename ppT>
-void test_r1cs_gg_ppzksnark(size_t num_constraints,
-                         size_t input_size)
+void test_snark_for_filtering()
+/*void test_r1cs_gg_ppzksnark(size_t num_constraints,
+                         size_t input_size)*/
 {
-    libff::print_header("(enter) Test R1CS GG-ppzkSNARK");
+    libff::Fr_vector<ppT> original{
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,255,255,255,0,0,0,0,
+    0,0,255,0,0,0,0,0,255,0,0,0,255,0,0,0,
+    0,0,255,0,0,0,0,255,0,0,0,0,0,255,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,255,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,255,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,255,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,255,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,255,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,255,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,255,255,255,255,255,255,255,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    };
+    libff::Fr_vector<ppT> u1{
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    };
+    libff::Fr_vector<ppT> u2{
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,255,255,255,0,0,0,0,
+    0,0,0,0,0,0,0,0,255,0,0,0,255,0,0,0,
+    0,0,0,0,0,0,0,255,0,0,0,0,0,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,255,255,255,255,255,255,255,255,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    };
 
+    libff::print_header("(enter) Test Snark for Filtering");
+    
     const bool test_serialization = true;
-    r1cs_example<libff::Fr<ppT> > example = generate_r1cs_example_with_binary_input<libff::Fr<ppT> >(num_constraints, input_size);
-    const bool bit = run_r1cs_gg_ppzksnark<ppT>(example, test_serialization);
+    r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
+    const bool bit = run_snark_for_filtering<ppT>(example, original, test_serialization);
     assert(bit);
 
-    libff::print_header("(leave) Test R1CS GG-ppzkSNARK");
+    libff::print_header("(leave) Test Snark for Filtering");
 }
 
 int main()
@@ -39,5 +95,5 @@ int main()
     default_r1cs_gg_ppzksnark_pp::init_public_params();
     libff::start_profiling();
 
-    test_r1cs_gg_ppzksnark<default_r1cs_gg_ppzksnark_pp>(1000, 100);
+    test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
 }
