@@ -220,12 +220,12 @@ snark_for_filtering_Commit<ppT> Commit(const snark_for_filtering_public_paramete
                                        const libff::Fr_vector<ppT> xi_vector)
 {
     libff::Fr<ppT> x0 = libff::Fr<ppT>::random_element();
-    libff::G1<ppT> sigma_x = x0 * pp.h_vector.rest.values[0];
+    libff::G1<ppT> sigma_x = x0 * pp.h_vector[0];
     const int len = xi_vector.size;//len = n-1
     
     for (size_t i = 0; i <= len; i++)
     {
-        sigma_x += xi_vector.rest.values[i] * pp.h_vector.rest.values[i+1];
+        sigma_x += xi_vector[i] * pp.h_vector[i+1];
     }
 
     return snark_for_filtering_Commit<ppT>(std::move(sigma_x), x0);
@@ -235,10 +235,12 @@ snark_for_filtering_Commit<ppT> Commit(const snark_for_filtering_public_paramete
 */
 
 template <typename ppT>
-snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const snark_for_completment_constraint_system<ppT> &r1cs){
+snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constraint_system<ppT> &r1cs){
     /**
      * Setup
      */
+    size_t non_zero_At = 0;
+    size_t non_zero_Bt = 0;
     libff::enter_block("Generating G1 MSM window table");
     const libff::G1<ppT> g1_generator = libff::G1<ppT>::random_element();
     const size_t g1_scalar_count = non_zero_At + non_zero_Bt + qap.num_variables();
@@ -272,8 +274,7 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const snark_for_c
     libff::G1_vector<ppT> h_vector;
     libff::G1_vector<ppT> P_vector;
 
-    P_vector.reserve(num_variables);
-    
+  
     for (size_t i = 0; i < num_variables/2; ++i)
     {
         h_vector.emplace_back(libff::G1<ppT>::random_element());
@@ -284,22 +285,22 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const snark_for_c
 
     //Use h_vector, f_vector to build a matrix M
     // P <- M^T * k
-    P_vector.emplace_back(k2 * f_vector.rest.values[0])
-    P_vector.emplace_back(k1 * f_vector.rest.values[0])
-    P_vector.emplace_back(k0 * h_vector.rest.values[0])
+    P_vector.emplace_back(k2 * f_vector[0])
+    P_vector.emplace_back(k1 * f_vector[0])
+    P_vector.emplace_back(k0 * h_vector[0])
 
     for(size_t i = 1; i < num_variables/2; i++){
-		P_vector.emplace_back((k0 * h_vector.rest.values[i]) + (k2 * f_vector.rest.values[i]));
+		P_vector.emplace_back((k0 * h_vector[i]) + (k2 * f_vector[i]));
     }
     for(size_t i = 1; i < num_variables/2; i++){
-		P_vector.emplace_back((k0 * h_vector.rest.values[i]) + (k1 * f_vector.rest.values[num_variables/2+i-1]));
+		P_vector.emplace_back((k0 * h_vector[i]) + (k1 * f_vector[num_variables/2+i-1]));
     }
 
     snark_for_filtering_proving_key<ppT> ek = snark_for_filtering_proving_key<ppT>(
         std::move(P_vector),
         std::move(f_vector),
         std::move(keypair.pk.alpha_g1),
-        std::move(keypair.pk.beta_g1),c_x
+        std::move(keypair.pk.beta_g1),
         std::move(keypair.pk.beta_g2),
         std::move(keypair.pk.delta_g1),
         std::move(keypair.pk.delta_g2),
@@ -310,12 +311,12 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const snark_for_c
         );
     
     snark_for_filtering_verification_key<ppT> vk = snark_for_filtering_verification_key<ppT>(
-        std::move(c0_g2),
-        std::move(c1_g2),
-        std::move(c2_g2),
-        std::move(a_g2),
-        std::move(keypair.vk.alpha_g1_beta_g2),
-        std::move(keypair.vk.delta_g2)
+        c0_g2,
+        c1_g2,
+        c2_g2,
+        a_g2,
+        keypair.vk.alpha_g1_beta_g2,
+        keypair.vk.delta_g2
         );
 
     snark_for_filtering_public_parameter<ppT> pp = snark_for_filtering_public_parameter<ppT>(

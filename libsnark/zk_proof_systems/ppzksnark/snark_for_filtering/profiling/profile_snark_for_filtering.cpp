@@ -126,7 +126,6 @@ int main(int argc, const char * argv[])
     libff::leave_block("Generate R1CS example");
 
     libff::print_header("(enter) Profile R1CS GG-ppzkSNARK");
-    const bool test_serialization = true;
     run_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>(example, original, test_serialization);
     libff::print_header("(leave) Profile R1CS GG-ppzkSNARK");
 }

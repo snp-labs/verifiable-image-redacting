@@ -215,6 +215,8 @@ type_traits
 -
 libff/common/profiling.hpp
 -
+libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment_params.hpp
+-
 libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment.hpp
 -
 libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp

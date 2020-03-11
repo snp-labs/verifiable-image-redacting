@@ -155,10 +155,10 @@ namespace libsnark{
 											const libff::G2<ppT> &&a_g2,
 											const libff::GT<ppT> &alpha_g1_beta_g2,
                                        		const libff::G2<ppT> &delta_g2) :
-			c0_g2(std::move(c0_g2)),
-			c1_g2(std::move(c1_g2)),
-			c2_g2(std::move(c2_g2)),
-			a_g2(std::move(a_g2)),
+			c0_g2(c0_g2),
+			c1_g2(c1_g2),
+			c2_g2(c2_g2),
+			a_g2(a_g2),
 			alpha_g1_beta_g2(alpha_g1_beta_g2),
         	delta_g2(delta_g2)
 		{};
@@ -376,8 +376,8 @@ public:
 	snark_for_filtering_Commit<ppT> Commit(const snark_for_filtering_public_parameter<ppT> &pp,
                                        const libff::Fr_vector<ppT> xi_vector);
 
-	template<typename ppT>
-	snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const snark_for_completment_constraint_system<ppT> &r1cs);
+	template <typename ppT>
+	snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constraint_system<ppT> &r1cs);
 	
 	template<typename ppT>
 	snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filtering_proving_key<ppT> &pk, 

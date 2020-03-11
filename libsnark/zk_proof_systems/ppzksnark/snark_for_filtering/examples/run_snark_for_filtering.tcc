@@ -20,6 +20,9 @@
 
 #include <libff/common/profiling.hpp>
 
+
+//#include <libsnark/relations/constraint_satisfaction_problems/r1cs/r1cs.hpp>
+#include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment_params.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp>
 
@@ -71,20 +74,20 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example, const
     libff::enter_block("Call to run_snark_for_filtering");
 
     libff::print_header("R1CS snark_for_filtering Generator");
-    snark_for_filtering_keypair<ppT> keypair = snark_for_filtering_generator<ppT>(example.constraint_system);
+    snark_for_filtering_keypair<ppT> keypair = snark_for_filtering_generator(example.constraint_system);
     printf("\n"); libff::print_indent(); libff::print_mem("after generator");
 
     libff::print_header("Preprocess verification key");
     snark_for_filtering_processed_verification_key<ppT> pvk = snark_for_filtering_verifier_process_vk<ppT>(keypair.vk);
 
-    if (test_serialization)
-    {
-        libff::enter_block("Test serialization of keys");
-        keypair.pk = libff::reserialize<snark_for_filtering_proving_key<ppT> >(keypair.pk);
-        keypair.vk = libff::reserialize<snark_for_filtering_verification_key<ppT> >(keypair.vk);
-        pvk = libff::reserialize<snark_for_filtering_processed_verification_key<ppT> >(pvk);
-        libff::leave_block("Test serialization of keys");
-    }
+    // if (test_serialization)
+    // {
+    //     libff::enter_block("Test serialization of keys");
+    //     keypair.pk = libff::reserialize<snark_for_filtering_proving_key<ppT> >(keypair.pk);
+    //     keypair.vk = libff::reserialize<snark_for_filtering_verification_key<ppT> >(keypair.vk);
+    //     pvk = libff::reserialize<snark_for_filtering_processed_verification_key<ppT> >(pvk);
+    //     libff::leave_block("Test serialization of keys");
+    // }
 
     snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
     libff::Fr<ppT> o1 = libff::Fr<ppT>::zero();

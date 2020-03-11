@@ -855,7 +855,7 @@ add_dependencies(check test_set_commitment_gadget)
 add_dependencies(check test_sha256_gadget)
 add_dependencies(check zk_proof_systems_snark_for_filtering_test)
 
-# TODO (howardwu): Resolve runtime on targets:
+# TODO (howardwu) Resolve runtime on targets
 # gadgetlib1_fooram_test, zk_proof_systems_r1cs_mp_ppzkpcd_test, zk_proof_systems_r1cs_sp_ppzkpcd_test, zk_proof_systems_ram_zksnark_test
 
 # add_test(
