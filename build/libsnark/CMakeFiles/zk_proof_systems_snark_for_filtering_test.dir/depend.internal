@@ -30,6 +30,7 @@ libsnark/CMakeFiles/zk_proof_systems_snark_for_filtering_test.dir/zk_proof_syste
  .././libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment.tcc
  .././libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment_params.hpp
  .././libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp
+ .././libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.tcc
  ../depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g1.hpp
  ../depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_g2.hpp
  ../depends/libff/libff/algebra/curves/alt_bn128/alt_bn128_init.hpp

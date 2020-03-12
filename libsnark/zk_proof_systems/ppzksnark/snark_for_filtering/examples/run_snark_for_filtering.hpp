@@ -27,8 +27,9 @@ namespace libsnark {
  * (This takes additional time.)
  */
 template<typename ppT>
-bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example, const libff::Fr_vector<ppT> xi_vector,
-                        const bool test_serialization);
+bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
+                             const std::vector<libff::Fr<ppT>>  &xi_vector,
+                             const bool test_serialization);
 
 } // libsnark
 

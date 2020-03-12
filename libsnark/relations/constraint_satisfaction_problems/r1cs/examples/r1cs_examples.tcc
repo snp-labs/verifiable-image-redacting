@@ -160,7 +160,7 @@ r1cs_example<FieldT> generate_r1cs_example_with_binary_input(const size_t num_co
 }
 
 template<typename FieldT>
-r1cs_example<FieldT> generate_r1cs_filtering_example(libff::Fr_vector<FieldT> u1, libff::Fr_vector<FieldT> u2)
+r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std::vector<FieldT> u2)
 {
 
     libff::enter_block("Call to generate_filtering_example");

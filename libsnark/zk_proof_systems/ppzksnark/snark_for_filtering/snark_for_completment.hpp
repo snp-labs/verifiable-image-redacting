@@ -49,6 +49,7 @@ References:
 #include <libsnark/knowledge_commitment/knowledge_commitment.hpp>
 #include <libsnark/relations/constraint_satisfaction_problems/r1cs/r1cs.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment_params.hpp>
+#include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp>
 
 namespace libsnark {
 
@@ -80,7 +81,7 @@ public:
     libff::G1_vector<ppT> A_query; // this could be a sparse vector if we had multiexp for those
     knowledge_commitment_vector<libff::G2<ppT>, libff::G1<ppT> > B_query;
     libff::G1_vector<ppT> H_query;
-    // libff::G1_vector<ppT> L_query;
+    libff::G1_vector<ppT> L_query;
 
     snark_for_completment_constraint_system<ppT> constraint_system;
 
@@ -96,7 +97,7 @@ public:
                                   libff::G1_vector<ppT> &&A_query,
                                   knowledge_commitment_vector<libff::G2<ppT>, libff::G1<ppT> > &&B_query,
                                   libff::G1_vector<ppT> &&H_query,
-                                //   libff::G1_vector<ppT> &&L_query,
+                                  libff::G1_vector<ppT> &&L_query,
                                   snark_for_completment_constraint_system<ppT> &&constraint_system) :
         alpha_g1(std::move(alpha_g1)),
         beta_g1(std::move(beta_g1)),
@@ -106,13 +107,13 @@ public:
         A_query(std::move(A_query)),
         B_query(std::move(B_query)),
         H_query(std::move(H_query)),
-        // L_query(std::move(L_query)),
+        L_query(std::move(L_query)),
         constraint_system(std::move(constraint_system))
     {};
 
     size_t G1_size() const
     {
-        return 1 + A_query.size() + B_query.domain_size() + H_query.size(); //+ L_query.size();
+        return 1 + A_query.size() + B_query.domain_size() + H_query.size() + L_query.size();
     }
 
     size_t G2_size() const
@@ -122,7 +123,7 @@ public:
 
     size_t G1_sparse_size() const
     {
-        return 1 + A_query.size() + B_query.size() + H_query.size(); //+ L_query.size();
+        return 1 + A_query.size() + B_query.size() + H_query.size()+ L_query.size();
     }
 
     size_t G2_sparse_size() const
@@ -133,7 +134,7 @@ public:
     size_t size_in_bits() const
     {
         return (libff::size_in_bits(A_query) + B_query.size_in_bits() +
-                libff::size_in_bits(H_query) /*+ libff::size_in_bits(L_query)*/ +
+                libff::size_in_bits(H_query) + libff::size_in_bits(L_query) +
                 1 * libff::G1<ppT>::size_in_bits() + 1 * libff::G2<ppT>::size_in_bits());
     }
 
@@ -150,6 +151,99 @@ public:
     friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_completment_proving_key<ppT> &pk);
     friend std::istream& operator>> <ppT>(std::istream &in, snark_for_completment_proving_key<ppT> &pk);
 };
+
+// template<typename ppT>
+// class snark_for_completment_proving_key_with_out_L_query;
+
+// //입출력 연산 수정
+// template<typename ppT>
+// std::ostream& operator<<(std::ostream &out, const snark_for_completment_proving_key_with_out_L_query<ppT> &pk);
+
+// template<typename ppT>
+// std::istream& operator>>(std::istream &in, snark_for_completment_proving_key_with_out_L_query<ppT> &pk);
+
+// template<typename ppT>
+// class snark_for_completment_proving_key_with_out_L_query {
+// public:
+//     libff::G1<ppT> alpha_g1;
+//     libff::G1<ppT> beta_g1;
+//     libff::G2<ppT> beta_g2;
+//     libff::G1<ppT> delta_g1;
+//     libff::G2<ppT> delta_g2;
+
+//     libff::G1_vector<ppT> A_query; // this could be a sparse vector if we had multiexp for those
+//     knowledge_commitment_vector<libff::G2<ppT>, libff::G1<ppT> > B_query;
+//     libff::G1_vector<ppT> H_query;
+//     // libff::G1_vector<ppT> L_query;
+
+//     snark_for_completment_constraint_system<ppT> constraint_system;
+
+//     snark_for_completment_proving_key_with_out_L_query() {};
+//     snark_for_completment_proving_key_with_out_L_query<ppT>& operator=(const snark_for_completment_proving_key_with_out_L_query<ppT> &other) = default;
+//     snark_for_completment_proving_key_with_out_L_query(const snark_for_completment_proving_key_with_out_L_query<ppT> &other) = default;
+//     snark_for_completment_proving_key_with_out_L_query(snark_for_completment_proving_key_with_out_L_query<ppT> &&other) = default;
+//     snark_for_completment_proving_key_with_out_L_query(libff::G1<ppT> &&alpha_g1,
+//                                   libff::G1<ppT> &&beta_g1,
+//                                   libff::G2<ppT> &&beta_g2,
+//                                   libff::G1<ppT> &&delta_g1,
+//                                   libff::G2<ppT> &&delta_g2,
+//                                   libff::G1_vector<ppT> &&A_query,
+//                                   knowledge_commitment_vector<libff::G2<ppT>, libff::G1<ppT> > &&B_query,
+//                                   libff::G1_vector<ppT> &&H_query,
+//                                 //   libff::G1_vector<ppT> &&L_query,
+//                                   snark_for_completment_constraint_system<ppT> &&constraint_system) :
+//         alpha_g1(std::move(alpha_g1)),
+//         beta_g1(std::move(beta_g1)),
+//         beta_g2(std::move(beta_g2)),
+//         delta_g1(std::move(delta_g1)),
+//         delta_g2(std::move(delta_g2)),
+//         A_query(std::move(A_query)),
+//         B_query(std::move(B_query)),
+//         H_query(std::move(H_query)),
+//         // L_query(std::move(L_query)),
+//         constraint_system(std::move(constraint_system))
+//     {};
+
+//     size_t G1_size() const
+//     {
+//         return 1 + A_query.size() + B_query.domain_size() + H_query.size(); //+ L_query.size();
+//     }
+
+//     size_t G2_size() const
+//     {
+//         return 1 + B_query.domain_size();
+//     }
+
+//     size_t G1_sparse_size() const
+//     {
+//         return 1 + A_query.size() + B_query.size() + H_query.size(); //+ L_query.size();
+//     }
+
+//     size_t G2_sparse_size() const
+//     {
+//         return 1 + B_query.size();
+//     }
+
+//     size_t size_in_bits() const
+//     {
+//         return (libff::size_in_bits(A_query) + B_query.size_in_bits() +
+//                 libff::size_in_bits(H_query) /*+ libff::size_in_bits(L_query)*/ +
+//                 1 * libff::G1<ppT>::size_in_bits() + 1 * libff::G2<ppT>::size_in_bits());
+//     }
+
+//     void print_size() const
+//     {
+//         libff::print_indent(); printf("* G1 elements in PK: %zu\n", this->G1_size());
+//         libff::print_indent(); printf("* Non-zero G1 elements in PK: %zu\n", this->G1_sparse_size());
+//         libff::print_indent(); printf("* G2 elements in PK: %zu\n", this->G2_size());
+//         libff::print_indent(); printf("* Non-zero G2 elements in PK: %zu\n", this->G2_sparse_size());
+//         libff::print_indent(); printf("* PK size in bits: %zu\n", this->size_in_bits());
+//     }
+
+//     bool operator==(const snark_for_completment_proving_key_with_out_L_query<ppT> &other) const;
+//     friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_completment_proving_key_with_out_L_query<ppT> &pk);
+//     friend std::istream& operator>> <ppT>(std::istream &in, snark_for_completment_proving_key_with_out_L_query<ppT> &pk);
+// };
 
 
 /******************************* Verification key ****************************/
@@ -381,7 +475,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
 //primary: statement
 //auxiliary: witness
 template<typename ppT>
-snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_completment_proving_key<ppT> &pk,
+snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_filtering_proving_key<ppT> &pk,
                                                       const snark_for_completment_primary_input<ppT> &primary_input,
                                                       const snark_for_completment_auxiliary_input<ppT> &auxiliary_input);
 

@@ -226,7 +226,7 @@ std::istream& operator>>(std::istream &in, snark_for_completment_proof<ppT> &pro
  * SNARK for filtering scheme에서 f_i == Lt
  */
 template <typename ppT>
-snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_for_completment_constraint_system<ppT> &r1cs)
+snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_constraint_system<libff::Fr<ppT> > &r1cs)
 {
     libff::enter_block("Call to snark_for_completment_generator");
 
@@ -410,7 +410,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
 * 
 */
 template <typename ppT>
-snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_completment_proving_key<ppT> &pk,
+snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_filtering_proving_key<ppT> &pk,
                                                       const snark_for_completment_primary_input<ppT> &primary_input,
                                                       const snark_for_completment_auxiliary_input<ppT> &auxiliary_input)
 {

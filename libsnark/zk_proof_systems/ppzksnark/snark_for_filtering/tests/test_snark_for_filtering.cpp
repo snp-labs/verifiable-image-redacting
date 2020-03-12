@@ -22,10 +22,8 @@ using namespace libsnark;
 
 template<typename ppT>
 void test_snark_for_filtering()
-/*void test_r1cs_gg_ppzksnark(size_t num_constraints,
-                         size_t input_size)*/
 {
-    libff::Fr_vector<ppT> original{
+    int original_array[]= {
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,255,0,0,0,0,0,0,255,255,255,0,0,0,0,
@@ -43,7 +41,7 @@ void test_snark_for_filtering()
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
-    libff::Fr_vector<ppT> u1{
+    int u1_array[]= {
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -61,7 +59,7 @@ void test_snark_for_filtering()
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
-    libff::Fr_vector<ppT> u2{
+    int u2_array[]= {
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,255,255,255,0,0,0,0,
@@ -80,13 +78,25 @@ void test_snark_for_filtering()
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
 
+    std::vector<libff::Fr<ppT>> u1;
+    for(size_t i=0;i<255;i++){
+        u1.push_back(libff::Fr<ppT>(u1_array[i]));
+    }
+    std::vector<libff::Fr<ppT>> u2;
+    for(size_t i=0;i<255;i++){
+        u2.push_back(libff::Fr<ppT>(u2_array[i]));
+    }
+    std::vector<libff::Fr<ppT>> original;
+    for(size_t i=0;i<255;i++){
+        original.push_back(libff::Fr<ppT>(original_array[i]));
+    }
+
     libff::print_header("(enter) Test Snark for Filtering");
     
     const bool test_serialization = true;
     r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
     const bool bit = run_snark_for_filtering<ppT>(example, original, test_serialization);
     assert(bit);
-
     libff::print_header("(leave) Test Snark for Filtering");
 }
 
@@ -97,3 +107,4 @@ int main()
 
     test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
 }
+

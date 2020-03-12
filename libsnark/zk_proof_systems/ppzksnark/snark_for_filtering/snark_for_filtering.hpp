@@ -30,8 +30,14 @@ namespace libsnark{
 		bool operator==(const snark_for_filtering_Commit &other) const;
 		friend std::ostream& operator<< <ppT>(std::ostream &out, const snark_for_filtering_Commit<ppT> &commit);
 		friend std::istream& operator>> <ppT>(std::istream &in, snark_for_filtering_Commit<ppT> &commit);
+		
+		snark_for_filtering_Commit() = default;
+		snark_for_filtering_Commit(const libff::G1<ppT> &&sigma_x,
+								   const libff::Fr<ppT> &&x0) :
+			sigma_x(std::move(sigma_x)),
+			x0(std::move(x0))
+		{};
 	};
-
 	template <typename ppT>
 	class snark_for_filtering_proving_key;
 
@@ -61,8 +67,8 @@ namespace libsnark{
     snark_for_filtering_proving_key<ppT>& operator=(const snark_for_filtering_proving_key<ppT> &other) = default;
     snark_for_filtering_proving_key(const snark_for_filtering_proving_key<ppT> &other) = default;
     snark_for_filtering_proving_key(snark_for_filtering_proving_key<ppT> &&other) = default;
-    snark_for_filtering_proving_key(libff::G1_vector<ppT> P_vector,
-								  libff::G1_vector<ppT> f_vector,
+    snark_for_filtering_proving_key(libff::G1_vector<ppT> &&P_vector,
+								  libff::G1_vector<ppT> &&f_vector,
 								  libff::G1<ppT> &&alpha_g1,
                                   libff::G1<ppT> &&beta_g1,
                                   libff::G2<ppT> &&beta_g2,
@@ -149,10 +155,10 @@ namespace libsnark{
 
 
 		snark_for_filtering_verification_key() = default;
-		snark_for_filtering_verification_key(const libff::G2<ppT> &&c0_g2,
-											const libff::G2<ppT> &&c1_g2,
-											const libff::G2<ppT> &&c2_g2,
-											const libff::G2<ppT> &&a_g2,
+		snark_for_filtering_verification_key(const libff::G2<ppT> &c0_g2,
+											const libff::G2<ppT> &c1_g2,
+											const libff::G2<ppT> &c2_g2,
+											const libff::G2<ppT> &a_g2,
 											const libff::GT<ppT> &alpha_g1_beta_g2,
                                        		const libff::G2<ppT> &delta_g2) :
 			c0_g2(c0_g2),
@@ -321,7 +327,6 @@ public:
 				pk(std::move(pk)),
 				vk(std::move(vk)),
 				pp(std::move(pp))
-
 		{};
 
 		bool operator==(const snark_for_filtering_keypair<ppT> &other) const;
@@ -347,7 +352,16 @@ public:
 		libff::G1<ppT> _C_x;
 
 		snark_for_filtering_proof();
-		snark_for_filtering_proof(snark_for_completment_proof<ppT> &&completment_proof, libff::G1<ppT> &&ss_proof_g1, libff::G1<ppT> &&_C_x) :
+		{
+        // invalid proof with valid curve points
+        this->completment_proof->g_A = libff::G1<ppT>::one();
+        this->completment_proof->g_B = libff::G2<ppT>::one();
+        this->completment_proof->g_C = libff::G1<ppT>::one();
+		this->ss_proof_g1 = libff::G1<ppT>::one();
+		this->_C_x = libff::G1<ppT>::one();
+    	}
+		snark_for_filtering_proof(snark_for_completment_proof<ppT> &&completment_proof, 
+								  libff::G1<ppT> &&ss_proof_g1, libff::G1<ppT> &&_C_x) :
 			completment_proof(std::move(completment_proof)),
 			ss_proof_g1(std::move(ss_proof_g1)),
 			_C_x(std::move(_C_x))
@@ -374,16 +388,16 @@ public:
 
 	template<typename ppT>
 	snark_for_filtering_Commit<ppT> Commit(const snark_for_filtering_public_parameter<ppT> &pp,
-                                       const libff::Fr_vector<ppT> xi_vector);
+                                       const libff::Fr_vector<ppT> &xi_vector);
 
 	template <typename ppT>
-	snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constraint_system<ppT> &r1cs);
+	snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constraint_system<libff::Fr<ppT> > &r1cs);
 	
 	template<typename ppT>
 	snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filtering_proving_key<ppT> &pk, 
                                                     const snark_for_completment_primary_input<ppT> &primary_input,
                                                     const snark_for_completment_auxiliary_input<ppT> &auxiliary_input,
-                                                    libff::Fr<ppT> x0);
+                                                    const libff::Fr<ppT> &x0);
 
 	template<typename ppT>
 	snark_for_filtering_processed_verification_key<ppT> 
@@ -395,5 +409,7 @@ public:
                                     const libff::G1<ppT> &c_x,
                                     const snark_for_filtering_proof<ppT> &proof);
 }
+
+#include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.tcc>
 
 #endif
