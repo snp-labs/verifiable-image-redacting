@@ -237,8 +237,6 @@ libsnark/relations/constraint_satisfaction_problems/r1cs/r1cs.hpp
 -
 libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment_params.hpp
 -
-libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp
--
 libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment.tcc
 -
 

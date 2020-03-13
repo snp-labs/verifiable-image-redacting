@@ -112,20 +112,20 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     //     libff::leave_block("Test serialization of proof");
     // }
 
-    // libff::print_header("snark_for_filtering Verifier");
-    // const bool ans = snark_for_filtering_verifier(keypair.vk, commitment.sigma_x, C_x, proof);
-    // printf("\n"); libff::print_indent(); libff::print_mem("after verifier");
-    // printf("* The verification result is: %s\n", (ans ? "PASS" : "FAIL"));
+    libff::print_header("snark_for_filtering Verifier");
+    const bool ans = snark_for_filtering_verifier(keypair.vk, commitment.sigma_x, C_x, proof);
+    printf("\n"); libff::print_indent(); libff::print_mem("after verifier");
+    printf("* The verification result is: %s\n", (ans ? "PASS" : "FAIL"));
 
-    // // libff::print_header("snark_for_filtering Online Verifier");
-    // // const bool ans2 = snark_for_filtering_online_verifier_strong_IC<ppT>(pvk, example.primary_input, proof);
-    // // assert(ans == ans2);
+    // libff::print_header("snark_for_filtering Online Verifier");
+    // const bool ans2 = snark_for_filtering_online_verifier_strong_IC<ppT>(pvk, example.primary_input, proof);
+    // assert(ans == ans2);
 
-    // test_affine_verifier<ppT>(keypair.vk, commitment.sigma_x, C_x, proof, ans);
+    test_affine_verifier<ppT>(keypair.vk, commitment.sigma_x, C_x, proof, ans);
 
-    // libff::leave_block("Call to run_snark_for_filtering");
+    libff::leave_block("Call to run_snark_for_filtering");
 
-    return true;
+    return ans;
 }
 
 } // libsnark

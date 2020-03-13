@@ -410,7 +410,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
 * 
 */
 template <typename ppT>
-snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_filtering_proving_key<ppT> &pk,
+snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_completment_proving_key<ppT> &pk,
                                                       const snark_for_completment_primary_input<ppT> &primary_input,
                                                       const snark_for_completment_auxiliary_input<ppT> &auxiliary_input)
 {

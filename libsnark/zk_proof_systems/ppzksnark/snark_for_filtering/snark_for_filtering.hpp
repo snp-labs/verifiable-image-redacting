@@ -351,7 +351,7 @@ public:
 		libff::G1<ppT> ss_proof_g1;
 		libff::G1<ppT> _C_x;
 
-		snark_for_filtering_proof();
+		snark_for_filtering_proof()
 		{
         // invalid proof with valid curve points
         this->completment_proof->g_A = libff::G1<ppT>::one();

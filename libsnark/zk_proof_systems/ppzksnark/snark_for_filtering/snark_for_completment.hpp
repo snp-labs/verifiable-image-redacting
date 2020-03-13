@@ -49,7 +49,7 @@ References:
 #include <libsnark/knowledge_commitment/knowledge_commitment.hpp>
 #include <libsnark/relations/constraint_satisfaction_problems/r1cs/r1cs.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment_params.hpp>
-#include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp>
+// #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp>
 
 namespace libsnark {
 
@@ -475,7 +475,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_f
 //primary: statement
 //auxiliary: witness
 template<typename ppT>
-snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_filtering_proving_key<ppT> &pk,
+snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_completment_proving_key<ppT> &pk,
                                                       const snark_for_completment_primary_input<ppT> &primary_input,
                                                       const snark_for_completment_auxiliary_input<ppT> &auxiliary_input);
 

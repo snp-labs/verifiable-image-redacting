@@ -40,7 +40,7 @@ bool snark_for_filtering_proving_key<ppT>::operator==(const snark_for_filtering_
             this->A_query == other.A_query &&
             this->B_query == other.B_query &&
             this->H_query == other.H_query &&
-            this->L_query == other.L_query &&
+            // this->L_query == other.L_query &&
             this->constraint_system == other.constraint_system);
 
 }
@@ -57,7 +57,7 @@ std::ostream &operator<<(std::ostream &out, const snark_for_filtering_proving_ke
     out << pk.A_query;
     out << pk.B_query;
     out << pk.H_query;
-    out << pk.L_query;
+    // out << pk.L_query;
     out << pk.constraint_system;
 
     return out;
@@ -80,69 +80,69 @@ std::istream &operator>>(std::istream &in, const snark_for_filtering_proving_key
     in >> pk.A_query;
     in >> pk.B_query;
     in >> pk.H_query;
-    in >> pk.L_query;
+    // in >> pk.L_query;
     in >> pk.constraint_system;
 
     return in;
 }
 
-template <typename ppT>
-bool snark_for_completment_proving_key_with_out_L_query<ppT>::operator==(const snark_for_completment_proving_key_with_out_L_query<ppT> &other) const
-{
-    return (this->P_vector == other.P_vector &&
-            this->f_vector == other.f_vector &&
-            this->alpha_g1 == other.alpha_g1 &&
-            this->beta_g1 == other.beta_g1 &&
-            this->beta_g2 == other.beta_g2 &&
-            this->delta_g1 == other.delta_g1 &&
-            this->delta_g2 == other.delta_g2 &&
-            this->A_query == other.A_query &&
-            this->B_query == other.B_query &&
-            this->H_query == other.H_query &&
-            this->constraint_system == other.constraint_system);
+// template <typename ppT>
+// bool snark_for_completment_proving_key_with_out_L_query<ppT>::operator==(const snark_for_completment_proving_key_with_out_L_query<ppT> &other) const
+// {
+//     return (this->P_vector == other.P_vector &&
+//             this->f_vector == other.f_vector &&
+//             this->alpha_g1 == other.alpha_g1 &&
+//             this->beta_g1 == other.beta_g1 &&
+//             this->beta_g2 == other.beta_g2 &&
+//             this->delta_g1 == other.delta_g1 &&
+//             this->delta_g2 == other.delta_g2 &&
+//             this->A_query == other.A_query &&
+//             this->B_query == other.B_query &&
+//             this->H_query == other.H_query &&
+//             this->constraint_system == other.constraint_system);
 
-}
+// }
 
-template <typename ppT>
-std::ostream &operator<<(std::ostream &out, const snark_for_completment_proving_key_with_out_L_query<ppT> &pk)
-{
-    out << pk.P_vector;
-    out << pk.f_vector;
-    out << pk.alpha_g1 << OUTPUT_NEWLINE;
-    out << pk.beta_g1 << OUTPUT_NEWLINE;
-    out << pk.beta_g2 << OUTPUT_NEWLINE;
-    out << pk.delta_g1 << OUTPUT_NEWLINE;
-    out << pk.delta_g2 << OUTPUT_NEWLINE;
-    out << pk.A_query;
-    out << pk.B_query;
-    out << pk.H_query;
-    out << pk.constraint_system;
+// template <typename ppT>
+// std::ostream &operator<<(std::ostream &out, const snark_for_completment_proving_key_with_out_L_query<ppT> &pk)
+// {
+//     out << pk.P_vector;
+//     out << pk.f_vector;
+//     out << pk.alpha_g1 << OUTPUT_NEWLINE;
+//     out << pk.beta_g1 << OUTPUT_NEWLINE;
+//     out << pk.beta_g2 << OUTPUT_NEWLINE;
+//     out << pk.delta_g1 << OUTPUT_NEWLINE;
+//     out << pk.delta_g2 << OUTPUT_NEWLINE;
+//     out << pk.A_query;
+//     out << pk.B_query;
+//     out << pk.H_query;
+//     out << pk.constraint_system;
 
-    return out;
-}
+//     return out;
+// }
 
-template <typename ppT>
-std::istream &operator>>(std::istream &in, const snark_for_completment_proving_key_with_out_L_query<ppT> &pk)
-{
-    in >> pk.P_vector;
-    in >> pk.f_vector;
-    in >> pk.alpha_g1;
-    libff::consume_OUTPUT_NEWLINE(in);
-    in >> pk.beta_g1;
-    libff::consume_OUTPUT_NEWLINE(in);
-    in >> pk.beta_g2;
-    libff::consume_OUTPUT_NEWLINE(in);
-    in >> pk.delta_g1;
-    libff::consume_OUTPUT_NEWLINE(in);
-    in >> pk.delta_g2;
-    libff::consume_OUTPUT_NEWLINE(in);
-    in >> pk.A_query;
-    in >> pk.B_query;
-    in >> pk.H_query;
-    in >> pk.constraint_system;
+// template <typename ppT>
+// std::istream &operator>>(std::istream &in, const snark_for_completment_proving_key_with_out_L_query<ppT> &pk)
+// {
+//     in >> pk.P_vector;
+//     in >> pk.f_vector;
+//     in >> pk.alpha_g1;
+//     libff::consume_OUTPUT_NEWLINE(in);
+//     in >> pk.beta_g1;
+//     libff::consume_OUTPUT_NEWLINE(in);
+//     in >> pk.beta_g2;
+//     libff::consume_OUTPUT_NEWLINE(in);
+//     in >> pk.delta_g1;
+//     libff::consume_OUTPUT_NEWLINE(in);
+//     in >> pk.delta_g2;
+//     libff::consume_OUTPUT_NEWLINE(in);
+//     in >> pk.A_query;
+//     in >> pk.B_query;
+//     in >> pk.H_query;
+//     in >> pk.constraint_system;
 
-    return in;
-}
+//     return in;
+// }
 
 template <typename ppT>
 bool snark_for_filtering_verification_key<ppT>::operator==(const snark_for_filtering_verification_key<ppT> &other) const
@@ -391,6 +391,7 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filter
     libff::G1<ppT> ss_proof_g1 = o1 * pk.P_vector[0];
     const size_t len = auxiliary_input.size();//len = n-1
     snark_for_completment_auxiliary_input<ppT> completment_auxiliary_input;
+    libff::G1_vector<ppT> L_query = {};
 
 
     for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
@@ -403,20 +404,18 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filter
 		ss_proof_g1 = ss_proof_g1 + auxiliary_input[i] * pk.P_vector[i+3];
     }
 
-    pk.P_vector = {};
-    pk.f_vector = {};
-    
-    // snark_for_completment_proving_key_with_out_L_query<ppT> completment_pk = snark_for_completment_proving_key_with_out_L_query<ppT>(
-    //     std::move(pk.alpha_g1),
-    //     std::move(pk.beta_g1),
-    //     std::move(pk.beta_g2),
-    //     std::move(pk.delta_g1),
-    //     std::move(pk.delta_g2),
-    //     std::move(pk.A_query),
-    //     std::move(pk.B_query),
-    //     std::move(pk.H_query),
-    //     std::move(pk.constraint_system)
-    //     );
+    snark_for_completment_proving_key<ppT> completment_pk = snark_for_completment_proving_key<ppT>(
+        std::move(pk.alpha_g1),
+        std::move(pk.beta_g1),
+        std::move(pk.beta_g2),
+        std::move(pk.delta_g1),
+        std::move(pk.delta_g2),
+        std::move(pk.A_query),
+        std::move(pk.B_query),
+        std::move(pk.H_query),
+        std::move(L_query),
+        std::move(pk.constraint_system)
+        );
 
     completment_auxiliary_input.push_back(o1);
     for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
@@ -427,7 +426,7 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filter
 		completment_auxiliary_input.push_back(auxiliary_input[len/2+i]);
     }
     
-    snark_for_completment_proof<ppT> completment_proof = snark_for_completment_prover(&pk, &primary_input, &completment_auxiliary_input);
+    snark_for_completment_proof<ppT> completment_proof = snark_for_completment_prover(&completment_pk, &primary_input, &completment_auxiliary_input);
 
     snark_for_filtering_proof<ppT> proof
         = snark_for_filtering_proof<ppT>(std::move(completment_proof), std::move(ss_proof_g1), std::move(_C_x));
