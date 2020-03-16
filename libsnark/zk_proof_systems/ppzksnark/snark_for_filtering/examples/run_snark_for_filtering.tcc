@@ -80,8 +80,8 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     snark_for_filtering_keypair<ppT> keypair = snark_for_filtering_generator<ppT>(example.constraint_system);
     printf("\n"); libff::print_indent(); libff::print_mem("after generator");
 
-    libff::print_header("Preprocess verification key");
-    snark_for_filtering_processed_verification_key<ppT> pvk = snark_for_filtering_verifier_process_vk<ppT>(keypair.vk);
+    // libff::print_header("Preprocess verification key");
+    // snark_for_filtering_processed_verification_key<ppT> pvk = snark_for_filtering_verifier_process_vk<ppT>(keypair.vk);
 
     // if (test_serialization)
     // {
@@ -93,11 +93,13 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     // }
 
     snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
-    libff::Fr<ppT> o1 = libff::Fr<ppT>::zero();
+    libff::Fr<ppT> o1(example.auxiliary_input[0]);
     libff::G1<ppT> C_x = o1 * keypair.pk.f_vector[0];
-    const size_t len = example.auxiliary_input.size();
-    for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
-		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i+1];
+    const size_t len = example.auxiliary_input.size();//514
+
+
+    for(size_t i = 1; i < len/2; i++){//1 ~ 257
+		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i];
     }
 
 
@@ -121,7 +123,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     // const bool ans2 = snark_for_filtering_online_verifier_strong_IC<ppT>(pvk, example.primary_input, proof);
     // assert(ans == ans2);
 
-    test_affine_verifier<ppT>(keypair.vk, commitment.sigma_x, C_x, proof, ans);
+    // test_affine_verifier<ppT>(keypair.vk, commitment.sigma_x, C_x, proof, ans);
 
     libff::leave_block("Call to run_snark_for_filtering");
 

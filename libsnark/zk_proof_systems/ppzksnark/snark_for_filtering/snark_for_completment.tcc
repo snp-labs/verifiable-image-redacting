@@ -291,7 +291,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     libff::enter_block("Compute L query for R1CS proving key");
     libff::Fr_vector<ppT> Lt;
     Lt.reserve(qap.num_variables() - qap.num_inputs()); //witness 갯수
-
+                                                                                                                
     const size_t Lt_offset = qap.num_inputs() + 1;
     for (size_t i = 0; i < qap.num_variables() - qap.num_inputs(); ++i)
     {

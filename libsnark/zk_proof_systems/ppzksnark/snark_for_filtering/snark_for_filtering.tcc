@@ -282,9 +282,10 @@ snark_for_filtering_Commit<ppT> Commit(const snark_for_filtering_public_paramete
 {
     libff::Fr<ppT> x0 = libff::Fr<ppT>::random_element();
     libff::G1<ppT> sigma_x = x0 * pp.h_vector[0];
-    size_t len = xi_vector.size();//len = n-1
+    size_t len = xi_vector.size();
+    printf("xi_vector: %d\n", len);//256
     
-    for (size_t i = 0; i <= len; i++)
+    for (size_t i = 0; i < len; i++)
     {
         sigma_x = sigma_x + xi_vector[i] * pp.h_vector[i+1];
     }
@@ -320,9 +321,8 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
     libff::G2<ppT> c2_g2 = k2*a_g2;
     libff::G1_vector<ppT> h_vector;
     libff::G1_vector<ppT> P_vector;
-
-  
-    for (size_t i = 0; i < num_variables/2; ++i)
+      
+    for (size_t i = 0; i < num_variables/2; i++)
     {
         h_vector.emplace_back(libff::G1<ppT>::random_element());
     }
@@ -385,23 +385,26 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(snark_for_filtering_pr
                                                     const snark_for_completment_primary_input<ppT> &primary_input,
                                                     const snark_for_completment_auxiliary_input<ppT> &auxiliary_input,
                                                     const libff::Fr<ppT> &x0){
-    libff::Fr<ppT> o2 = libff::Fr<ppT>::random_element();
-    libff::Fr<ppT> o1 = libff::Fr<ppT>::zero();
+    libff::Fr<ppT> o2(auxiliary_input[257]);
+    libff::Fr<ppT> o1(auxiliary_input[0]);
     libff::G1<ppT> _C_x = o2 * pk.f_vector[0];
     libff::G1<ppT> ss_proof_g1 = o1 * pk.P_vector[0];
-    const size_t len = auxiliary_input.size();//len = n-1
-    snark_for_completment_auxiliary_input<ppT> completment_auxiliary_input;
+    const size_t len = auxiliary_input.size();//len = 514
+    // snark_for_completment_auxiliary_input<ppT> completment_auxiliary_input;
     libff::G1_vector<ppT> L_query = {};
 
 
-    for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
-		_C_x = _C_x +auxiliary_input[i] * pk.f_vector[i+1];
+    for(size_t i = 1; i < len/2+1; i++){//0 ~ n-1까지
+		_C_x = _C_x +auxiliary_input[i+257] * pk.f_vector[i+256];
     }
 
     ss_proof_g1 = ss_proof_g1 + o2 * pk.P_vector[1];
     ss_proof_g1 = ss_proof_g1 + x0 * pk.P_vector[2];
-    for(size_t i = 0; i <= len; i++){//0 ~ n-1까지
-		ss_proof_g1 = ss_proof_g1 + auxiliary_input[i] * pk.P_vector[i+3];
+    for(size_t i = 1; i < len/2; i++){//0 ~ n-1까지     257
+		ss_proof_g1 = ss_proof_g1 + auxiliary_input[i] * pk.P_vector[i+2];
+    }
+    for(size_t i = 1; i < len/2; i++){//0 ~ n-1까지
+		ss_proof_g1 = ss_proof_g1 + auxiliary_input[i+257] * pk.P_vector[i+258];
     }
 
     snark_for_completment_proving_key<ppT> completment_pk = snark_for_completment_proving_key<ppT>(
@@ -413,27 +416,30 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(snark_for_filtering_pr
         std::move(pk.A_query),
         std::move(pk.B_query),
         std::move(pk.H_query),
-        std::move(pk.H_query),
+        std::move(L_query),
         std::move(pk.constraint_system)
         );
 
-    completment_auxiliary_input.push_back(o1);
-    for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
-		completment_auxiliary_input.push_back(auxiliary_input[i]);
-    }
-    completment_auxiliary_input.push_back(o2);
-    for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
-		completment_auxiliary_input.push_back(auxiliary_input[len/2+i]);
-    }
+    // completment_auxiliary_input.push_back(o1);
+    // for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
+	// 	completment_auxiliary_input.push_back(auxiliary_input[i]);
+    // }
+    // completment_auxiliary_input.push_back(o2);
+    // for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
+	// 	completment_auxiliary_input.push_back(auxiliary_input[len/2+i]);
+    // }
     
     snark_for_completment_proof<ppT> completment_proof = snark_for_completment_prover<ppT>(
         std::move(completment_pk),
         std::move(primary_input),
-        std::move(completment_auxiliary_input)
+        std::move(auxiliary_input)
     );
 
     snark_for_filtering_proof<ppT> proof
         = snark_for_filtering_proof<ppT>(std::move(completment_proof), std::move(ss_proof_g1), std::move(_C_x));
+    
+    // snark_for_filtering_proof<ppT> proof
+    //     = snark_for_filtering_proof<ppT>(std::move(completment_proof), std::move(ss_proof_g1), std::move(_C_x));
 
 	proof.print_size();
 
@@ -471,12 +477,12 @@ snark_for_filtering_processed_verification_key<ppT> snark_for_filtering_verifier
 template <typename ppT>
 bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT> &vk, 
                                     const libff::G1<ppT> &sigma_x, 
-                                    const libff::G1<ppT> &c_x,
+                                    const libff::G1<ppT> &C_x,
                                     const snark_for_filtering_proof<ppT> &proof){
 
 
     libff::GT<ppT> left = ppT::reduced_pairing(proof.ss_proof_g1, vk.a_g2);
-    libff::GT<ppT> right0 = ppT::reduced_pairing(c_x, vk.c0_g2);
+    libff::GT<ppT> right0 = ppT::reduced_pairing(C_x, vk.c0_g2);
     libff::GT<ppT> right1 = ppT::reduced_pairing(proof._C_x, vk.c1_g2);
     libff::GT<ppT> right2 = ppT::reduced_pairing(sigma_x, vk.c2_g2);
 
@@ -485,9 +491,10 @@ bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT
         std::move(vk.delta_g2)
         );
 
-    return (left == (right0 *  right1 * right2) && 
-    snark_for_completment_verifier_weak_IC(completment_vk, proof._C_x, c_x, proof.completment_proof));
-            // snark_for_completment_affine_verifier_weak_IC(completment_vk, proof._C_x, c_x, proof.completment_proof));
+    return left == (right0 *  right1 * right2);
+    // return (left == (right0 *  right1 * right2) && 
+    // return snark_for_completment_verifier_weak_IC(completment_vk, proof._C_x, C_x, proof.completment_proof);
+            // snark_for_completment_affine_verifier_weak_IC(completment_vk, proof._C_x, C_x, proof.completment_proof));
 }
 }// libsnark
 

@@ -79,15 +79,16 @@ void test_snark_for_filtering()
     };
 
     std::vector<libff::Fr<ppT>> u1;
-    for(size_t i=0;i<255;i++){
+    for(size_t i=0;i<256;i++){
         u1.push_back(libff::Fr<ppT>(u1_array[i]));
     }
+
     std::vector<libff::Fr<ppT>> u2;
-    for(size_t i=0;i<255;i++){
+    for(size_t i=0;i<256;i++){
         u2.push_back(libff::Fr<ppT>(u2_array[i]));
     }
     std::vector<libff::Fr<ppT>> original;
-    for(size_t i=0;i<255;i++){
+    for(size_t i=0;i<256;i++){
         original.push_back(libff::Fr<ppT>(original_array[i]));
     }
 
