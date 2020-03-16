@@ -574,7 +574,7 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     libff::enter_block("Check QAP divisibility");
     const libff::G1_precomp<ppT> proof_g_A_precomp = ppT::precompute_G1(proof.g_A);
     const libff::G2_precomp<ppT> proof_g_B_precomp = ppT::precompute_G2(proof.g_B);
-    const libff::G1_precomp<ppT> proof_g_C_precomp = ppT::precompute_G1(proof.g_C);
+    const libff::G1_precomp<ppT> proof_QAP2_precomp = ppT::precompute_G1(proof.g_C + C_x + _C_x);
     // const libff::G1_precomp<ppT> acc_precomp = ppT::precompute_G1(acc);
 
     const libff::Fqk<ppT> QAP1 = ppT::miller_loop(proof_g_A_precomp,  proof_g_B_precomp);
@@ -584,7 +584,7 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     // const libff::Fqk<ppT> QAP2 = ppT::double_miller_loop(
     //     acc_precomp, pvk.vk_gamma_g2_precomp,
     //     proof_g_C_precomp, pvk.vk_delta_g2_precomp);
-    const libff::Fqk<ppT> QAP2 = ppT::miller_loop(proof_g_C_precomp + C_x + _C_x,  pvk.vk_delta_g2_precomp);
+    const libff::Fqk<ppT> QAP2 = ppT::miller_loop(proof_QAP2_precomp,  pvk.vk_delta_g2_precomp);
     const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP1 * QAP2.unitary_inverse());
 
     if (QAP != pvk.vk_alpha_g1_beta_g2)

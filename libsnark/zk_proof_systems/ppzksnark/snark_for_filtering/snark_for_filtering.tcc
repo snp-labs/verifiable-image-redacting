@@ -381,7 +381,7 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
 }
 
 template <typename ppT>
-snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filtering_proving_key<ppT> &pk, 
+snark_for_filtering_proof<ppT> snark_for_filtering_prover(snark_for_filtering_proving_key<ppT> &pk, 
                                                     const snark_for_completment_primary_input<ppT> &primary_input,
                                                     const snark_for_completment_auxiliary_input<ppT> &auxiliary_input,
                                                     const libff::Fr<ppT> &x0){
@@ -413,7 +413,7 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filter
         std::move(pk.A_query),
         std::move(pk.B_query),
         std::move(pk.H_query),
-        std::move(L_query),
+        std::move(pk.H_query),
         std::move(pk.constraint_system)
         );
 
@@ -421,12 +421,16 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(const snark_for_filter
     for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
 		completment_auxiliary_input.push_back(auxiliary_input[i]);
     }
-    completment_auxiliary_input.push_back(02);
+    completment_auxiliary_input.push_back(o2);
     for(size_t i = 0; i < len/2; i++){//0 ~ n-1까지
 		completment_auxiliary_input.push_back(auxiliary_input[len/2+i]);
     }
     
-    snark_for_completment_proof<ppT> completment_proof = snark_for_completment_prover(&completment_pk, &primary_input, &completment_auxiliary_input);
+    snark_for_completment_proof<ppT> completment_proof = snark_for_completment_prover<ppT>(
+        std::move(completment_pk),
+        std::move(primary_input),
+        std::move(completment_auxiliary_input)
+    );
 
     snark_for_filtering_proof<ppT> proof
         = snark_for_filtering_proof<ppT>(std::move(completment_proof), std::move(ss_proof_g1), std::move(_C_x));
@@ -481,8 +485,9 @@ bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT
         std::move(vk.delta_g2)
         );
 
-    return (left == (right0 *  right1 * right2) &&
-            snark_for_completment_affine_verifier_weak_IC(completment_vk, proof._C_x, c_x, proof.completment_proof));
+    return (left == (right0 *  right1 * right2) && 
+    snark_for_completment_verifier_weak_IC(completment_vk, proof._C_x, c_x, proof.completment_proof));
+            // snark_for_completment_affine_verifier_weak_IC(completment_vk, proof._C_x, c_x, proof.completment_proof));
 }
 }// libsnark
 
