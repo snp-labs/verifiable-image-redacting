@@ -231,7 +231,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     libff::enter_block("Call to snark_for_completment_generator");
 
     // /* Make the B_query "lighter" if possible */
-    snark_for_completment_constraint_system<ppT> r1cs_copy(r1cs);
+    r1cs_constraint_system<libff::Fr<ppT> > r1cs_copy(r1cs);
     // r1cs_copy.swap_AB_if_beneficial();
 
     /* Generate secret randomness */

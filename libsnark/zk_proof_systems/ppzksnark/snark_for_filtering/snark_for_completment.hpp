@@ -83,7 +83,7 @@ public:
     libff::G1_vector<ppT> H_query;
     libff::G1_vector<ppT> L_query;
 
-    snark_for_completment_constraint_system<ppT> constraint_system;
+    r1cs_constraint_system<libff::Fr<ppT> > constraint_system;
 
     snark_for_completment_proving_key() {};
     snark_for_completment_proving_key<ppT>& operator=(const snark_for_completment_proving_key<ppT> &other) = default;
@@ -98,7 +98,7 @@ public:
                                   knowledge_commitment_vector<libff::G2<ppT>, libff::G1<ppT> > &&B_query,
                                   libff::G1_vector<ppT> &&H_query,
                                   libff::G1_vector<ppT> &&L_query,
-                                  snark_for_completment_constraint_system<ppT> &&constraint_system) :
+                                  r1cs_constraint_system<libff::Fr<ppT> > &&constraint_system) :
         alpha_g1(std::move(alpha_g1)),
         beta_g1(std::move(beta_g1)),
         beta_g2(std::move(beta_g2)),
@@ -461,7 +461,7 @@ public:
  * primary: statement 없음
  */
 template<typename ppT>
-snark_for_completment_keypair<ppT> snark_for_completment_generator(const snark_for_completment_constraint_system<ppT> &cs);
+snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_constraint_system<libff::Fr<ppT> > &r1cs);
 
 /**
  * A prover algorithm for the R1CS GG-ppzkSNARK.
