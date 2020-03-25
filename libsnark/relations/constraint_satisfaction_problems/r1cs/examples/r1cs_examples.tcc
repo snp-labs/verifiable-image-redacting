@@ -172,7 +172,6 @@ r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std
     FieldT o2 = FieldT::random_element();
     FieldT o1 = FieldT::zero();
 
-    // o2.print();
     // for(size_t i=0; i<255; i++){
     //     u1[i].print();
     // }
@@ -186,7 +185,7 @@ r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std
 
     cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
 
-    for (size_t i = 0; i < 256; i++)
+    for (size_t i = 0; i < cs.auxiliary_input_size/2 - 1; i++)
     {
         full_variable_assignment.push_back(u1[i]);
         linear_combination<FieldT> A, B, C;
@@ -197,7 +196,7 @@ r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std
     }
 
     full_variable_assignment.push_back(o2);
-    for (size_t i = 0; i < 256; i++)
+    for (size_t i = 0; i < cs.auxiliary_input_size/2 - 1; i++)
     {
         full_variable_assignment.push_back(u2[i]);
     }

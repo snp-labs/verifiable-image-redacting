@@ -243,6 +243,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     //const libff::Fr<ppT> gamma_inverse = gamma.inverse();
     const libff::Fr<ppT> delta_inverse = delta.inverse();
 
+    libff::Fr<ppT> test = libff::Fr<ppT>::zero();
     /* A quadratic arithmetic program evaluated at t. */
     qap_instance_evaluation<libff::Fr<ppT> > qap = r1cs_to_qap_instance_map_with_evaluation(r1cs_copy, t); //qap 생성
 
@@ -250,6 +251,8 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     libff::print_indent(); printf("* QAP pre degree: %zu\n", r1cs_copy.constraints.size());
     libff::print_indent(); printf("* QAP degree: %zu\n", qap.degree());
     libff::print_indent(); printf("* QAP number of input variables: %zu\n", qap.num_inputs());
+        printf("qap.At size: %d\n", qap.At.size());
+
 
     libff::enter_block("Compute query densities");
     size_t non_zero_At = 0;
@@ -290,12 +293,20 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     /* The delta inverse product component: (beta*A_i(t) + alpha*B_i(t) + C_i(t)) * delta^{-1}. */
     libff::enter_block("Compute L query for R1CS proving key");
     libff::Fr_vector<ppT> Lt;
-    Lt.reserve(qap.num_variables() - qap.num_inputs()); //witness 갯수
+    Lt.reserve(qap.num_variables() - qap.num_inputs()+1); //witness 갯수
                                                                                                                 
-    const size_t Lt_offset = qap.num_inputs() + 1;
-    for (size_t i = 0; i < qap.num_variables() - qap.num_inputs(); ++i)
+    const size_t Lt_offset = qap.num_inputs();
+    printf("At size: %d\n", At.size());
+    printf("Lt_offset: %d\n", Lt_offset);
+    for (size_t i = 0; i <= qap.num_variables() - qap.num_inputs(); ++i)
     {
         Lt.emplace_back((beta * At[Lt_offset + i] + alpha * Bt[Lt_offset + i] + Ct[Lt_offset + i]) * delta_inverse);
+        // printf("idx: %d At value: ", Lt_offset + i);
+        // At[Lt_offset + i].print();
+        // printf("idx: %d Bt value: ", Lt_offset + i);
+        // Bt[Lt_offset + i].print();
+        // printf("idx: %d Ct value: ", Lt_offset + i);
+        // Ct[Lt_offset + i].print();
     }
     libff::leave_block("Compute L query for R1CS proving key");
 

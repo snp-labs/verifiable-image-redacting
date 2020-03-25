@@ -76,6 +76,19 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     libff::enter_block("Call to run_snark_for_filtering");
 
     libff::print_header("R1CS snark_for_filtering Generator");
+    
+    // printf("a: ");
+    // for(size_t i=0;i<514;i++){
+    // example.constraint_system.constraints[i].a.print();
+    // }
+    // printf("b: ");
+    // for(size_t i=0;i<514;i++){
+    // example.constraint_system.constraints[i].b.print();
+    // }
+    // printf("c: ");
+    // for(size_t i=0;i<514;i++){
+    // example.constraint_system.constraints[i].c.print();
+    // }
 
     snark_for_filtering_keypair<ppT> keypair = snark_for_filtering_generator<ppT>(example.constraint_system);
     printf("\n"); libff::print_indent(); libff::print_mem("after generator");
@@ -92,7 +105,8 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     //     libff::leave_block("Test serialization of keys");
     // }
 
-    snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
+    snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);\
+    libff::G1<ppT> test = commitment.x0 * keypair.pp.h_vector[0];
     libff::Fr<ppT> o1(example.auxiliary_input[0]);
     libff::G1<ppT> C_x = o1 * keypair.pk.f_vector[0];
     const size_t len = example.auxiliary_input.size();//514
@@ -101,7 +115,6 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     for(size_t i = 1; i < len/2; i++){//1 ~ 257
 		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i];
     }
-
 
     libff::print_header("snark_for_filtering Prover");
     snark_for_filtering_proof<ppT> proof = snark_for_filtering_prover<ppT>(keypair.pk, example.primary_input, example.auxiliary_input, commitment.x0);
