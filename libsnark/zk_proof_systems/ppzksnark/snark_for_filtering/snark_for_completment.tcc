@@ -293,20 +293,12 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     /* The delta inverse product component: (beta*A_i(t) + alpha*B_i(t) + C_i(t)) * delta^{-1}. */
     libff::enter_block("Compute L query for R1CS proving key");
     libff::Fr_vector<ppT> Lt;
-    Lt.reserve(qap.num_variables() - qap.num_inputs()+1); //witness 갯수
-                                                                                                                
-    const size_t Lt_offset = qap.num_inputs();
-    printf("At size: %d\n", At.size());
-    printf("Lt_offset: %d\n", Lt_offset);
-    for (size_t i = 0; i <= qap.num_variables() - qap.num_inputs(); ++i)
+    Lt.reserve(qap.num_variables() - qap.num_inputs()); //witness 갯수
+
+    const size_t Lt_offset = qap.num_inputs() + 1;
+    for (size_t i = 0; i < qap.num_variables() - qap.num_inputs(); ++i)
     {
         Lt.emplace_back((beta * At[Lt_offset + i] + alpha * Bt[Lt_offset + i] + Ct[Lt_offset + i]) * delta_inverse);
-        // printf("idx: %d At value: ", Lt_offset + i);
-        // At[Lt_offset + i].print();
-        // printf("idx: %d Bt value: ", Lt_offset + i);
-        // Bt[Lt_offset + i].print();
-        // printf("idx: %d Ct value: ", Lt_offset + i);
-        // Ct[Lt_offset + i].print();
     }
     libff::leave_block("Compute L query for R1CS proving key");
 

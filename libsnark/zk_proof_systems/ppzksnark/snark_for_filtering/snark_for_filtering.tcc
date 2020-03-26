@@ -320,7 +320,6 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
     libff::G2<ppT> c2_g2 = k2*a_g2;
     libff::G1_vector<ppT> h_vector;
     libff::G1_vector<ppT> P_vector;
-    
 
     for (size_t i = 0; i < num_variables/2; i++)
     {
@@ -390,16 +389,18 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(snark_for_filtering_pr
     libff::Fr<ppT> o1(auxiliary_input[0]);
     libff::G1<ppT> _C_x = o2 * pk.f_vector[0];
     libff::G1<ppT> ss_proof_g1 = o1 * pk.P_vector[0];
+    libff::G1<ppT> temp;
+
     // snark_for_completment_auxiliary_input<ppT> completment_auxiliary_input;
     libff::G1_vector<ppT> L_query = {};
 
-    printf("len: %d", len);
     for(size_t i = 0; i < len/2-1; i++){//0 ~ n-1까지
-		_C_x = _C_x +auxiliary_input[i+len/2+1] * pk.f_vector[i+len/2];
+		_C_x = _C_x + auxiliary_input[i+len/2+1] * pk.f_vector[i+len/2];
     }
 
     ss_proof_g1 = ss_proof_g1 + o2 * pk.P_vector[1];
     ss_proof_g1 = ss_proof_g1 + x0 * pk.P_vector[2];
+
     for(size_t i = 0; i < len/2-1; i++){//0 ~ n-1까지
 		ss_proof_g1 = ss_proof_g1 + auxiliary_input[i+1] * pk.P_vector[i+3];
     }
@@ -480,10 +481,6 @@ bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT
                                     const libff::G1<ppT> &C_x,
                                     const snark_for_filtering_proof<ppT> &proof){
 
-    
-    printf("proof._C_x: ");
-    proof._C_x.print();
-
     libff::GT<ppT> left = ppT::reduced_pairing(proof.ss_proof_g1, vk.a_g2);
     libff::GT<ppT> right0 = ppT::reduced_pairing(C_x, vk.c0_g2);
     libff::GT<ppT> right1 = ppT::reduced_pairing(proof._C_x, vk.c1_g2);
@@ -493,6 +490,7 @@ bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT
         std::move(vk.alpha_g1_beta_g2),
         std::move(vk.delta_g2)
         );
+
 
     return left == (right0 *  right1 * right2);
     // return (left == (right0 *  right1 * right2) && 

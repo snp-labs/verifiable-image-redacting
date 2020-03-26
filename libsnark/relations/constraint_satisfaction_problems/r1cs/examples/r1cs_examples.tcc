@@ -162,8 +162,7 @@ r1cs_example<FieldT> generate_r1cs_example_with_binary_input(const size_t num_co
 template<typename FieldT>
 r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std::vector<FieldT> u2)
 {
-
-    libff::enter_block("Call to generate_filtering_example");
+   libff::enter_block("Call to generate_filtering_example");
  
     r1cs_constraint_system<FieldT> cs;
     cs.primary_input_size = 0;
@@ -180,8 +179,8 @@ r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std
 
     full_variable_assignment.push_back(o1);
     linear_combination<FieldT> A, B, C;
-    A.add_term(0,1);
-    B.add_term(cs.auxiliary_input_size / 2,1);
+    A.add_term(1,1);
+    B.add_term(cs.auxiliary_input_size / 2+1,1);
 
     cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
 
@@ -189,8 +188,8 @@ r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std
     {
         full_variable_assignment.push_back(u1[i]);
         linear_combination<FieldT> A, B, C;
-        A.add_term(i+1,1);
-        B.add_term(i+258,1);
+        A.add_term(i+1+1,1);
+        B.add_term(i+258+1,1);
 
         cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
     }
