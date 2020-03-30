@@ -332,14 +332,14 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
     //Use h_vector, f_vector to build a matrix M
     // P <- M^T * k
     P_vector.emplace_back(k2 * f_vector[0]);
-    P_vector.emplace_back(k1 * f_vector[0]);
+    P_vector.emplace_back(k1 * f_vector[num_variables/2]);
     P_vector.emplace_back(k0 * h_vector[0]);
 
     for(size_t i = 1; i < num_variables/2; i++){
 		P_vector.emplace_back((k0 * h_vector[i]) + (k2 * f_vector[i]));
     }
     for(size_t i = 1; i < num_variables/2; i++){
-		P_vector.emplace_back((k0 * h_vector[i]) + (k1 * f_vector[num_variables/2+i-1]));
+		P_vector.emplace_back((k0 * h_vector[i]) + (k1 * f_vector[num_variables/2+i]));
     }
 
     snark_for_filtering_proving_key<ppT> ek = snark_for_filtering_proving_key<ppT>(
@@ -387,15 +387,14 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(snark_for_filtering_pr
     const size_t len = auxiliary_input.size();//len = 514
     libff::Fr<ppT> o2(auxiliary_input[len/2]);
     libff::Fr<ppT> o1(auxiliary_input[0]);
-    libff::G1<ppT> _C_x = o2 * pk.f_vector[0];
+    libff::G1<ppT> _C_x = o2 * pk.f_vector[len/2];
     libff::G1<ppT> ss_proof_g1 = o1 * pk.P_vector[0];
-    libff::G1<ppT> temp;
 
     // snark_for_completment_auxiliary_input<ppT> completment_auxiliary_input;
     libff::G1_vector<ppT> L_query = {};
 
     for(size_t i = 0; i < len/2-1; i++){//0 ~ n-1까지
-		_C_x = _C_x + auxiliary_input[i+len/2+1] * pk.f_vector[i+len/2];
+		_C_x = _C_x + auxiliary_input[i+len/2+1] * pk.f_vector[i+len/2+1];
     }
 
     ss_proof_g1 = ss_proof_g1 + o2 * pk.P_vector[1];
@@ -491,6 +490,9 @@ bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT
         std::move(vk.delta_g2)
         );
 
+    // const bool ans =(left == (right0 *  right1 * right2);
+
+    printf("snark for filtering protocol: %s\n", ((left == (right0 *  right1 * right2)) ? "PASS" : "FAIL"));
 
     // return left == (right0 *  right1 * right2);
     return (left == (right0 *  right1 * right2) && 

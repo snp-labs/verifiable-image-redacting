@@ -32,7 +32,6 @@ See snark_for_completment.hpp .
 #include <libsnark/reductions/r1cs_to_qap/r1cs_to_qap.hpp>
 
 namespace libsnark {
-
 // == operator 정의
 /**
  * A proving key for the R1CS GG-ppzkSNARK.
@@ -577,31 +576,21 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     libff::enter_block("Check QAP divisibility");
     const libff::G1_precomp<ppT> proof_g_A_precomp = ppT::precompute_G1(proof.g_A);
     const libff::G2_precomp<ppT> proof_g_B_precomp = ppT::precompute_G2(proof.g_B);
-    const libff::G1_precomp<ppT> proof_QAP2_precomp = ppT::precompute_G1(proof.g_C + C_x + _C_x);
-    // const libff::G1_precomp<ppT> acc_precomp = ppT::precompute_G1(acc);
-    libff::G1<ppT> temp = proof.g_C + C_x + _C_x;
+    // const libff::G1_precomp<ppT> proof_QAP2_precomp = ppT::precompute_G1(proof.g_C + C_x + _C_x);
+    const libff::G1_precomp<ppT> proof_g_C_precomp = ppT::precompute_G1(proof.g_C);
+    const libff::G2_precomp<ppT> precompute_G2_one = ppT::precompute_G2(libff::G2<ppT>::one());
+    const libff::G1_precomp<ppT> auxiliary_precomp = ppT::precompute_G1(C_x + _C_x);
 
-    printf("g_A: ");
-    proof_copy.g_A.print();
-    // printf("proof_g_A_precomp: ");
-    // proof_g_A_precomp.print();
-    printf("g_B: ");
-    proof_copy.g_B.print();
-    // printf("proof_g_B_precomp: ");
-    // proof_g_B_precomp.print();
-    printf("proof.g_C + C_x + _C_x: ");
-    temp.print();
-    // printf("proof_QAP2_precomp: ");
-    // proof_QAP2_precomp.print();
+    // const libff::G1_precomp<ppT> acc_precomp = ppT::precompute_G1(acc);
 
     const libff::Fqk<ppT> QAP1 = ppT::miller_loop(proof_g_A_precomp,  proof_g_B_precomp);
     /** e(sum_i(a_i*((beta*A_i(t) + alpha*B_i(t) + C_i(t)))/gamma),gamma) + e(C,delta) 
      * -> e((C*C_x*_C_x),(delta)) 
      */
-    // const libff::Fqk<ppT> QAP2 = ppT::double_miller_loop(
-    //     acc_precomp, pvk.vk_gamma_g2_precomp,
-    //     proof_g_C_precomp, pvk.vk_delta_g2_precomp);
-    const libff::Fqk<ppT> QAP2 = ppT::miller_loop(proof_QAP2_precomp,  pvk.vk_delta_g2_precomp);
+    const libff::Fqk<ppT> QAP2 = ppT::double_miller_loop(
+        auxiliary_precomp, precompute_G2_one,
+        proof_g_C_precomp, pvk.vk_delta_g2_precomp);
+    // const libff::Fqk<ppT> QAP2 = ppT::miller_loop(proof_QAP2_precomp,  pvk.vk_delta_g2_precomp);
     const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP1 * QAP2.unitary_inverse());
     // printf("QAP: ");
     // QAP.print();
