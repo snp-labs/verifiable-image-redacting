@@ -563,7 +563,7 @@ bool snark_for_completment_online_verifier_strong_IC(const snark_for_completment
  */
 template<typename ppT>
 bool snark_for_completment_affine_verifier_weak_IC(const snark_for_completment_verification_key<ppT> &vk,
-                                               const snark_for_completment_primary_input<ppT> &primary_input,
+                                            //    const snark_for_completment_primary_input<ppT> &primary_input,
                                                const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                const snark_for_completment_proof<ppT> &proof);
 

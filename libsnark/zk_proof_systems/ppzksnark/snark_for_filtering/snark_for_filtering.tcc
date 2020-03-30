@@ -482,9 +482,9 @@ bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT
                                     const snark_for_filtering_proof<ppT> &proof){
 
     libff::GT<ppT> left = ppT::reduced_pairing(proof.ss_proof_g1, vk.a_g2);
-    libff::GT<ppT> right0 = ppT::reduced_pairing(C_x, vk.c0_g2);
+    libff::GT<ppT> right0 = ppT::reduced_pairing(C_x, vk.c2_g2);
     libff::GT<ppT> right1 = ppT::reduced_pairing(proof._C_x, vk.c1_g2);
-    libff::GT<ppT> right2 = ppT::reduced_pairing(sigma_x, vk.c2_g2);
+    libff::GT<ppT> right2 = ppT::reduced_pairing(sigma_x, vk.c0_g2);
 
     snark_for_completment_verification_key<ppT> completment_vk = snark_for_completment_verification_key<ppT>(
         std::move(vk.alpha_g1_beta_g2),
@@ -492,10 +492,10 @@ bool snark_for_filtering_verifier(const snark_for_filtering_verification_key<ppT
         );
 
 
-    return left == (right0 *  right1 * right2);
-    // return (left == (right0 *  right1 * right2) && 
+    // return left == (right0 *  right1 * right2);
+    return (left == (right0 *  right1 * right2) && 
     // return snark_for_completment_verifier_weak_IC(completment_vk, proof._C_x, C_x, proof.completment_proof);
-            // snark_for_completment_affine_verifier_weak_IC(completment_vk, proof._C_x, C_x, proof.completment_proof));
+            snark_for_completment_verifier_weak_IC<ppT>(completment_vk, proof._C_x, C_x, proof.completment_proof));
 }
 }// libsnark
 

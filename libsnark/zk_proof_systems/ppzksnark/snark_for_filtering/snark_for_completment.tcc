@@ -251,8 +251,6 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     libff::print_indent(); printf("* QAP pre degree: %zu\n", r1cs_copy.constraints.size());
     libff::print_indent(); printf("* QAP degree: %zu\n", qap.degree());
     libff::print_indent(); printf("* QAP number of input variables: %zu\n", qap.num_inputs());
-        printf("qap.At size: %d\n", qap.At.size());
-
 
     libff::enter_block("Compute query densities");
     size_t non_zero_At = 0;
@@ -356,7 +354,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     // kc_batch_exp will convert its output to special form internally
     libff::leave_block("Compute the B-query", false);
 
-    libff::enter_block("Compute the H-query", false);
+    libff::enter_block("Compute the H-query", false);   //gro16 t(x)
     libff::G1_vector<ppT> H_query = batch_exp_with_coeff(g1_scalar_size, g1_window_size, g1_table, qap.Zt * delta_inverse, Ht);
 #ifdef USE_MIXED_ADDITION
     libff::batch_to_special<libff::G1<ppT> >(H_query);
@@ -561,6 +559,8 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     // libff::leave_block("Accumulate input");
 
     bool result = true;
+    
+    snark_for_completment_proof<ppT> proof_copy(proof);
 
     libff::enter_block("Check if the proof is well-formed");
     if (!proof.is_well_formed())
@@ -579,6 +579,20 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     const libff::G2_precomp<ppT> proof_g_B_precomp = ppT::precompute_G2(proof.g_B);
     const libff::G1_precomp<ppT> proof_QAP2_precomp = ppT::precompute_G1(proof.g_C + C_x + _C_x);
     // const libff::G1_precomp<ppT> acc_precomp = ppT::precompute_G1(acc);
+    libff::G1<ppT> temp = proof.g_C + C_x + _C_x;
+
+    printf("g_A: ");
+    proof_copy.g_A.print();
+    // printf("proof_g_A_precomp: ");
+    // proof_g_A_precomp.print();
+    printf("g_B: ");
+    proof_copy.g_B.print();
+    // printf("proof_g_B_precomp: ");
+    // proof_g_B_precomp.print();
+    printf("proof.g_C + C_x + _C_x: ");
+    temp.print();
+    // printf("proof_QAP2_precomp: ");
+    // proof_QAP2_precomp.print();
 
     const libff::Fqk<ppT> QAP1 = ppT::miller_loop(proof_g_A_precomp,  proof_g_B_precomp);
     /** e(sum_i(a_i*((beta*A_i(t) + alpha*B_i(t) + C_i(t)))/gamma),gamma) + e(C,delta) 
@@ -589,6 +603,10 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     //     proof_g_C_precomp, pvk.vk_delta_g2_precomp);
     const libff::Fqk<ppT> QAP2 = ppT::miller_loop(proof_QAP2_precomp,  pvk.vk_delta_g2_precomp);
     const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP1 * QAP2.unitary_inverse());
+    // printf("QAP: ");
+    // QAP.print();
+    // printf("vk_alpha_g1_beta_g2: ");
+    // pvk.vk_alpha_g1_beta_g2.print();
 
     if (QAP != pvk.vk_alpha_g1_beta_g2)
     {
