@@ -242,7 +242,6 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     //const libff::Fr<ppT> gamma_inverse = gamma.inverse();
     const libff::Fr<ppT> delta_inverse = delta.inverse();
 
-    libff::Fr<ppT> test = libff::Fr<ppT>::zero();
     /* A quadratic arithmetic program evaluated at t. */
     qap_instance_evaluation<libff::Fr<ppT> > qap = r1cs_to_qap_instance_map_with_evaluation(r1cs_copy, t); //qap 생성
 
@@ -291,7 +290,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     libff::enter_block("Compute L query for R1CS proving key");
     libff::Fr_vector<ppT> Lt;
     Lt.reserve(qap.num_variables() - qap.num_inputs()); //witness 갯수
-
+    
     const size_t Lt_offset = qap.num_inputs() + 1;
     for (size_t i = 0; i < qap.num_variables() - qap.num_inputs(); ++i)
     {
@@ -387,7 +386,8 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     snark_for_completment_verification_key<ppT> vk = snark_for_completment_verification_key<ppT>(alpha_g1_beta_g2,
                                                                                         //  gamma_g2,
                                                                                          delta_g2/*,
-                                                                                         gamma_ABC_g1*/);
+                                                                                         gamma_ABC_g1*/
+                                                                                         );
 
     snark_for_completment_proving_key<ppT> pk = snark_for_completment_proving_key<ppT>(std::move(alpha_g1),
                                                                                std::move(beta_g1),
@@ -459,7 +459,13 @@ snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_co
     // TODO: sort out indexing
     libff::Fr_vector<ppT> const_padded_assignment(1, libff::Fr<ppT>::one());
     const_padded_assignment.insert(const_padded_assignment.end(), qap_wit.coefficients_for_ABCs.begin(), qap_wit.coefficients_for_ABCs.end());
-
+    // printf("const_padded_assignment size: %d\n",const_padded_assignment.size());
+    // pk.A_query[0].print();
+    // for (int i; i<const_padded_assignment.size(); i++){
+    //     // printf("index: %d, const_padded_assignment[%d]: ", i, i);
+    //     // const_padded_assignment[i].print();
+    //     pk.H_query[i].print();
+    // }
     libff::G1<ppT> evaluation_At = libff::multi_exp_with_mixed_addition<libff::G1<ppT>,
                                                                         libff::Fr<ppT>,
                                                                         libff::multi_exp_method_BDLO12>(
@@ -536,6 +542,7 @@ snark_for_completment_processed_verification_key<ppT> snark_for_completment_veri
     pvk.vk_alpha_g1_beta_g2 = vk.alpha_g1_beta_g2;
     //pvk.vk_gamma_g2_precomp = ppT::precompute_G2(vk.gamma_g2);
     pvk.vk_delta_g2_precomp = ppT::precompute_G2(vk.delta_g2);
+    pvk.delta_g2 = vk.delta_g2;
     //pvk.gamma_ABC_g1 = vk.gamma_ABC_g1;
 
     libff::leave_block("Call to snark_for_completment_verifier_process_vk");
@@ -559,8 +566,6 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
 
     bool result = true;
     
-    snark_for_completment_proof<ppT> proof_copy(proof);
-
     libff::enter_block("Check if the proof is well-formed");
     if (!proof.is_well_formed())
     {
@@ -576,10 +581,10 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     libff::enter_block("Check QAP divisibility");
     const libff::G1_precomp<ppT> proof_g_A_precomp = ppT::precompute_G1(proof.g_A);
     const libff::G2_precomp<ppT> proof_g_B_precomp = ppT::precompute_G2(proof.g_B);
-    // const libff::G1_precomp<ppT> proof_QAP2_precomp = ppT::precompute_G1(proof.g_C + C_x + _C_x);
-    const libff::G1_precomp<ppT> proof_g_C_precomp = ppT::precompute_G1(proof.g_C);
-    const libff::G2_precomp<ppT> precompute_G2_one = ppT::precompute_G2(libff::G2<ppT>::one());
-    const libff::G1_precomp<ppT> auxiliary_precomp = ppT::precompute_G1(C_x + _C_x);
+    const libff::G1_precomp<ppT> proof_QAP2_precomp = ppT::precompute_G1(proof.g_C + C_x + _C_x);
+    // const libff::G1_precomp<ppT> proof_g_C_precomp = ppT::precompute_G1(proof.g_C);
+    // const libff::G2_precomp<ppT> precompute_G2_one = ppT::precompute_G2(libff::G2<ppT>::one());
+    // const libff::G1_precomp<ppT> auxiliary_precomp = ppT::precompute_G1(C_x + _C_x);
 
     // const libff::G1_precomp<ppT> acc_precomp = ppT::precompute_G1(acc);
 
@@ -587,17 +592,31 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     /** e(sum_i(a_i*((beta*A_i(t) + alpha*B_i(t) + C_i(t)))/gamma),gamma) + e(C,delta) 
      * -> e((C*C_x*_C_x),(delta)) 
      */
-    const libff::Fqk<ppT> QAP2 = ppT::double_miller_loop(
-        auxiliary_precomp, precompute_G2_one,
-        proof_g_C_precomp, pvk.vk_delta_g2_precomp);
-    // const libff::Fqk<ppT> QAP2 = ppT::miller_loop(proof_QAP2_precomp,  pvk.vk_delta_g2_precomp);
+    // const libff::Fqk<ppT> QAP2 = ppT::double_miller_loop(
+        // auxiliary_precomp, pvk.vk_delta_g2_precomp,
+        // proof_g_C_precomp, pvk.vk_delta_g2_precomp);
+    const libff::Fqk<ppT> QAP2 = ppT::miller_loop(proof_QAP2_precomp,  pvk.vk_delta_g2_precomp);
     const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP1 * QAP2.unitary_inverse());
     // printf("QAP: ");
     // QAP.print();
     // printf("vk_alpha_g1_beta_g2: ");
     // pvk.vk_alpha_g1_beta_g2.print();
 
-    if (QAP != pvk.vk_alpha_g1_beta_g2)
+    // if (QAP != pvk.vk_alpha_g1_beta_g2)
+    // {
+    //     if (!libff::inhibit_profiling_info)
+    //     {
+    //         libff::print_indent(); printf("QAP divisibility check failed.\n");
+    //     }
+    //     result = false;
+    // }
+
+    libff::GT<ppT> QAP_A_g1_B_g2 = ppT::reduced_pairing(proof.g_A, proof.g_B);
+    libff::G1<ppT> QAP_Witness = proof.g_C + C_x + _C_x;
+    libff::GT<ppT> QAP_right = ppT::reduced_pairing(QAP_Witness, pvk.delta_g2);
+    libff::GT<ppT> QAP_test = ppT::final_exponentiation(pvk.vk_alpha_g1_beta_g2 * QAP_right);
+
+    if (QAP_A_g1_B_g2 != QAP_test)
     {
         if (!libff::inhibit_profiling_info)
         {

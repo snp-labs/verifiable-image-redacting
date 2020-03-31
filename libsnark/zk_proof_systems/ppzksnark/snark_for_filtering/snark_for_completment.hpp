@@ -344,6 +344,8 @@ public:
     libff::GT<ppT> vk_alpha_g1_beta_g2;
     //libff::G2_precomp<ppT> vk_gamma_g2_precomp;
     libff::G2_precomp<ppT> vk_delta_g2_precomp;
+    libff::G2<ppT> delta_g2;
+
 
     //accumulation_vector<libff::G1<ppT> > gamma_ABC_g1;
 

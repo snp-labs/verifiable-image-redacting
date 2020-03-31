@@ -388,6 +388,7 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(snark_for_filtering_pr
     libff::Fr<ppT> o2(auxiliary_input[len/2]);
     libff::Fr<ppT> o1(auxiliary_input[0]);
     libff::G1<ppT> _C_x = o2 * pk.f_vector[len/2];
+
     libff::G1<ppT> ss_proof_g1 = o1 * pk.P_vector[0];
 
     // snark_for_completment_auxiliary_input<ppT> completment_auxiliary_input;
