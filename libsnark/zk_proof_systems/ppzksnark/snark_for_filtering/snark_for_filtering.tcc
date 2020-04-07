@@ -394,8 +394,8 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(snark_for_filtering_pr
     // snark_for_completment_auxiliary_input<ppT> completment_auxiliary_input;
     libff::G1_vector<ppT> L_query = {};
 
-    for(size_t i = 0; i < len/2-1; i++){//0 ~ n-1까지
-		_C_x = _C_x + auxiliary_input[i+len/2+1] * pk.f_vector[i+len/2+1];
+    for(size_t i = 1; i < len/2; i++){//0 ~ n-1까지
+		_C_x = _C_x + auxiliary_input[i+len/2] * pk.f_vector[i+len/2];
     }
 
     ss_proof_g1 = ss_proof_g1 + o2 * pk.P_vector[1];

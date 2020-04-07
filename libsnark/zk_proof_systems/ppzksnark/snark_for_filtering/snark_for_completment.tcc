@@ -48,7 +48,7 @@ bool snark_for_completment_proving_key<ppT>::operator==(const snark_for_completm
             this->A_query == other.A_query &&
             this->B_query == other.B_query &&
             this->H_query == other.H_query &&
-            //this->L_query == other.L_query &&
+            this->L_query == other.L_query &&
             this->constraint_system == other.constraint_system);
 }
 
@@ -64,7 +64,7 @@ std::ostream& operator<<(std::ostream &out, const snark_for_completment_proving_
     out << pk.A_query;
     out << pk.B_query;
     out << pk.H_query;
-    //out << pk.L_query;
+    out << pk.L_query;
     out << pk.constraint_system;
 
     return out;
@@ -85,7 +85,7 @@ std::istream& operator>>(std::istream &in, snark_for_completment_proving_key<ppT
     in >> pk.A_query;
     in >> pk.B_query;
     in >> pk.H_query;
-    //in >> pk.L_query;
+    in >> pk.L_query;
     in >> pk.constraint_system;
 
     return in;
@@ -602,21 +602,7 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     // printf("vk_alpha_g1_beta_g2: ");
     // pvk.vk_alpha_g1_beta_g2.print();
 
-    // if (QAP != pvk.vk_alpha_g1_beta_g2)
-    // {
-    //     if (!libff::inhibit_profiling_info)
-    //     {
-    //         libff::print_indent(); printf("QAP divisibility check failed.\n");
-    //     }
-    //     result = false;
-    // }
-
-    libff::GT<ppT> QAP_A_g1_B_g2 = ppT::reduced_pairing(proof.g_A, proof.g_B);
-    libff::G1<ppT> QAP_Witness = proof.g_C + C_x + _C_x;
-    libff::GT<ppT> QAP_right = ppT::reduced_pairing(QAP_Witness, pvk.delta_g2);
-    libff::GT<ppT> QAP_test = ppT::final_exponentiation(pvk.vk_alpha_g1_beta_g2 * QAP_right);
-
-    if (QAP_A_g1_B_g2 != QAP_test)
+    if (QAP != pvk.vk_alpha_g1_beta_g2)
     {
         if (!libff::inhibit_profiling_info)
         {
@@ -624,6 +610,20 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
         }
         result = false;
     }
+
+    // libff::GT<ppT> QAP_A_g1_B_g2 = ppT::reduced_pairing(proof.g_A, proof.g_B);
+    // libff::G1<ppT> QAP_Witness = proof.g_C + C_x + _C_x;
+    // libff::GT<ppT> QAP_right = ppT::reduced_pairing(QAP_Witness, pvk.delta_g2);
+    // libff::GT<ppT> QAP_test = ppT::final_exponentiation(pvk.vk_alpha_g1_beta_g2 * QAP_right);
+
+    // if (QAP_A_g1_B_g2 != QAP_test)
+    // {
+    //     if (!libff::inhibit_profiling_info)
+    //     {
+    //         libff::print_indent(); printf("QAP divisibility check failed.\n");
+    //     }
+    //     result = false;
+    // }
     libff::leave_block("Check QAP divisibility");
     libff::leave_block("Online pairing computations");
 

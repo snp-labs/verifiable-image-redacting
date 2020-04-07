@@ -98,6 +98,25 @@ bool run_r1cs_gg_ppzksnark(const r1cs_example<libff::Fr<ppT> > &example,
     printf("\n"); libff::print_indent(); libff::print_mem("after verifier");
     printf("* The verification result is: %s\n", (ans ? "PASS" : "FAIL"));
 
+    size_t len = example.auxiliary_input.size();//514
+    libff::Fr<ppT> o1(example.auxiliary_input[0]);
+    libff::Fr<ppT> o2(example.auxiliary_input[len/2]);
+    libff::G1<ppT> _C_x = o2 * keypair.pk.L_query[len/2];
+    libff::G1<ppT> C_x = o1 * keypair.pk.L_query[0];
+
+    for(size_t i = 0; i < len/2-1; i++){//0 ~ n-1까지
+		_C_x = _C_x + example.auxiliary_input[i+len/2+1] * keypair.pk.L_query[i+len/2+1];
+    }
+
+
+    for(size_t i = 1; i < len/2; i++){//1 ~ 256
+		C_x = C_x + example.auxiliary_input[i] * keypair.pk.L_query[i];
+    }
+    
+    libff::G1<ppT> tmp = C_x + _C_x;
+    printf("tmp: ");
+    tmp.print();
+
     libff::print_header("R1CS GG-ppzkSNARK Online Verifier");
     const bool ans2 = r1cs_gg_ppzksnark_online_verifier_strong_IC<ppT>(pvk, example.primary_input, proof);
     assert(ans == ans2);

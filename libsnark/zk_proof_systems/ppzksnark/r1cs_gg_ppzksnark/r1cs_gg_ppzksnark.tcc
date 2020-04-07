@@ -496,7 +496,8 @@ r1cs_gg_ppzksnark_proof<ppT> r1cs_gg_ppzksnark_prover(const r1cs_gg_ppzksnark_pr
 
     /* C = sum_i(a_i*((beta*A_i(t) + alpha*B_i(t) + C_i(t)) + H(t)*Z(t))/delta) + A*s + r*b - r*s*delta */
     libff::G1<ppT> g1_C = evaluation_Ht + evaluation_Lt + s *  g1_A + r * g1_B - (r * s) * pk.delta_g1;
-
+    printf("evaluation_Lt: ");
+    evaluation_Lt.print();
     libff::leave_block("Compute the proof");
 
     libff::leave_block("Call to r1cs_gg_ppzksnark_prover");

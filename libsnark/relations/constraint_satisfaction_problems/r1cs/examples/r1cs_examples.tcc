@@ -34,8 +34,8 @@ r1cs_example<FieldT> generate_r1cs_example_with_field_input(const size_t num_con
     cs.auxiliary_input_size = 2 + num_constraints - num_inputs; // TODO: explain this
 
     r1cs_variable_assignment<FieldT> full_variable_assignment;
-    FieldT a = FieldT::random_element();
-    FieldT b = FieldT::random_element();
+    FieldT a = FieldT::one();
+    FieldT b = FieldT::one();
     full_variable_assignment.push_back(a);
     full_variable_assignment.push_back(b);
 
@@ -168,19 +168,21 @@ r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std
     cs.primary_input_size = 0;
     cs.auxiliary_input_size = u1.size() + u2.size() + 2; // TODO: explain this
     // printf("%d\n", cs.auxiliary_input_size);
-    FieldT o2 = FieldT::random_element();
-    FieldT o1 = FieldT::zero();
 
     // for(size_t i=0; i<255; i++){
     //     u1[i].print();
     // }
-
+    printf("cs.auxiliary_input_size: %d \n",cs.auxiliary_input_size);
     r1cs_variable_assignment<FieldT> full_variable_assignment; 
+    FieldT o1 = FieldT::zero();
+    FieldT o2 = FieldT::random_element();
 
     full_variable_assignment.push_back(o1);
+
     linear_combination<FieldT> A, B, C;
     A.add_term(1,1);
     B.add_term(cs.auxiliary_input_size / 2+1,1);
+    C.add_term(0, 0);
 
     cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
 
@@ -190,6 +192,7 @@ r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std
         linear_combination<FieldT> A, B, C;
         A.add_term(i+1+1,1);
         B.add_term(i+258+1,1);
+        C.add_term(0, 0);
 
         cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
     }
@@ -199,7 +202,6 @@ r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std
     {
         full_variable_assignment.push_back(u2[i]);
     }
-
 
     /* split variable assignment */
     r1cs_primary_input<FieldT> primary_input(full_variable_assignment.begin(), full_variable_assignment.begin() + cs.primary_input_size);

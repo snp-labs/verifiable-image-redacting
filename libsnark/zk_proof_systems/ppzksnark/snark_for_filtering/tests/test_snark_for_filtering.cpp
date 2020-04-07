@@ -79,19 +79,23 @@ void test_snark_for_filtering()
     };
 
     std::vector<libff::Fr<ppT>> u1;
+    std::vector<libff::Fr<ppT>> u2;
+    std::vector<libff::Fr<ppT>> original;
+
+    // u1.reserve(912600);
+    // u2.reserve(912600);
+    // original.reserve(912600);
+    // for(size_t j=0;j<3600;j++){
     for(size_t i=0;i<256;i++){
         u1.push_back(libff::Fr<ppT>(u1_array[i]));
     }
-
-    std::vector<libff::Fr<ppT>> u2;
     for(size_t i=0;i<256;i++){
         u2.push_back(libff::Fr<ppT>(u2_array[i]));
     }
-    std::vector<libff::Fr<ppT>> original;
     for(size_t i=0;i<256;i++){
         original.push_back(libff::Fr<ppT>(original_array[i]));
     }
-
+    // }
     libff::print_header("(enter) Test Snark for Filtering");
     
     const bool test_serialization = true;
