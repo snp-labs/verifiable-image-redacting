@@ -93,8 +93,9 @@ bool r1cs_gg_ppzksnark_verification_key<ppT>::operator==(const r1cs_gg_ppzksnark
 {
     return (this->alpha_g1_beta_g2 == other.alpha_g1_beta_g2 &&
             this->gamma_g2 == other.gamma_g2 &&
-            this->delta_g2 == other.delta_g2 &&
-            this->gamma_ABC_g1 == other.gamma_ABC_g1);
+            this->delta_g2 == other.delta_g2 
+            && this->gamma_ABC_g1 == other.gamma_ABC_g1
+            );
 }
 
 template<typename ppT>
@@ -128,8 +129,9 @@ bool r1cs_gg_ppzksnark_processed_verification_key<ppT>::operator==(const r1cs_gg
 {
     return (this->vk_alpha_g1_beta_g2 == other.vk_alpha_g1_beta_g2 &&
             this->vk_gamma_g2_precomp == other.vk_gamma_g2_precomp &&
-            this->vk_delta_g2_precomp == other.vk_delta_g2_precomp &&
-            this->gamma_ABC_g1 == other.gamma_ABC_g1);
+            this->vk_delta_g2_precomp == other.vk_delta_g2_precomp 
+            && this->gamma_ABC_g1 == other.gamma_ABC_g1
+            );
 }
 
 template<typename ppT>
@@ -189,7 +191,7 @@ std::istream& operator>>(std::istream &in, r1cs_gg_ppzksnark_proof<ppT> &proof)
     return in;
 }
 
-//
+
 template<typename ppT>
 r1cs_gg_ppzksnark_verification_key<ppT> r1cs_gg_ppzksnark_verification_key<ppT>::dummy_verification_key(const size_t input_size)
 {
@@ -371,8 +373,9 @@ r1cs_gg_ppzksnark_keypair<ppT> r1cs_gg_ppzksnark_generator(const r1cs_gg_ppzksna
 
     r1cs_gg_ppzksnark_verification_key<ppT> vk = r1cs_gg_ppzksnark_verification_key<ppT>(alpha_g1_beta_g2,
                                                                                          gamma_g2,
-                                                                                         delta_g2,
-                                                                                         gamma_ABC_g1);
+                                                                                         delta_g2
+                                                                                         , gamma_ABC_g1
+                                                                                         );
 
     r1cs_gg_ppzksnark_proving_key<ppT> pk = r1cs_gg_ppzksnark_proving_key<ppT>(std::move(alpha_g1),
                                                                                std::move(beta_g1),
@@ -426,7 +429,7 @@ r1cs_gg_ppzksnark_proof<ppT> r1cs_gg_ppzksnark_prover(const r1cs_gg_ppzksnark_pr
     assert(pk.A_query.size() == qap_wit.num_variables()+1);
     assert(pk.B_query.domain_size() == qap_wit.num_variables()+1);
     assert(pk.H_query.size() == qap_wit.degree() - 1);
-    assert(pk.L_query.size() == qap_wit.num_variables() - qap_wit.num_inputs());
+    // assert(pk.L_query.size() == qap_wit.num_variables() - qap_wit.num_inputs());
 #endif
 
 #ifdef MULTICORE
@@ -476,16 +479,16 @@ r1cs_gg_ppzksnark_proof<ppT> r1cs_gg_ppzksnark_prover(const r1cs_gg_ppzksnark_pr
         chunks);
     libff::leave_block("Compute evaluation to H-query", false);
 
-    libff::enter_block("Compute evaluation to L-query", false);
-    libff::G1<ppT> evaluation_Lt = libff::multi_exp_with_mixed_addition<libff::G1<ppT>,
-                                                                        libff::Fr<ppT>,
-                                                                        libff::multi_exp_method_BDLO12>(
-        pk.L_query.begin(),
-        pk.L_query.end(),
-        const_padded_assignment.begin() + qap_wit.num_inputs() + 1,
-        const_padded_assignment.begin() + qap_wit.num_variables() + 1,
-        chunks);
-    libff::leave_block("Compute evaluation to L-query", false);
+    // libff::enter_block("Compute evaluation to L-query", false);
+    // libff::G1<ppT> evaluation_Lt = libff::multi_exp_with_mixed_addition<libff::G1<ppT>,
+    //                                                                     libff::Fr<ppT>,
+    //                                                                     libff::multi_exp_method_BDLO12>(
+    //     pk.L_query.begin(),
+    //     pk.L_query.end(),
+    //     const_padded_assignment.begin() + qap_wit.num_inputs() + 1,
+    //     const_padded_assignment.begin() + qap_wit.num_variables() + 1,
+    //     chunks);
+    // libff::leave_block("Compute evaluation to L-query", false);
 
     /* A = alpha + sum_i(a_i*A_i(t)) + r*delta */
     libff::G1<ppT> g1_A = pk.alpha_g1 + evaluation_At + r * pk.delta_g1;
@@ -494,10 +497,11 @@ r1cs_gg_ppzksnark_proof<ppT> r1cs_gg_ppzksnark_prover(const r1cs_gg_ppzksnark_pr
     libff::G1<ppT> g1_B = pk.beta_g1 + evaluation_Bt.h + s * pk.delta_g1;
     libff::G2<ppT> g2_B = pk.beta_g2 + evaluation_Bt.g + s * pk.delta_g2;
 
-    /* C = sum_i(a_i*((beta*A_i(t) + alpha*B_i(t) + C_i(t)) + H(t)*Z(t))/delta) + A*s + r*b - r*s*delta */
-    libff::G1<ppT> g1_C = evaluation_Ht + evaluation_Lt + s *  g1_A + r * g1_B - (r * s) * pk.delta_g1;
-    printf("evaluation_Lt: ");
-    evaluation_Lt.print();
+    /* C = sum_i(a_i*((beta*A_i(t) + alpha*B_i(t) + C_i(t)) + H(t)*Z(t))/delta) + A*s + r*b - r*s*delta
+    * -> C = sum_i(H(t)*Z(t))/delta) + A*s + r*b - r*s*delta  로 수정
+    */    
+    libff::G1<ppT> g1_C = evaluation_Ht + /*evaluation_Lt +*/ s *  g1_A + r * g1_B - (r * s) * pk.delta_g1;
+
     libff::leave_block("Compute the proof");
 
     libff::leave_block("Call to r1cs_gg_ppzksnark_prover");
@@ -516,8 +520,11 @@ r1cs_gg_ppzksnark_processed_verification_key<ppT> r1cs_gg_ppzksnark_verifier_pro
     r1cs_gg_ppzksnark_processed_verification_key<ppT> pvk;
     pvk.vk_alpha_g1_beta_g2 = vk.alpha_g1_beta_g2;
     pvk.vk_gamma_g2_precomp = ppT::precompute_G2(vk.gamma_g2);
+    // pvk.vk_gamma_g2 = vk.gamma_g2;
     pvk.vk_delta_g2_precomp = ppT::precompute_G2(vk.delta_g2);
     pvk.gamma_ABC_g1 = vk.gamma_ABC_g1;
+    // pvk.vk_delta_g2 = vk.delta_g2;
+
 
     libff::leave_block("Call to r1cs_gg_ppzksnark_verifier_process_vk");
 
@@ -526,9 +533,11 @@ r1cs_gg_ppzksnark_processed_verification_key<ppT> r1cs_gg_ppzksnark_verifier_pro
 
 template <typename ppT>
 bool r1cs_gg_ppzksnark_online_verifier_weak_IC(const r1cs_gg_ppzksnark_processed_verification_key<ppT> &pvk,
-                                               const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+                                            //    const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+                                               const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                const r1cs_gg_ppzksnark_proof<ppT> &proof)
-{
+{   
+    r1cs_gg_ppzksnark_primary_input<ppT> primary_input = {};
     libff::enter_block("Call to r1cs_gg_ppzksnark_online_verifier_weak_IC");
     assert(pvk.gamma_ABC_g1.domain_size() >= primary_input.size());
 
@@ -551,16 +560,18 @@ bool r1cs_gg_ppzksnark_online_verifier_weak_IC(const r1cs_gg_ppzksnark_processed
     libff::leave_block("Check if the proof is well-formed");
 
     libff::enter_block("Online pairing computations");
+
     libff::enter_block("Check QAP divisibility");
     const libff::G1_precomp<ppT> proof_g_A_precomp = ppT::precompute_G1(proof.g_A);
     const libff::G2_precomp<ppT> proof_g_B_precomp = ppT::precompute_G2(proof.g_B);
-    const libff::G1_precomp<ppT> proof_g_C_precomp = ppT::precompute_G1(proof.g_C);
+    const libff::G1_precomp<ppT> proof_g_C_precomp = ppT::precompute_G1(proof.g_C + C_x + _C_x);
     const libff::G1_precomp<ppT> acc_precomp = ppT::precompute_G1(acc);
 
     const libff::Fqk<ppT> QAP1 = ppT::miller_loop(proof_g_A_precomp,  proof_g_B_precomp);
     const libff::Fqk<ppT> QAP2 = ppT::double_miller_loop(
         acc_precomp, pvk.vk_gamma_g2_precomp,
         proof_g_C_precomp, pvk.vk_delta_g2_precomp);
+    // const libff::Fqk<ppT> QAP2 = ppT::miller_loop(proof_g_C_precomp,  pvk.vk_delta_g2_precomp);
     const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP1 * QAP2.unitary_inverse());
 
     if (QAP != pvk.vk_alpha_g1_beta_g2)
@@ -571,6 +582,20 @@ bool r1cs_gg_ppzksnark_online_verifier_weak_IC(const r1cs_gg_ppzksnark_processed
         }
         result = false;
     }
+    // const accumulation_vector<libff::G1<ppT> > accumulated_IC = pvk.gamma_ABC_g1.template accumulate_chunk<libff::Fr<ppT> >(primary_input.begin(), primary_input.end(), 0);
+    // const libff::G1<ppT> &acc = accumulated_IC.first;
+    // libff::GT<ppT> left = ppT::reduced_pairing(proof.g_A, proof.g_B);
+    // libff::GT<ppT> right2 = ppT::reduced_pairing(tmp, pvk.vk_delta_g2);
+    // libff::GT<ppT> right1 = ppT::reduced_pairing(acc, pvk.vk_gamma_g2);
+    // if (left != (pvk.vk_alpha_g1_beta_g2 * right1 * right2))
+    // {
+    //     if (!libff::inhibit_profiling_info)
+    //     {
+    //         libff::print_indent(); printf("QAP divisibility check failed.\n");
+    //     }
+    //     result = false;
+    // }
+
     libff::leave_block("Check QAP divisibility");
     libff::leave_block("Online pairing computations");
 
@@ -581,105 +606,106 @@ bool r1cs_gg_ppzksnark_online_verifier_weak_IC(const r1cs_gg_ppzksnark_processed
 
 template<typename ppT>
 bool r1cs_gg_ppzksnark_verifier_weak_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
-                                        const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+                                        // const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+                                        const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                         const r1cs_gg_ppzksnark_proof<ppT> &proof)
 {
     libff::enter_block("Call to r1cs_gg_ppzksnark_verifier_weak_IC");
     r1cs_gg_ppzksnark_processed_verification_key<ppT> pvk = r1cs_gg_ppzksnark_verifier_process_vk<ppT>(vk);
-    bool result = r1cs_gg_ppzksnark_online_verifier_weak_IC<ppT>(pvk, primary_input, proof);
+    bool result = r1cs_gg_ppzksnark_online_verifier_weak_IC<ppT>(pvk, /*primary_input,*/ C_x, _C_x, proof);
     libff::leave_block("Call to r1cs_gg_ppzksnark_verifier_weak_IC");
     return result;
 }
 
-template<typename ppT>
-bool r1cs_gg_ppzksnark_online_verifier_strong_IC(const r1cs_gg_ppzksnark_processed_verification_key<ppT> &pvk,
-                                                 const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
-                                                 const r1cs_gg_ppzksnark_proof<ppT> &proof)
-{
-    bool result = true;
-    libff::enter_block("Call to r1cs_gg_ppzksnark_online_verifier_strong_IC");
+// template<typename ppT>
+// bool r1cs_gg_ppzksnark_online_verifier_strong_IC(const r1cs_gg_ppzksnark_processed_verification_key<ppT> &pvk,
+//                                                  const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+//                                                  const r1cs_gg_ppzksnark_proof<ppT> &proof)
+// {
+//     bool result = true;
+//     libff::enter_block("Call to r1cs_gg_ppzksnark_online_verifier_strong_IC");
 
-    if (pvk.gamma_ABC_g1.domain_size() != primary_input.size())
-    {
-        libff::print_indent(); printf("Input length differs from expected (got %zu, expected %zu).\n", primary_input.size(), pvk.gamma_ABC_g1.domain_size());
-        result = false;
-    }
-    else
-    {
-        result = r1cs_gg_ppzksnark_online_verifier_weak_IC(pvk, primary_input, proof);
-    }
+//     if (pvk.gamma_ABC_g1.domain_size() != primary_input.size())
+//     {
+//         libff::print_indent(); printf("Input length differs from expected (got %zu, expected %zu).\n", primary_input.size(), pvk.gamma_ABC_g1.domain_size());
+//         result = false;
+//     }
+//     else
+//     {
+//         result = r1cs_gg_ppzksnark_online_verifier_weak_IC(pvk, primary_input, proof);
+//     }
 
-    libff::leave_block("Call to r1cs_gg_ppzksnark_online_verifier_strong_IC");
-    return result;
-}
+//     libff::leave_block("Call to r1cs_gg_ppzksnark_online_verifier_strong_IC");
+//     return result;
+// }
 
-template<typename ppT>
-bool r1cs_gg_ppzksnark_verifier_strong_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
-                                          const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
-                                          const r1cs_gg_ppzksnark_proof<ppT> &proof)
-{
-    libff::enter_block("Call to r1cs_gg_ppzksnark_verifier_strong_IC");
-    r1cs_gg_ppzksnark_processed_verification_key<ppT> pvk = r1cs_gg_ppzksnark_verifier_process_vk<ppT>(vk);
-    bool result = r1cs_gg_ppzksnark_online_verifier_strong_IC<ppT>(pvk, primary_input, proof);
-    libff::leave_block("Call to r1cs_gg_ppzksnark_verifier_strong_IC");
-    return result;
-}
+// template<typename ppT>
+// bool r1cs_gg_ppzksnark_verifier_strong_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
+//                                           const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+//                                           const r1cs_gg_ppzksnark_proof<ppT> &proof)
+// {
+//     libff::enter_block("Call to r1cs_gg_ppzksnark_verifier_strong_IC");
+//     r1cs_gg_ppzksnark_processed_verification_key<ppT> pvk = r1cs_gg_ppzksnark_verifier_process_vk<ppT>(vk);
+//     bool result = r1cs_gg_ppzksnark_online_verifier_strong_IC<ppT>(pvk, primary_input, proof);
+//     libff::leave_block("Call to r1cs_gg_ppzksnark_verifier_strong_IC");
+//     return result;
+// }
 
-template<typename ppT>
-bool r1cs_gg_ppzksnark_affine_verifier_weak_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
-                                               const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
-                                               const r1cs_gg_ppzksnark_proof<ppT> &proof)
-{
-    libff::enter_block("Call to r1cs_gg_ppzksnark_affine_verifier_weak_IC");
-    assert(vk.gamma_ABC_g1.domain_size() >= primary_input.size());
+// template<typename ppT>
+// bool r1cs_gg_ppzksnark_affine_verifier_weak_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
+//                                                const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+//                                                const r1cs_gg_ppzksnark_proof<ppT> &proof)
+// {
+//     libff::enter_block("Call to r1cs_gg_ppzksnark_affine_verifier_weak_IC");
+//     assert(vk.gamma_ABC_g1.domain_size() >= primary_input.size());
 
-    libff::affine_ate_G2_precomp<ppT> pvk_vk_gamma_g2_precomp = ppT::affine_ate_precompute_G2(vk.gamma_g2);
-    libff::affine_ate_G2_precomp<ppT> pvk_vk_delta_g2_precomp = ppT::affine_ate_precompute_G2(vk.delta_g2);
+//     libff::affine_ate_G2_precomp<ppT> pvk_vk_gamma_g2_precomp = ppT::affine_ate_precompute_G2(vk.gamma_g2);
+//     libff::affine_ate_G2_precomp<ppT> pvk_vk_delta_g2_precomp = ppT::affine_ate_precompute_G2(vk.delta_g2);
 
-    libff::enter_block("Accumulate input");
-    const accumulation_vector<libff::G1<ppT> > accumulated_IC = vk.gamma_ABC_g1.template accumulate_chunk<libff::Fr<ppT> >(primary_input.begin(), primary_input.end(), 0);
-    const libff::G1<ppT> &acc = accumulated_IC.first;
-    libff::leave_block("Accumulate input");
+//     libff::enter_block("Accumulate input");
+//     const accumulation_vector<libff::G1<ppT> > accumulated_IC = vk.gamma_ABC_g1.template accumulate_chunk<libff::Fr<ppT> >(primary_input.begin(), primary_input.end(), 0);
+//     const libff::G1<ppT> &acc = accumulated_IC.first;
+//     libff::leave_block("Accumulate input");
 
-    bool result = true;
+//     bool result = true;
 
-    libff::enter_block("Check if the proof is well-formed");
-    if (!proof.is_well_formed())
-    {
-        if (!libff::inhibit_profiling_info)
-        {
-            libff::print_indent(); printf("At least one of the proof elements does not lie on the curve.\n");
-        }
-        result = false;
-    }
-    libff::leave_block("Check if the proof is well-formed");
+//     libff::enter_block("Check if the proof is well-formed");
+//     if (!proof.is_well_formed())
+//     {
+//         if (!libff::inhibit_profiling_info)
+//         {
+//             libff::print_indent(); printf("At least one of the proof elements does not lie on the curve.\n");
+//         }
+//         result = false;
+//     }
+//     libff::leave_block("Check if the proof is well-formed");
 
-    libff::enter_block("Check QAP divisibility");
-    const libff::affine_ate_G1_precomp<ppT> proof_g_A_precomp = ppT::affine_ate_precompute_G1(proof.g_A);
-    const libff::affine_ate_G2_precomp<ppT> proof_g_B_precomp = ppT::affine_ate_precompute_G2(proof.g_B);
-    const libff::affine_ate_G1_precomp<ppT> proof_g_C_precomp = ppT::affine_ate_precompute_G1(proof.g_C);
-    const libff::affine_ate_G1_precomp<ppT> acc_precomp = ppT::affine_ate_precompute_G1(acc);
+//     libff::enter_block("Check QAP divisibility");
+//     const libff::affine_ate_G1_precomp<ppT> proof_g_A_precomp = ppT::affine_ate_precompute_G1(proof.g_A);
+//     const libff::affine_ate_G2_precomp<ppT> proof_g_B_precomp = ppT::affine_ate_precompute_G2(proof.g_B);
+//     const libff::affine_ate_G1_precomp<ppT> proof_g_C_precomp = ppT::affine_ate_precompute_G1(proof.g_C);
+//     const libff::affine_ate_G1_precomp<ppT> acc_precomp = ppT::affine_ate_precompute_G1(acc);
 
-    const libff::Fqk<ppT> QAP_miller = ppT::affine_ate_e_times_e_over_e_miller_loop(
-        acc_precomp, pvk_vk_gamma_g2_precomp,
-        proof_g_C_precomp, pvk_vk_delta_g2_precomp,
-        proof_g_A_precomp,  proof_g_B_precomp);
-    const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP_miller.unitary_inverse());
+//     const libff::Fqk<ppT> QAP_miller = ppT::affine_ate_e_times_e_over_e_miller_loop(
+//         acc_precomp, pvk_vk_gamma_g2_precomp,
+//         proof_g_C_precomp, pvk_vk_delta_g2_precomp,
+//         proof_g_A_precomp,  proof_g_B_precomp);
+//     const libff::GT<ppT> QAP = ppT::final_exponentiation(QAP_miller.unitary_inverse());
 
-    if (QAP != vk.alpha_g1_beta_g2)
-    {
-        if (!libff::inhibit_profiling_info)
-        {
-            libff::print_indent(); printf("QAP divisibility check failed.\n");
-        }
-        result = false;
-    }
-    libff::leave_block("Check QAP divisibility");
+//     if (QAP != vk.alpha_g1_beta_g2)
+//     {
+//         if (!libff::inhibit_profiling_info)
+//         {
+//             libff::print_indent(); printf("QAP divisibility check failed.\n");
+//         }
+//         result = false;
+//     }
+//     libff::leave_block("Check QAP divisibility");
 
-    libff::leave_block("Call to r1cs_gg_ppzksnark_affine_verifier_weak_IC");
+//     libff::leave_block("Call to r1cs_gg_ppzksnark_affine_verifier_weak_IC");
 
-    return result;
-}
+//     return result;
+// }
 
 } // libsnark
 #endif // R1CS_GG_PPZKSNARK_TCC_

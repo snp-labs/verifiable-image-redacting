@@ -105,7 +105,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     //     libff::leave_block("Test serialization of keys");
     // }
 
-    snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);\
+    snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
     // libff::G1<ppT> test = commitment.x0 * keypair.pp.h_vector[0];
     libff::Fr<ppT> o1(example.auxiliary_input[0]);
     libff::G1<ppT> C_x = o1 * keypair.pk.f_vector[0];

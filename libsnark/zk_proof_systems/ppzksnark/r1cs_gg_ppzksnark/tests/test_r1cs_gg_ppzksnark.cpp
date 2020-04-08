@@ -21,14 +21,13 @@
 using namespace libsnark;
 
 template<typename ppT>
-void test_r1cs_gg_ppzksnark(size_t num_constraints,
-                         size_t input_size)
+void test_r1cs_gg_ppzksnark()
 {
     // libff::print_header("(enter) Test R1CS GG-ppzkSNARK");
 
     // const bool test_serialization = true;
     // r1cs_example<libff::Fr<ppT> > example = generate_r1cs_example_with_field_input<libff::Fr<ppT> >(num_constraints, input_size);
-        int original_array[]= {
+    int original_array[]= {
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,255,0,0,0,0,0,0,255,255,255,0,0,0,0,
@@ -106,7 +105,7 @@ void test_r1cs_gg_ppzksnark(size_t num_constraints,
     const bool test_serialization = true;
     r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
     
-    const bool bit = run_r1cs_gg_ppzksnark<ppT>(example, test_serialization);
+    const bool bit = run_r1cs_gg_ppzksnark<ppT>(example, original, test_serialization);
     assert(bit);
 
     libff::print_header("(leave) Test R1CS GG-ppzkSNARK");
@@ -117,5 +116,5 @@ int main()
     default_r1cs_gg_ppzksnark_pp::init_public_params();
     libff::start_profiling();
 
-    test_r1cs_gg_ppzksnark<default_r1cs_gg_ppzksnark_pp>(10, 2);
+    test_r1cs_gg_ppzksnark<default_r1cs_gg_ppzksnark_pp>();
 }

@@ -177,12 +177,13 @@ public:
     r1cs_gg_ppzksnark_verification_key() = default;
     r1cs_gg_ppzksnark_verification_key(const libff::GT<ppT> &alpha_g1_beta_g2,
                                        const libff::G2<ppT> &gamma_g2,
-                                       const libff::G2<ppT> &delta_g2,
-                                       const accumulation_vector<libff::G1<ppT> > &gamma_ABC_g1) :
+                                       const libff::G2<ppT> &delta_g2
+                                       , const accumulation_vector<libff::G1<ppT> > &gamma_ABC_g1
+                                       ) :
         alpha_g1_beta_g2(alpha_g1_beta_g2),
         gamma_g2(gamma_g2),
-        delta_g2(delta_g2),
-        gamma_ABC_g1(gamma_ABC_g1)
+        delta_g2(delta_g2)
+        , gamma_ABC_g1(gamma_ABC_g1)
     {};
 
     size_t G1_size() const
@@ -245,7 +246,9 @@ class r1cs_gg_ppzksnark_processed_verification_key {
 public:
     libff::GT<ppT> vk_alpha_g1_beta_g2;
     libff::G2_precomp<ppT> vk_gamma_g2_precomp;
+    // libff::G2<ppT> vk_gamma_g2;
     libff::G2_precomp<ppT> vk_delta_g2_precomp;
+    // libff::G2<ppT> vk_delta_g2;
 
     accumulation_vector<libff::G1<ppT> > gamma_ABC_g1;
 
@@ -400,7 +403,8 @@ r1cs_gg_ppzksnark_proof<ppT> r1cs_gg_ppzksnark_prover(const r1cs_gg_ppzksnark_pr
  */
 template<typename ppT>
 bool r1cs_gg_ppzksnark_verifier_weak_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
-                                        const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+                                        // const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+                                        const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                         const r1cs_gg_ppzksnark_proof<ppT> &proof);
 
 /**
@@ -408,10 +412,10 @@ bool r1cs_gg_ppzksnark_verifier_weak_IC(const r1cs_gg_ppzksnark_verification_key
  * (1) accepts a non-processed verification key, and
  * (2) has strong input consistency.
  */
-template<typename ppT>
-bool r1cs_gg_ppzksnark_verifier_strong_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
-                                          const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
-                                          const r1cs_gg_ppzksnark_proof<ppT> &proof);
+// template<typename ppT>
+// bool r1cs_gg_ppzksnark_verifier_strong_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
+//                                           const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+//                                           const r1cs_gg_ppzksnark_proof<ppT> &proof);
 
 /**
  * Convert a (non-processed) verification key into a processed verification key.
@@ -424,9 +428,10 @@ r1cs_gg_ppzksnark_processed_verification_key<ppT> r1cs_gg_ppzksnark_verifier_pro
  * (1) accepts a processed verification key, and
  * (2) has weak input consistency.
  */
-template<typename ppT>
+template <typename ppT>
 bool r1cs_gg_ppzksnark_online_verifier_weak_IC(const r1cs_gg_ppzksnark_processed_verification_key<ppT> &pvk,
-                                               const r1cs_gg_ppzksnark_primary_input<ppT> &input,
+                                            //    const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+                                               const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                const r1cs_gg_ppzksnark_proof<ppT> &proof);
 
 /**
@@ -434,10 +439,10 @@ bool r1cs_gg_ppzksnark_online_verifier_weak_IC(const r1cs_gg_ppzksnark_processed
  * (1) accepts a processed verification key, and
  * (2) has strong input consistency.
  */
-template<typename ppT>
-bool r1cs_gg_ppzksnark_online_verifier_strong_IC(const r1cs_gg_ppzksnark_processed_verification_key<ppT> &pvk,
-                                                 const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
-                                                 const r1cs_gg_ppzksnark_proof<ppT> &proof);
+// template<typename ppT>
+// bool r1cs_gg_ppzksnark_online_verifier_strong_IC(const r1cs_gg_ppzksnark_processed_verification_key<ppT> &pvk,
+//                                                  const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+//                                                  const r1cs_gg_ppzksnark_proof<ppT> &proof);
 
 /****************************** Miscellaneous ********************************/
 
@@ -449,10 +454,10 @@ bool r1cs_gg_ppzksnark_online_verifier_strong_IC(const r1cs_gg_ppzksnark_process
  * (2) has weak input consistency, and
  * (3) uses affine coordinates for elliptic-curve computations.
  */
-template<typename ppT>
-bool r1cs_gg_ppzksnark_affine_verifier_weak_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
-                                               const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
-                                               const r1cs_gg_ppzksnark_proof<ppT> &proof);
+// template<typename ppT>
+// bool r1cs_gg_ppzksnark_affine_verifier_weak_IC(const r1cs_gg_ppzksnark_verification_key<ppT> &vk,
+//                                                const r1cs_gg_ppzksnark_primary_input<ppT> &primary_input,
+//                                                const r1cs_gg_ppzksnark_proof<ppT> &proof);
 
 
 } // libsnark
