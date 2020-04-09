@@ -1071,4 +1071,8 @@ libsnark/relations/constraint_satisfaction_problems/r1cs/examples/r1cs_examples.
 -
 libsnark/zk_proof_systems/ppzksnark/r1cs_gg_ppzksnark/examples/run_r1cs_gg_ppzksnark.hpp
 -
+algorithm
+-
+opencv2/opencv.hpp
+-
 

@@ -42,6 +42,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../."
   "../depends/libff"
   "../depends/libfqfft"
+  "/usr/include/opencv"
   "../depends/libff/libff/.."
   "/home/itsp/anaconda3/include"
   )

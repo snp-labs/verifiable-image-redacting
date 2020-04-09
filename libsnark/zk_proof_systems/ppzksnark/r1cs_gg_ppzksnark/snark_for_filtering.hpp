@@ -177,12 +177,12 @@ namespace libsnark{
 
 		size_t G1_size() const
 		{
-			return 1;
+			return gamma_ABC_g1.size();
 		}
 
 		size_t G2_size() const
 		{
-			return 8;
+			return 6;
 		}
 
 		size_t GT_size() const

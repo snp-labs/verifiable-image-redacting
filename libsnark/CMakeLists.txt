@@ -109,6 +109,9 @@ if("${WITH_SUPERCOP}")
   )
 endif()
 
+set(OpenCV_DIR "/usr/include/opencv")
+find_package(OpenCV 2.4.9 REQUIRED core imgproc highgui objdetect)
+
 # Demos
 add_executable(
   demo_arithmetization
@@ -580,6 +583,7 @@ target_link_libraries(
   snark
 )
 
+include_directories(${OpenCV_INCLUDE_DIRS})
 add_executable(
   zk_proof_systems_r1cs_gg_ppzksnark_test
   EXCLUDE_FROM_ALL
@@ -588,6 +592,7 @@ add_executable(
 )
 target_link_libraries(
   zk_proof_systems_r1cs_gg_ppzksnark_test
+  ${OpenCV_LIBS}
 
   snark
 )

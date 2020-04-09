@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -Wall -Wextra -Wfatal-errors -ggdb3 -O2 -march=native -m
 
 CXX_DEFINES = -DBINARY_OUTPUT -DBN_SUPPORT_SNARK=1 -DCURVE_BN128 -DMONTGOMERY_OUTPUT -DUSE_ASM
 
-CXX_INCLUDES = -I/home/itsp/snark_for_filtering/. -I/home/itsp/snark_for_filtering/depends/libff -I/home/itsp/snark_for_filtering/depends/libfqfft -I/home/itsp/snark_for_filtering/depends/libff/libff/.. -isystem /home/itsp/anaconda3/include 
+CXX_INCLUDES = -I/home/itsp/snark_for_filtering/. -I/home/itsp/snark_for_filtering/depends/libff -I/home/itsp/snark_for_filtering/depends/libfqfft -I/usr/include/opencv -I/home/itsp/snark_for_filtering/depends/libff/libff/.. -isystem /home/itsp/anaconda3/include 
 
