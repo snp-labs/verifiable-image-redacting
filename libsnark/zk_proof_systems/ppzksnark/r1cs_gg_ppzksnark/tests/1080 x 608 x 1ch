@@ -116,7 +116,7 @@ R1CS GG-ppzkSNARK Prover
             (enter) Compute coefficients of polynomial B        [             ] (461.0674s x0.97 from start)
             (leave) Compute coefficients of polynomial B        [0.9143s x1.00] (461.9817s x0.97 from start)
             (enter) Compute ZK-patch                    [             ] (461.9817s x0.97 from start)
-            (leave) Compute ZK-patch                    [0.0729s x1.00] (462.0546s x0.97 from start)
+            (leave) Compute ZK-patch                    [0.0729s x1.00] (462.0546s x0.97${OpenCV_LIBS} from start)
             (enter) Compute evaluation of polynomial A on set T [             ] (462.0546s x0.97 from start)
             (leave) Compute evaluation of polynomial A on set T [0.9234s x1.00] (462.9780s x0.97 from start)
             (enter) Compute evaluation of polynomial B on set T [             ] (462.9781s x0.97 from start)
@@ -215,12 +215,13 @@ snark_for_filtering Verifier
         (enter) Call to bn128_final_exponentiation      [             ] (476.8455s x0.97 from start)
         (leave) Call to bn128_final_exponentiation      [0.0003s x1.00] (476.8458s x0.97 from start)
       (leave) Call to reduced_pairing<bn128_pp>         [0.0006s x1.00] (476.8458s x0.97 from start)
-snark for filtering protocol: PASS
+snark for filtering protocol: PASSotocol
       (enter) Call to r1cs_gg_ppzksnark_verifier_weak_IC        [             ] (476.8458s x0.97 from start)
         (enter) Call to r1cs_gg_ppzksnark_verifier_process_vk   [             ] (476.8458s x0.97 from start)
           (enter) Call to bn128_ate_precompute_G2       [             ] (476.8458s x0.97 from start)
           (leave) Call to bn128_ate_precompute_G2       [0.0001s x1.00] (476.8459s x0.97 from start)
-          (enter) Call to bn128_ate_precompute_G2       [             ] (476.8459s x0.97 from start)
+          (enter) Call to bn128_ate_prerid arguments, security for encryption of multiple messages): ps | pdf
+Lecture 4 (More compute_G2       [             ] (476.8459s x0.97 from start)
           (leave) Call to bn128_ate_precompute_G2       [0.0001s x1.00] (476.8460s x0.97 from start)
         (leave) Call to r1cs_gg_ppzksnark_verifier_process_vk   [0.0002s x1.00] (476.8460s x0.97 from start)
         (enter) Call to r1cs_gg_ppzksnark_online_verifier_weak_IC       [             ] (476.8460s x0.97 from start)
@@ -255,4 +256,5 @@ snark for filtering protocol: PASS
 
 ================================================================================
 (leave) Test R1CS GG-ppzkSNARK
-================================================================================
+=============================================rid arguments, security for encryption of multiple messages): ps | pdf
+Lecture 4 (More 

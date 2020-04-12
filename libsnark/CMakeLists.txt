@@ -112,6 +112,13 @@ endif()
 set(OpenCV_DIR "/usr/include/opencv")
 find_package(OpenCV 2.4.9 REQUIRED core imgproc highgui objdetect)
 
+find_package(OpenSSL REQUIRED) 
+if( OpenSSL_FOUND )
+    include_directories(${OPENSSL_INCLUDE_DIRS})
+    link_directories(${OPENSSL_LIBRARIES})
+    message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
+endif()
+
 # Demos
 add_executable(
   demo_arithmetization
@@ -597,6 +604,7 @@ target_link_libraries(
   snark
 )
 
+include_directories(${OpenCV_INCLUDE_DIRS})
 add_executable(
   zk_proof_systems_snark_for_filtering_test
   EXCLUDE_FROM_ALL
@@ -606,6 +614,8 @@ add_executable(
 
 target_link_libraries(
   zk_proof_systems_snark_for_filtering_test
+  ${OpenCV_LIBS}
+  /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so
 
   snark
 )

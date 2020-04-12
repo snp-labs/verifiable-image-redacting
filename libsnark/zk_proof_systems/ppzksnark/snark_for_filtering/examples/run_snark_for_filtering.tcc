@@ -78,7 +78,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     libff::print_header("R1CS snark_for_filtering Generator");
     
     // printf("a: ");
-    // for(size_t i=0;i<514;i++){
+    // for(size_t i=0;i<514;i++){nter
     // example.constraint_system.constraints[i].a.print();
     // }
     // printf("b: ");
@@ -89,10 +89,10 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     // for(size_t i=0;i<514;i++){
     // example.constraint_system.constraints[i].c.print();
     // }
-
+    libff::enter_block("Generating snark_for_filtering Generator");
     snark_for_filtering_keypair<ppT> keypair = snark_for_filtering_generator<ppT>(example.constraint_system);
     printf("\n"); libff::print_indent(); libff::print_mem("after generator");
-
+    libff::leave_block("Generating snark_for_filtering Generator");
     // libff::print_header("Preprocess verification key");
     // snark_for_filtering_processed_verification_key<ppT> pvk = snark_for_filtering_verifier_process_vk<ppT>(keypair.vk);
 
@@ -104,7 +104,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     //     pvk = libff::reserialize<snark_for_filtering_processed_verification_key<ppT> >(pvk);
     //     libff::leave_block("Test serialization of keys");
     // }
-
+    libff::enter_block("Generating Commitment");
     snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
     // libff::G1<ppT> test = commitment.x0 * keypair.pp.h_vector[0];
     libff::Fr<ppT> o1(example.auxiliary_input[0]);
@@ -116,7 +116,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     for(size_t i = 1; i < len/2; i++){//1 ~ 256
 		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i];
     }
-
+    libff::leave_block("Generating Commitment");
     libff::print_header("snark_for_filtering Prover");
     snark_for_filtering_proof<ppT> proof = snark_for_filtering_prover<ppT>(keypair.pk, example.primary_input, example.auxiliary_input, commitment.x0);
     printf("\n"); libff::print_indent(); libff::print_mem("after prover");

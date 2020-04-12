@@ -125,10 +125,11 @@ qap_instance_evaluation<FieldT> r1cs_to_qap_instance_map_with_evaluation(const r
      *     input_i * 0 = 0
      * to ensure soundness of input consistency
      */
-    for (size_t i = 0; i <= cs.num_inputs(); ++i)
-    {
-        At[i] = u[cs.num_constraints() + i];
-    }
+    /*snark for filtering */
+    // for (size_t i = 0; i <= cs.num_inputs(); ++i)
+    // {
+    //     At[i] = u[cs.num_constraints() + i];
+    // }
     /* process all other constraints */
     for (size_t i = 0; i < cs.num_constraints(); ++i)
     {
@@ -223,11 +224,12 @@ qap_witness<FieldT> r1cs_to_qap_witness_map(const r1cs_constraint_system<FieldT>
     libff::enter_block("Compute evaluation of polynomials A, B on set S");
     std::vector<FieldT> aA(domain->m, FieldT::zero()), aB(domain->m, FieldT::zero());
 
-    /* account for the additional constraints input_i * 0 = 0 */
-    for (size_t i = 0; i <= cs.num_inputs(); ++i)
-    {
-        aA[i+cs.num_constraints()] = (i > 0 ? full_variable_assignment[i-1] : FieldT::one());
-    }
+    /*snark for filtering */
+    // /* account for the additional constraints input_i * 0 = 0 */
+    // for (size_t i = 0; i <= cs.num_inputs(); ++i)
+    // {
+    //     aA[i+cs.num_constraints()] = (i > 0 ? full_variable_assignment[i-1] : FieldT::one());
+    // }
     /* account for all other constraints */
     for (size_t i = 0; i < cs.num_constraints(); ++i)
     {

@@ -84,7 +84,7 @@ bool run_r1cs_gg_ppzksnark(const r1cs_example<libff::Fr<ppT> > &example,
     //     pvk = libff::reserialize<r1cs_gg_ppzksnark_processed_verification_key<ppT> >(pvk);
     //     libff::leave_block("Test serialization of keys");
     // }
-
+    libff::enter_block("Generating Commitment");
     snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
     size_t len = example.auxiliary_input.size();//514
     libff::Fr<ppT> o1(example.auxiliary_input[0]);
@@ -92,6 +92,7 @@ bool run_r1cs_gg_ppzksnark(const r1cs_example<libff::Fr<ppT> > &example,
     for(size_t i = 1; i < len/2; i++){//1 ~ 256
 		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i];
     }
+    libff::leave_block("Generating Commitment");
 
     libff::print_header("R1CS GG-ppzkSNARK Prover");
     // r1cs_gg_ppzksnark_proof<ppT> proof = r1cs_gg_ppzksnark_prover<ppT>(keypair.pk, example.primary_input, example.auxiliary_input);
