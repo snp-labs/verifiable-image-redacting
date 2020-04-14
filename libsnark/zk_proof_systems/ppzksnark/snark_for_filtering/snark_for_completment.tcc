@@ -403,6 +403,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     pk.print_size();
     vk.print_size();
 
+
     return snark_for_completment_keypair<ppT>(std::move(pk), std::move(vk));
 }
 /**

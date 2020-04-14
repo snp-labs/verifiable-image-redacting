@@ -28,7 +28,7 @@ using namespace libsnark;
 using namespace cv;
 
 bool mouse_is_pressing = false;
-Mat original_array = cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/test.png",IMREAD_COLOR);
+Mat original_array = cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/original.jpg",IMREAD_COLOR);
 
 struct Image_ROI{
     int start_x;
@@ -100,7 +100,7 @@ void test_snark_for_filtering()
     imshow("stride", img_show);
 	setMouseCallback("original", mouse_callback<ppT>, (void *)&pt);
     cv::waitKey(0);
-    
+
     pt.start_x = pt.start_x - pt.start_x%stride;
     pt.start_y = pt.start_y - pt.start_y%stride;
     pt.end_x = ((pt.end_x+stride-1)/stride)*stride;
@@ -118,6 +118,7 @@ void test_snark_for_filtering()
 	imshow("original", original_array);
 	imshow("u2", u2_array);
     imshow("u1", u1_array);
+
     int stride_rows = (int)ceil((double)original_array.rows/stride);
     int stride_cols = (int)ceil((double)original_array.cols/stride);
     Mat resize_original_array = Mat::zeros(stride_rows*stride, stride_cols*stride, CV_8UC3);
@@ -141,7 +142,8 @@ void test_snark_for_filtering()
                 libff::Fr<ppT> tmp = sha_value * 256;
                 sha_value = tmp + digest[k];
             }
-            if(pt.start_y/stride<= i && i <=pt.end_y/stride && pt.start_x/stride <= j && j <= pt.end_x/stride){
+
+            if(pt.start_y/stride<= i && i < pt.end_y/stride && pt.start_x/stride <= j && j < pt.end_x/stride){
                 u1.push_back(sha_value);
                 u2.push_back(libff::Fr<ppT>::zero());
             }

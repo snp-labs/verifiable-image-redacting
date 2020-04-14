@@ -600,6 +600,7 @@ add_executable(
 target_link_libraries(
   zk_proof_systems_r1cs_gg_ppzksnark_test
   ${OpenCV_LIBS}
+  /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so
 
   snark
 )

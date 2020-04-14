@@ -1056,6 +1056,26 @@ gmp.h
 type_traits
 -
 
+/home/itsp/anaconda3/include/openssl/e_os2.h
+openssl/opensslconf.h
+-
+inttypes.h
+-
+stdint.h
+-
+
+/home/itsp/anaconda3/include/openssl/opensslconf.h
+openssl/opensslv.h
+-
+
+/home/itsp/anaconda3/include/openssl/opensslv.h
+
+/home/itsp/anaconda3/include/openssl/sha.h
+openssl/e_os2.h
+-
+stddef.h
+-
+
 /home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/r1cs_gg_ppzksnark/tests/test_r1cs_gg_ppzksnark.cpp
 cassert
 -
@@ -1074,5 +1094,11 @@ libsnark/zk_proof_systems/ppzksnark/r1cs_gg_ppzksnark/examples/run_r1cs_gg_ppzks
 algorithm
 -
 opencv2/opencv.hpp
+-
+string.h
+-
+openssl/sha.h
+-
+cmath
 -
 

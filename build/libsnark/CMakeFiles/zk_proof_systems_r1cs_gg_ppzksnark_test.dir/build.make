@@ -91,6 +91,8 @@ zk_proof_systems_r1cs_gg_ppzksnark_test_EXTERNAL_OBJECTS =
 libsnark/zk_proof_systems_r1cs_gg_ppzksnark_test: libsnark/CMakeFiles/zk_proof_systems_r1cs_gg_ppzksnark_test.dir/zk_proof_systems/ppzksnark/r1cs_gg_ppzksnark/tests/test_r1cs_gg_ppzksnark.cpp.o
 libsnark/zk_proof_systems_r1cs_gg_ppzksnark_test: libsnark/CMakeFiles/zk_proof_systems_r1cs_gg_ppzksnark_test.dir/build.make
 libsnark/zk_proof_systems_r1cs_gg_ppzksnark_test: /usr/lib/x86_64-linux-gnu/libopencv_objdetect.so.2.4.9
+libsnark/zk_proof_systems_r1cs_gg_ppzksnark_test: /usr/lib/x86_64-linux-gnu/libssl.so
+libsnark/zk_proof_systems_r1cs_gg_ppzksnark_test: /usr/lib/x86_64-linux-gnu/libcrypto.so
 libsnark/zk_proof_systems_r1cs_gg_ppzksnark_test: libsnark/libsnark.a
 libsnark/zk_proof_systems_r1cs_gg_ppzksnark_test: /usr/lib/x86_64-linux-gnu/libopencv_highgui.so.2.4.9
 libsnark/zk_proof_systems_r1cs_gg_ppzksnark_test: /usr/lib/x86_64-linux-gnu/libopencv_imgproc.so.2.4.9

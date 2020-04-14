@@ -304,10 +304,11 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
 
     libff::enter_block("Generating G1 MSM window table");
     const libff::G1<ppT> g1_generator = libff::G1<ppT>::random_element();
-   
+    libff::leave_block("Generating G1 MSM window table");
     libff::enter_block("Generating G2 MSM window table");
     const libff::G2<ppT> G2_gen = libff::G2<ppT>::random_element();
-    
+    libff::leave_block("Generating G2 MSM window table");
+
     size_t  num_variables = r1cs.num_variables();
     
     libff::Fr<ppT> k0 = libff::Fr<ppT>::random_element();
@@ -326,7 +327,9 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
         h_vector.emplace_back(libff::G1<ppT>::random_element());
     }
 
+    libff::enter_block("Generating snark key pair Generator");
     snark_for_completment_keypair<ppT> keypair = snark_for_completment_generator<ppT>(r1cs);
+    libff::enter_block("Generating snark key pair Generator");
     libff::G1_vector<ppT> f_vector = keypair.pk.L_query;
 
     //Use h_vector, f_vector to build a matrix M

@@ -104,6 +104,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     //     pvk = libff::reserialize<snark_for_filtering_processed_verification_key<ppT> >(pvk);
     //     libff::leave_block("Test serialization of keys");
     // }
+
     libff::enter_block("Generating Commitment");
     snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
     // libff::G1<ppT> test = commitment.x0 * keypair.pp.h_vector[0];
@@ -142,6 +143,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     libff::leave_block("Call to run_snark_for_filtering");
 
     return ans;
+    // return 1;
 }
 
 } // libsnark

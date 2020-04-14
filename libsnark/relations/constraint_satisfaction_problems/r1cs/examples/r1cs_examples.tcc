@@ -190,8 +190,8 @@ r1cs_example<FieldT> generate_r1cs_filtering_example(std::vector<FieldT> u1, std
     {
         full_variable_assignment.push_back(u1[i]);
         linear_combination<FieldT> A, B, C;
-        A.add_term(i+1+1,1);
-        B.add_term(i+258+1,1);
+        A.add_term(i+2,1);
+        B.add_term(i+cs.auxiliary_input_size / 2+2,1);
         C.add_term(0, 0);
 
         cs.add_constraint(r1cs_constraint<FieldT>(A, B, C));
