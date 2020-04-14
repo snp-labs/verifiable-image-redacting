@@ -227,7 +227,7 @@ std::istream& operator>>(std::istream &in, snark_for_completment_proof<ppT> &pro
 template <typename ppT>
 snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_constraint_system<libff::Fr<ppT> > &r1cs)
 {
-    libff::enter_block("Call to snark_for_completment_generator");
+    libff::enter_block("Call to snark_for_complement_generator");
 
     // /* Make the B_query "lighter" if possible */
     r1cs_constraint_system<libff::Fr<ppT> > r1cs_copy(r1cs);
@@ -379,7 +379,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     // libff::leave_block("Encode gamma_ABC for R1CS verification key");
     libff::leave_block("Generate R1CS verification key");
 
-    libff::leave_block("Call to snark_for_completment_generator");
+    libff::leave_block("Call to snark_for_complement_generator");
 
     // accumulation_vector<libff::G1<ppT> > gamma_ABC_g1(std::move(gamma_ABC_g1_0), std::move(gamma_ABC_g1_values));
 
@@ -415,7 +415,7 @@ snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_co
                                                       const snark_for_completment_primary_input<ppT> &primary_input,
                                                       const snark_for_completment_auxiliary_input<ppT> &auxiliary_input)
 {
-    libff::enter_block("Call to snark_for_completment_prover");
+    libff::enter_block("Call to snark_for_complement_prover");
 #ifdef DEBUG
     assert(pk.constraint_system.is_satisfied(primary_input, auxiliary_input));
 #endif
@@ -526,7 +526,7 @@ snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_co
 
     libff::leave_block("Compute the proof");
 
-    libff::leave_block("Call to snark_for_completment_prover");
+    libff::leave_block("Call to snark_for_complement_prover");
 
     snark_for_completment_proof<ppT> proof = snark_for_completment_proof<ppT>(std::move(g1_A), std::move(g2_B), std::move(g1_C));
     proof.print_size();
@@ -537,7 +537,7 @@ snark_for_completment_proof<ppT> snark_for_completment_prover(const snark_for_co
 template <typename ppT>
 snark_for_completment_processed_verification_key<ppT> snark_for_completment_verifier_process_vk(const snark_for_completment_verification_key<ppT> &vk)
 {
-    libff::enter_block("Call to snark_for_completment_verifier_process_vk");
+    libff::enter_block("Call to snark_for_complement_verifier_process_vk");
 
     snark_for_completment_processed_verification_key<ppT> pvk;
     pvk.vk_alpha_g1_beta_g2 = vk.alpha_g1_beta_g2;
@@ -546,7 +546,7 @@ snark_for_completment_processed_verification_key<ppT> snark_for_completment_veri
     pvk.delta_g2 = vk.delta_g2;
     //pvk.gamma_ABC_g1 = vk.gamma_ABC_g1;
 
-    libff::leave_block("Call to snark_for_completment_verifier_process_vk");
+    libff::leave_block("Call to snark_for_complement_verifier_process_vk");
 
     return pvk;
 }
@@ -557,7 +557,7 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
                                                const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                                const snark_for_completment_proof<ppT> &proof)
 {
-    libff::enter_block("Call to snark_for_completment_online_verifier_weak_IC");
+    libff::enter_block("Call to snark_for_complement_online_verifier_weak_IC");
     // assert(pvk.gamma_ABC_g1.domain_size() >= primary_input.size());
 
     // libff::enter_block("Accumulate input");
@@ -628,7 +628,7 @@ bool snark_for_completment_online_verifier_weak_IC(const snark_for_completment_p
     libff::leave_block("Check QAP divisibility");
     libff::leave_block("Online pairing computations");
 
-    libff::leave_block("Call to snark_for_completment_online_verifier_weak_IC");
+    libff::leave_block("Call to snark_for_complement_online_verifier_weak_IC");
 
     return result;
 }
@@ -639,10 +639,10 @@ bool snark_for_completment_verifier_weak_IC(const snark_for_completment_verifica
                                         const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                         const snark_for_completment_proof<ppT> &proof)
 {
-    libff::enter_block("Call to snark_for_completment_verifier_weak_IC");
+    libff::enter_block("Call to snark_for_complement_verifier_weak_IC");
     snark_for_completment_processed_verification_key<ppT> pvk = snark_for_completment_verifier_process_vk<ppT>(vk);
     bool result = snark_for_completment_online_verifier_weak_IC<ppT>(pvk, /*primary_input,*/ C_x, _C_x, proof);
-    libff::leave_block("Call to snark_for_completment_verifier_weak_IC");
+    libff::leave_block("Call to snark_for_complement_verifier_weak_IC");
     return result;
 }
 
@@ -653,7 +653,7 @@ bool snark_for_completment_online_verifier_strong_IC(const snark_for_completment
                                                  const snark_for_completment_proof<ppT> &proof)
 {
     bool result = true;
-    libff::enter_block("Call to snark_for_completment_online_verifier_strong_IC");
+    libff::enter_block("Call to snark_for_complement_online_verifier_strong_IC");
 
     // if (pvk.gamma_ABC_g1.domain_size() != primary_input.size())
     // {
@@ -667,7 +667,7 @@ bool snark_for_completment_online_verifier_strong_IC(const snark_for_completment
 
     result = snark_for_completment_online_verifier_weak_IC(pvk, /*primary_input,*/ C_x, _C_x, proof);
 
-    libff::leave_block("Call to snark_for_completment_online_verifier_strong_IC");
+    libff::leave_block("Call to snark_for_complement_online_verifier_strong_IC");
     return result;
 }
 
@@ -677,10 +677,10 @@ bool snark_for_completment_verifier_strong_IC(const snark_for_completment_verifi
                                           const libff::G1<ppT> C_x, const libff::G1<ppT> _C_x,
                                           const snark_for_completment_proof<ppT> &proof)
 {
-    libff::enter_block("Call to snark_for_completment_verifier_strong_IC");
+    libff::enter_block("Call to snark_for_complement_verifier_strong_IC");
     snark_for_completment_processed_verification_key<ppT> pvk = snark_for_completment_verifier_process_vk<ppT>(vk);
     bool result = snark_for_completment_online_verifier_strong_IC<ppT>(pvk, /*primary_input,*/ C_x, _C_x, proof);
-    libff::leave_block("Call to snark_for_completment_verifier_strong_IC");
+    libff::leave_block("Call to snark_for_complement_verifier_strong_IC");
     return result;
 }
 
@@ -691,7 +691,7 @@ bool snark_for_completment_affine_verifier_weak_IC(const snark_for_completment_v
                                                const snark_for_completment_proof<ppT> &proof)
 {
 
-    libff::enter_block("Call to snark_for_completment_affine_verifier_weak_IC");
+    libff::enter_block("Call to snark_for_complement_affine_verifier_weak_IC");
     //assert(vk.gamma_ABC_g1.domain_size() >= primary_input.size());
 
     //libff::affine_ate_G2_precomp<ppT> pvk_vk_gamma_g2_precomp = ppT::affine_ate_precompute_G2(vk.gamma_g2);
@@ -737,7 +737,7 @@ bool snark_for_completment_affine_verifier_weak_IC(const snark_for_completment_v
     }
     libff::leave_block("Check QAP divisibility");
 
-    libff::leave_block("Call to snark_for_completment_affine_verifier_weak_IC");
+    libff::leave_block("Call to snark_for_complement_affine_verifier_weak_IC");
 
     return result;
 }

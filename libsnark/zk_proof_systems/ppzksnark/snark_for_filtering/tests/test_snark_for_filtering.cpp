@@ -76,6 +76,8 @@ void mouse_callback(int event, int x, int y, int flags, void *pt)
 template<typename ppT>
 void test_snark_for_filtering()
 {   
+    libff::print_header("(enter) Test Snark for Filtering");
+    libff::enter_block("Set the Images");
     Image_ROI pt;
     Mat u1_array;
     Mat u2_array = original_array.clone();
@@ -88,11 +90,13 @@ void test_snark_for_filtering()
     std::cout<<"stride? ";
     std::cin>>stride;
     
-    for (int i=1; i<=original_array.rows/stride; i++){
-        line(img_show, Point(0, i*stride), Point(original_array.cols, i*stride), Scalar(0, 0, 0), 1);
-        for (int j=1; j<=original_array.cols/stride; j++){
-            line(img_show, Point(j*stride, 0), Point(j*stride, original_array.rows), Scalar(0, 0, 0), 1);
+    if (stride >1){
+        for (int i=1; i<=original_array.rows/stride; i++){
+            line(img_show, Point(0, i*stride), Point(original_array.cols, i*stride), Scalar(0, 0, 0), 1);
+            for (int j=1; j<=original_array.cols/stride; j++){
+                line(img_show, Point(j*stride, 0), Point(j*stride, original_array.rows), Scalar(0, 0, 0), 1);
 
+            }
         }
     }
 
@@ -100,7 +104,7 @@ void test_snark_for_filtering()
     imshow("stride", img_show);
 	setMouseCallback("original", mouse_callback<ppT>, (void *)&pt);
     cv::waitKey(0);
-
+  
     pt.start_x = pt.start_x - pt.start_x%stride;
     pt.start_y = pt.start_y - pt.start_y%stride;
     pt.end_x = ((pt.end_x+stride-1)/stride)*stride;
@@ -132,6 +136,10 @@ void test_snark_for_filtering()
     imshow("resize_original_array", resize_original_array);
     cv::waitKey(0);
 	destroyAllWindows();
+
+    libff::leave_block("Set the Images");
+
+    libff::enter_block("Compute SHA256");
     for (int i=0; i<stride_rows; i++){
         for (int j=0; j<stride_cols; j++){
             Mat temp = resize_original_array(Rect(j*stride, i*stride, stride, stride));
@@ -154,6 +162,8 @@ void test_snark_for_filtering()
             original.push_back(sha_value);
         }
     }
+    libff::leave_block("Compute SHA256");
+
 
     // size_t img_size = original_array.rows * original_array.cols * 3;
 
@@ -164,8 +174,6 @@ void test_snark_for_filtering()
     
     //     original.push_back(libff::Fr<ppT>(original_array.data[i]));
     // }
-
-    libff::print_header("(enter) Test Snark for Filtering");
     
     const bool test_serialization = true;
     r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
