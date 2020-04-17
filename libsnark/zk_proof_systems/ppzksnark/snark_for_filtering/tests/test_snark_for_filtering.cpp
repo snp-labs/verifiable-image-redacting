@@ -161,7 +161,7 @@ void test_snark_for_filtering()
 
             libff::Fr<ppT> sha_value = libff::Fr<ppT>(context.h[0] * 4294967296);
             sha_value += context.h[1];
-            sha_value = 4294967296;
+            sha_value *= 4294967296;
             sha_value += context.h[2];
             sha_value *= 4294967296;
             sha_value += context.h[3];
