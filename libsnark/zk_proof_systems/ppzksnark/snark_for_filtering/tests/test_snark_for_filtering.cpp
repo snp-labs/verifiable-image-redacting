@@ -161,7 +161,7 @@ void test_snark_for_filtering()
 
             libff::Fr<ppT> sha_value = libff::Fr<ppT>(context.h[0] * 4294967296);
             sha_value += context.h[1];
-            sha_value *= 4294967296;
+            sha_value = 4294967296;
             sha_value += context.h[2];
             sha_value *= 4294967296;
             sha_value += context.h[3];
@@ -193,15 +193,15 @@ void test_snark_for_filtering()
     libff::leave_block("Compute SHA256");
 
 
-    size_t img_size = original_array.rows * original_array.cols * 3;
+    // size_t img_size = original_array.rows * original_array.cols * 3;
 
-    for(size_t i=0;i<img_size;i++){
-        u1.push_back(libff::Fr<ppT>(u1_array.data[i]));
+    // for(size_t i=0;i<img_size;i++){
+    //     u1.push_back(libff::Fr<ppT>(u1_array.data[i]));
     
-        u2.push_back(libff::Fr<ppT>(u2_array.data[i]));
+    //     u2.push_back(libff::Fr<ppT>(u2_array.data[i]));
     
-        original.push_back(libff::Fr<ppT>(original_array.data[i]));
-    }
+    //     original.push_back(libff::Fr<ppT>(original_array.data[i]));
+    // }
     
     const bool test_serialization = true;
     r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
