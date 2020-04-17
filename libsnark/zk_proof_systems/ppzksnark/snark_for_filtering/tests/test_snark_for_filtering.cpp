@@ -22,13 +22,14 @@
 #include <opencv2/opencv.hpp>
 #include <string.h>
 #include <openssl/sha.h>
+#include <openssl/bn.h>
 #include <cmath>
 
 using namespace libsnark;
 using namespace cv;
 
 bool mouse_is_pressing = false;
-Mat original_array = cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/original.jpg",IMREAD_COLOR);
+Mat original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/360p.jpg",IMREAD_COLOR);
 
 struct Image_ROI{
     int start_x;
@@ -109,6 +110,10 @@ void test_snark_for_filtering()
     pt.start_y = pt.start_y - pt.start_y%stride;
     pt.end_x = ((pt.end_x+stride-1)/stride)*stride;
     pt.end_y = ((pt.end_y+stride-1)/stride)*stride;
+    // pt.start_x = 100;
+    // pt.start_y = 100;
+    // pt.end_x = 300;
+    // pt.end_y = 300;
     
     for (int i=pt.start_y; i<pt.end_y; i++){
         uchar* ptr = u2_array.ptr<uchar>(i);
@@ -140,17 +145,40 @@ void test_snark_for_filtering()
     libff::leave_block("Set the Images");
 
     libff::enter_block("Compute SHA256");
+    
     for (int i=0; i<stride_rows; i++){
         for (int j=0; j<stride_cols; j++){
             Mat temp = resize_original_array(Rect(j*stride, i*stride, stride, stride));
             unsigned char digest[SHA256_DIGEST_LENGTH];
-            SHA256((unsigned char*)&temp.data, stride*stride, (unsigned char*)&digest);
-            libff::Fr<ppT> sha_value = libff::Fr<ppT>::zero();
-            for (int k=0; k<SHA256_DIGEST_LENGTH; k++){
-                libff::Fr<ppT> tmp = sha_value * 256;
-                sha_value = tmp + digest[k];
-            }
+            // libff::enter_block("SHA256");
+            SHA256_CTX context;
+            SHA256_Init (&context);
+            SHA256_Update (&context, (unsigned char*)&temp.data, stride*stride);
+            SHA256_Final (digest, &context);
+            // SHA256((unsigned char*)&temp.data, stride*stride, (unsigned char*)&digest);
+            // libff::leave_block("SHA256");
+            // libff::enter_block("Copy SHA256");
 
+            libff::Fr<ppT> sha_value = libff::Fr<ppT>(context.h[0] * 4294967296);
+            sha_value += context.h[1];
+            sha_value *= 4294967296;
+            sha_value += context.h[2];
+            sha_value *= 4294967296;
+            sha_value += context.h[3];
+            sha_value *= 4294967296;
+            sha_value += context.h[4];
+            sha_value *= 4294967296;
+            sha_value += context.h[5];
+            sha_value *= 4294967296;
+            sha_value += context.h[6];
+            sha_value *= 4294967296;
+            sha_value += context.h[7];      
+            // libff::Fr<ppT> sha_value;      
+            // for (int k=0; k<SHA256_DIGEST_LENGTH; k++){
+            //     libff::Fr<ppT> tmp = sha_value * 256;
+            //     sha_value = tmp + digest[k];
+            // }
+            // libff::leave_block("Copy SHA256");
             if(pt.start_y/stride<= i && i < pt.end_y/stride && pt.start_x/stride <= j && j < pt.end_x/stride){
                 u1.push_back(sha_value);
                 u2.push_back(libff::Fr<ppT>::zero());
@@ -165,15 +193,15 @@ void test_snark_for_filtering()
     libff::leave_block("Compute SHA256");
 
 
-    // size_t img_size = original_array.rows * original_array.cols * 3;
+    size_t img_size = original_array.rows * original_array.cols * 3;
 
-    // for(size_t i=0;i<img_size;i++){
-    //     u1.push_back(libff::Fr<ppT>(u1_array.data[i]));
+    for(size_t i=0;i<img_size;i++){
+        u1.push_back(libff::Fr<ppT>(u1_array.data[i]));
     
-    //     u2.push_back(libff::Fr<ppT>(u2_array.data[i]));
+        u2.push_back(libff::Fr<ppT>(u2_array.data[i]));
     
-    //     original.push_back(libff::Fr<ppT>(original_array.data[i]));
-    // }
+        original.push_back(libff::Fr<ppT>(original_array.data[i]));
+    }
     
     const bool test_serialization = true;
     r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
@@ -186,7 +214,8 @@ int main()
 {
     default_r1cs_gg_ppzksnark_pp::init_public_params();
     libff::start_profiling();
-
+    
     test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
+
 }
 

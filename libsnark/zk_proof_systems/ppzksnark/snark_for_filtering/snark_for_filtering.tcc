@@ -332,7 +332,7 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
 
     libff::enter_block("Generating snark key pair Generator");
     snark_for_completment_keypair<ppT> keypair = snark_for_completment_generator<ppT>(r1cs);
-    libff::enter_block("Generating snark key pair Generator");
+    libff::leave_block("Generating snark key pair Generator");
     libff::G1_vector<ppT> f_vector = keypair.pk.L_query;
 
     //Use h_vector, f_vector to build a matrix M
