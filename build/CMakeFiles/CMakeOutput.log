@@ -566,3 +566,55 @@ Linking C executable cmTC_e0951
 make[1]: 디렉터리 '/home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp' 나감
 
 
+Performing C SOURCE FILE Test OpenMP_FLAG_DETECTED succeeded with the following output:
+Change Dir: /home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_42d88/fast"
+make[1]: 디렉터리 '/home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp' 들어감
+/usr/bin/make -f CMakeFiles/cmTC_42d88.dir/build.make CMakeFiles/cmTC_42d88.dir/build
+make[2]: 디렉터리 '/home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp' 들어감
+Building C object CMakeFiles/cmTC_42d88.dir/src.c.o
+/usr/bin/cc    -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTC_42d88.dir/src.c.o   -c /home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_42d88
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_42d88.dir/link.txt --verbose=1
+/usr/bin/cc   -DOpenMP_FLAG_DETECTED -fopenmp    CMakeFiles/cmTC_42d88.dir/src.c.o  -o cmTC_42d88 -rdynamic 
+make[2]: 디렉터리 '/home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp' 나감
+make[1]: 디렉터리 '/home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp' 나감
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+
+Performing C++ SOURCE FILE Test OpenMP_FLAG_DETECTED succeeded with the following output:
+Change Dir: /home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6217a/fast"
+make[1]: 디렉터리 '/home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp' 들어감
+/usr/bin/make -f CMakeFiles/cmTC_6217a.dir/build.make CMakeFiles/cmTC_6217a.dir/build
+make[2]: 디렉터리 '/home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp' 들어감
+Building CXX object CMakeFiles/cmTC_6217a.dir/src.cxx.o
+/usr/bin/c++     -std=c++11 -Wall -Wextra -Wfatal-errors -ggdb3 -O2 -march=native -mtune=native -DOpenMP_FLAG_DETECTED -fopenmp   -o CMakeFiles/cmTC_6217a.dir/src.cxx.o -c /home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_6217a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6217a.dir/link.txt --verbose=1
+/usr/bin/c++    -std=c++11 -Wall -Wextra -Wfatal-errors -ggdb3 -O2 -march=native -mtune=native -DOpenMP_FLAG_DETECTED -fopenmp    CMakeFiles/cmTC_6217a.dir/src.cxx.o  -o cmTC_6217a -rdynamic 
+make[2]: 디렉터리 '/home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp' 나감
+make[1]: 디렉터리 '/home/itsp/snark_for_filtering/build/CMakeFiles/CMakeTmp' 나감
+
+Source file was:
+
+#include <omp.h>
+int main() {
+#ifdef _OPENMP
+  return 0;
+#else
+  breaks_on_purpose
+#endif
+}
+

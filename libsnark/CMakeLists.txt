@@ -119,6 +119,17 @@ if( OpenSSL_FOUND )
     message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
 endif()
 
+if(NOT TARGET OpenMP::OpenMP_CXX)
+    find_package(Threads REQUIRED)
+    add_library(OpenMP::OpenMP_CXX IMPORTED INTERFACE)
+    set_property(TARGET OpenMP::OpenMP_CXX
+                 PROPERTY INTERFACE_COMPILE_OPTIONS ${OpenMP_CXX_FLAGS})
+    # Only works if the same flag is passed to the linker; use CMake 3.9+ otherwise (Intel, AppleClang)
+    set_property(TARGET OpenMP::OpenMP_CXX
+                 PROPERTY INTERFACE_LINK_LIBRARIES ${OpenMP_CXX_FLAGS} Threads::Threads)
+
+endif()
+
 # Demos
 add_executable(
   demo_arithmetization
@@ -617,6 +628,7 @@ target_link_libraries(
   zk_proof_systems_snark_for_filtering_test
   ${OpenCV_LIBS}
   /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so
+  OpenMP::OpenMP_CXX
 
   snark
 )

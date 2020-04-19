@@ -24,12 +24,16 @@
 #include <openssl/sha.h>
 #include <openssl/bn.h>
 #include <cmath>
+#include <omp.h>
 
 using namespace libsnark;
 using namespace cv;
 
 bool mouse_is_pressing = false;
-Mat original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/360p.jpg",IMREAD_COLOR);
+Mat original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/uhd.jpg",IMREAD_COLOR);
+Mat u1_array;
+Mat u2_array = original_array.clone();
+int stride=1;
 
 struct Image_ROI{
     int start_x;
@@ -70,7 +74,27 @@ void mouse_callback(int event, int x, int y, int flags, void *pt)
 		mouse_is_pressing = false;
         if(ROI->start_x > ROI->end_x) std::swap(ROI->start_x, ROI->end_x);
         if(ROI->start_y > ROI->end_y) std::swap(ROI->start_y, ROI->end_y);
+        // ROI->start_x = ROI->start_x - ROI->start_x%stride;
+        // ROI->start_y = ROI->start_y - ROI->start_y%stride;
+        // ROI->end_x = ((ROI->end_x+stride-1)/stride)*stride;
+        // ROI->end_y = ((ROI->end_y+stride-1)/stride)*stride;
+        ROI->start_x = 100;
+        ROI->start_y = 100;
+        ROI->end_x = 300;
+        ROI->end_y = 300;
 
+        for (int i=ROI->start_y; i<ROI->end_y; i++){
+            uchar* ptr = u2_array.ptr<uchar>(i);
+            for (int j=ROI->start_x; j<ROI->end_x; j++){
+                ptr[j*3] = 0;
+                ptr[j*3+1] = 0;
+                ptr[j*3+2] = 0;
+            }
+        }
+        bitwise_xor(original_array, u2_array, u1_array);
+	    // imshow("original", original_array);
+	    // imshow("u2", u2_array);
+        // imshow("u1", u1_array);
 	}
 }
 
@@ -80,10 +104,7 @@ void test_snark_for_filtering()
     libff::print_header("(enter) Test Snark for Filtering");
     libff::enter_block("Set the Images");
     Image_ROI pt;
-    Mat u1_array;
-    Mat u2_array = original_array.clone();
     Mat img_show = original_array.clone();
-    int stride=1;
 
     std::vector<libff::Fr<ppT>> u1;
     std::vector<libff::Fr<ppT>> u2;
@@ -105,28 +126,6 @@ void test_snark_for_filtering()
     imshow("stride", img_show);
 	setMouseCallback("original", mouse_callback<ppT>, (void *)&pt);
     cv::waitKey(0);
-  
-    pt.start_x = pt.start_x - pt.start_x%stride;
-    pt.start_y = pt.start_y - pt.start_y%stride;
-    pt.end_x = ((pt.end_x+stride-1)/stride)*stride;
-    pt.end_y = ((pt.end_y+stride-1)/stride)*stride;
-    // pt.start_x = 100;
-    // pt.start_y = 100;
-    // pt.end_x = 300;
-    // pt.end_y = 300;
-    
-    for (int i=pt.start_y; i<pt.end_y; i++){
-        uchar* ptr = u2_array.ptr<uchar>(i);
-        for (int j=pt.start_x; j<pt.end_x; j++){
-            ptr[j*3] = 0;
-            ptr[j*3+1] = 0;
-            ptr[j*3+2] = 0;
-        }
-    }
-    bitwise_xor(original_array, u2_array, u1_array);
-	imshow("original", original_array);
-	imshow("u2", u2_array);
-    imshow("u1", u1_array);
 
     int stride_rows = (int)ceil((double)original_array.rows/stride);
     int stride_cols = (int)ceil((double)original_array.cols/stride);
@@ -145,7 +144,7 @@ void test_snark_for_filtering()
     libff::leave_block("Set the Images");
 
     libff::enter_block("Compute SHA256");
-    
+
     for (int i=0; i<stride_rows; i++){
         for (int j=0; j<stride_cols; j++){
             Mat temp = resize_original_array(Rect(j*stride, i*stride, stride, stride));
@@ -155,6 +154,8 @@ void test_snark_for_filtering()
             SHA256_Init (&context);
             SHA256_Update (&context, (unsigned char*)&temp.data, stride*stride);
             SHA256_Final (digest, &context);
+            free(digest);
+            temp.release();
             // SHA256((unsigned char*)&temp.data, stride*stride, (unsigned char*)&digest);
             // libff::leave_block("SHA256");
             // libff::enter_block("Copy SHA256");
@@ -172,7 +173,8 @@ void test_snark_for_filtering()
             sha_value *= 4294967296;
             sha_value += context.h[6];
             sha_value *= 4294967296;
-            sha_value += context.h[7];      
+            sha_value += context.h[7];
+
             // libff::Fr<ppT> sha_value;      
             // for (int k=0; k<SHA256_DIGEST_LENGTH; k++){
             //     libff::Fr<ppT> tmp = sha_value * 256;
@@ -190,6 +192,7 @@ void test_snark_for_filtering()
             original.push_back(sha_value);
         }
     }
+
     libff::leave_block("Compute SHA256");
 
 
