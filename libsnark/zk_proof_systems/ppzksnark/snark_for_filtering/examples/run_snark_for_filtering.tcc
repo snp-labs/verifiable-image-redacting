@@ -27,6 +27,9 @@
 #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_completment.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp>
 
+#ifdef MULTICORE
+#include <omp.h>    //병렬 프로그램
+#endif
 
 namespace libsnark {
 
@@ -92,19 +95,25 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     // }
 
     libff::print_header("Generating Commitment");
-    libff::enter_block("Compute Commitment");
+    libff::enter_block("Compute sigma Commitment");
     snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
+    libff::leave_block("Compute sigma Commitment");
+
     // libff::G1<ppT> test = commitment.x0 * keypair.pp.h_vector[0];
+    libff::enter_block("Compute C_x Commitment");
     libff::Fr<ppT> o1(example.auxiliary_input[0]);
     libff::G1<ppT> C_x = o1 * keypair.pk.f_vector[0];
     // libff::G1<ppT> C_x = libff::G1<ppT>::zero();
     const size_t len = example.auxiliary_input.size();//514
 
-
+// #ifdef MULTICORE
+//     #pragma omp parallel for
+// #endif
     for(size_t i = 1; i < len/2; i++){//1 ~ 256
 		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i];
     }
-    libff::leave_block("Compute Commitment");
+
+    libff::leave_block("Compute C_x Commitment");
 
     libff::print_header("snark for filtering Prover");
     snark_for_filtering_proof<ppT> proof = snark_for_filtering_prover<ppT>(keypair.pk, example.primary_input, example.auxiliary_input, commitment.x0);

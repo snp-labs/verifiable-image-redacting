@@ -284,6 +284,9 @@ snark_for_filtering_Commit<ppT> Commit(const snark_for_filtering_public_paramete
     libff::G1<ppT> sigma_x = x0 * pp.h_vector[0];
     size_t len = xi_vector.size();
 
+// #ifdef MULTICORE
+//     #pragma omp parallel for
+// #endif
     for (size_t i = 0; i < len; i++)
     {
         sigma_x = sigma_x + xi_vector[i] * pp.h_vector[i+1];

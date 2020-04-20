@@ -358,7 +358,7 @@ MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
 MONTGOMERY_OUTPUT:BOOL=ON
 
 //Enable parallelized execution, using OpenMP
-MULTICORE:BOOL=OFF
+MULTICORE:BOOL=ON
 
 //Path to a library.
 OPENSSL_CRYPTO_LIBRARY:FILEPATH=/usr/local/lib/libcrypto.so

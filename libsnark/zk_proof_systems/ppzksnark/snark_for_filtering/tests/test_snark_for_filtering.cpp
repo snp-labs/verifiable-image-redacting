@@ -24,7 +24,9 @@
 #include <openssl/sha.h>
 #include <openssl/bn.h>
 #include <cmath>
-#include <omp.h>
+#ifdef MULTICORE
+#include <omp.h>    //병렬 프로그램
+#endif
 
 using namespace libsnark;
 using namespace cv;
@@ -148,17 +150,13 @@ void test_snark_for_filtering()
     for (int i=0; i<stride_rows; i++){
         for (int j=0; j<stride_cols; j++){
             Mat temp = resize_original_array(Rect(j*stride, i*stride, stride, stride));
-            unsigned char digest[SHA256_DIGEST_LENGTH];
-            // libff::enter_block("SHA256");
+            unsigned char digest[SHA256_DIGEST_LENGTH] = {};
             SHA256_CTX context;
             SHA256_Init (&context);
             SHA256_Update (&context, (unsigned char*)&temp.data, stride*stride);
             SHA256_Final (digest, &context);
-            free(digest);
+            // free(digest);
             temp.release();
-            // SHA256((unsigned char*)&temp.data, stride*stride, (unsigned char*)&digest);
-            // libff::leave_block("SHA256");
-            // libff::enter_block("Copy SHA256");
 
             libff::Fr<ppT> sha_value = libff::Fr<ppT>(context.h[0] * 4294967296);
             sha_value += context.h[1];
@@ -175,12 +173,6 @@ void test_snark_for_filtering()
             sha_value *= 4294967296;
             sha_value += context.h[7];
 
-            // libff::Fr<ppT> sha_value;      
-            // for (int k=0; k<SHA256_DIGEST_LENGTH; k++){
-            //     libff::Fr<ppT> tmp = sha_value * 256;
-            //     sha_value = tmp + digest[k];
-            // }
-            // libff::leave_block("Copy SHA256");
             if(pt.start_y/stride<= i && i < pt.end_y/stride && pt.start_x/stride <= j && j < pt.end_x/stride){
                 u1.push_back(sha_value);
                 u2.push_back(libff::Fr<ppT>::zero());
@@ -195,16 +187,6 @@ void test_snark_for_filtering()
 
     libff::leave_block("Compute SHA256");
 
-
-    // size_t img_size = original_array.rows * original_array.cols * 3;
-
-    // for(size_t i=0;i<img_size;i++){
-    //     u1.push_back(libff::Fr<ppT>(u1_array.data[i]));
-    
-    //     u2.push_back(libff::Fr<ppT>(u2_array.data[i]));
-    
-    //     original.push_back(libff::Fr<ppT>(original_array.data[i]));
-    // }
     
     const bool test_serialization = true;
     r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
