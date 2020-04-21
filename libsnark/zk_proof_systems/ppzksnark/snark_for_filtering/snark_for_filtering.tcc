@@ -328,6 +328,7 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
     libff::G1_vector<ppT> h_g1_vector;
     libff::G1_vector<ppT> P_vector;
     libff::Fr_vector<ppT> h_vector;
+    P_vector.resize(num_variables+1);
 
     libff::enter_block("Compute h_vector densities");
 
@@ -369,15 +370,24 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
     //Use h_vector, f_vector to build a matrix M
     // P <- M^T * k
     libff::enter_block("Compute p_vector for snark for filterring proving key");
-    P_vector.emplace_back(k2 * f_vector[0]);
-    P_vector.emplace_back(k1 * f_vector[num_variables/2]);
-    P_vector.emplace_back(k0 * h_g1_vector[0]);
+    // P_vector.emplace_back(k2 * f_vector[0]);
+    // P_vector.emplace_back(k1 * f_vector[num_variables/2]);
+    // P_vector.emplace_back(k0 * h_g1_vector[0]);
+    P_vector[0] = k2 * f_vector[0];
+    P_vector[1] = k1 * f_vector[num_variables/2];
+    P_vector[2] = k0 * h_g1_vector[0];
 
+#ifdef MULTICORE
+    #pragma omp parallel for
+#endif 
     for(size_t i = 1; i < num_variables/2; i++){
-		P_vector.emplace_back((k0 * h_g1_vector[i]) + (k2 * f_vector[i]));
+		P_vector[i+2] = k0 * h_g1_vector[i] + k2 * f_vector[i];
     }
+#ifdef MULTICORE
+    #pragma omp parallel for
+#endif 
     for(size_t i = 1; i < num_variables/2; i++){
-		P_vector.emplace_back((k0 * h_g1_vector[i]) + (k1 * f_vector[num_variables/2+i]));
+		P_vector[num_variables/2+i+1] = k0 * h_g1_vector[i] + k1 * f_vector[num_variables/2+i];
     }
     libff::leave_block("Compute p_vector for snark for filterring proving key");
 

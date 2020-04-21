@@ -156,7 +156,13 @@ void test_snark_for_filtering()
     libff::leave_block("Set the Images");
 
     libff::enter_block("Compute SHA256");
+    u1.resize(stride_rows*stride_cols);
+    u2.resize(stride_rows*stride_cols);
+    original.resize(stride_rows*stride_cols);
 
+#ifdef MULTICORE
+    #pragma omp parallel for
+#endif    
     for (int i=0; i<stride_rows; i++){
         for (int j=0; j<stride_cols; j++){
             Mat temp = resize_original_array(Rect(j*stride, i*stride, stride, stride));
@@ -191,18 +197,26 @@ void test_snark_for_filtering()
             }
 
             if(opening){
-                u1.push_back(sha_value);
-                u2.push_back(libff::Fr<ppT>::zero());
+                u1[stride_cols*i+j] = sha_value;
+                u2[stride_cols*i+j] = libff::Fr<ppT>::zero();
             }
             else{
-                u1.push_back(libff::Fr<ppT>::zero());
-                u2.push_back(sha_value);
+                u1[stride_cols*i+j] = libff::Fr<ppT>::zero();
+                u2[stride_cols*i+j] = sha_value;
             }
-            original.push_back(sha_value);
+            original[stride_cols*i+j] = sha_value;
         }
     }
     libff::leave_block("Compute SHA256");
 
+    // printf("u1:\n");
+    // for(int i=0; i<u1.size();i++){
+    //     u1[i].print();
+    // }
+    // printf("u2:\n");
+    // for(int i=0; i<u2.size();i++){
+    //     u2[i].print();
+    // }
     const bool test_serialization = true;
     r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
     const bool bit = run_snark_for_filtering<ppT>(example, original, test_serialization);
