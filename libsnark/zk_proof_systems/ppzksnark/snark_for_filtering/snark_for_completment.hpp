@@ -462,9 +462,12 @@ public:
  * 
  * primary: statement 없음
  */
-template<typename ppT>
-snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_constraint_system<libff::Fr<ppT> > &r1cs);
-
+// template<typename ppT>
+// snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_constraint_system<libff::Fr<ppT> > &r1cs);
+template <typename ppT>
+snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_constraint_system<libff::Fr<ppT> > &r1cs,
+                                                                    const libff::G1<ppT> &g1_generator,
+                                                                    const libff::G2<ppT> &G2_gen);
 /**
  * A prover algorithm for the R1CS GG-ppzkSNARK.
  *

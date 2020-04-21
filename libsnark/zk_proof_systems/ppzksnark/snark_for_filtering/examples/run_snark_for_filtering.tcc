@@ -71,6 +71,7 @@ test_affine_verifier(const snark_for_filtering_verification_key<ppT> &vk,
  * (3) The "verifier", which runs the ppzkSNARK verifier on input the verification key,
  *     a primary input for CS, and a proof.
  */
+
 template<typename ppT>
 bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example, 
                         const std::vector<libff::Fr<ppT>>  &xi_vector,
@@ -102,17 +103,21 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     // libff::G1<ppT> test = commitment.x0 * keypair.pp.h_vector[0];
     libff::enter_block("Compute C_x Commitment");
     libff::Fr<ppT> o1(example.auxiliary_input[0]);
-    libff::G1<ppT> C_x = o1 * keypair.pk.f_vector[0];
-    // libff::G1<ppT> C_x = libff::G1<ppT>::zero();
+    // libff::G1<ppT> C_x = o1 * keypair.pk.f_vector[0];
+    libff::G1<ppT> C_x;
     const size_t len = example.auxiliary_input.size();//514
-
-// #ifdef MULTICORE
-//     #pragma omp parallel for
-// #endif
+#ifdef MULTICORE
+#pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out) \
+initializer(omp_priv=libff::G1<ppT>::zero())
+    #pragma omp parallel for reduction(+ : C_x)
+#else
+    C_x = libff::G1<ppT>::zero();
+#endif    
     for(size_t i = 1; i < len/2; i++){//1 ~ 256
 		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i];
     }
 
+    C_x = C_x + o1 * keypair.pk.f_vector[0];
     libff::leave_block("Compute C_x Commitment");
 
     libff::print_header("snark for filtering Prover");

@@ -225,7 +225,9 @@ std::istream& operator>>(std::istream &in, snark_for_completment_proof<ppT> &pro
  * SNARK for filtering scheme에서 f_i == Lt
  */
 template <typename ppT>
-snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_constraint_system<libff::Fr<ppT> > &r1cs)
+snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_constraint_system<libff::Fr<ppT> > &r1cs,
+                                                                    const libff::G1<ppT> &g1_generator,
+                                                                    const libff::G2<ppT> &G2_gen)
 {
     libff::enter_block("Call to snark_for_complement_generator");
 
@@ -287,6 +289,7 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     // libff::leave_block("Compute gamma_ABC for R1CS verification key");
 
     /* The delta inverse product component: (beta*A_i(t) + alpha*B_i(t) + C_i(t)) * delta^{-1}. */
+    
     libff::enter_block("Compute L query for R1CS proving key");
     libff::Fr_vector<ppT> Lt;
     Lt.reserve(qap.num_variables() - qap.num_inputs()); //witness 갯수
@@ -312,7 +315,6 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
 #endif
 
     libff::enter_block("Generating G1 MSM window table");
-    const libff::G1<ppT> g1_generator = libff::G1<ppT>::random_element();
     const size_t g1_scalar_count = non_zero_At + non_zero_Bt + qap.num_variables();
     const size_t g1_scalar_size = libff::Fr<ppT>::size_in_bits();
     const size_t g1_window_size = libff::get_exp_window_size<libff::G1<ppT> >(g1_scalar_count);
@@ -322,7 +324,6 @@ snark_for_completment_keypair<ppT> snark_for_completment_generator(const r1cs_co
     libff::leave_block("Generating G1 MSM window table");
 
     libff::enter_block("Generating G2 MSM window table");
-    const libff::G2<ppT> G2_gen = libff::G2<ppT>::random_element();
     const size_t g2_scalar_count = non_zero_Bt;
     const size_t g2_scalar_size = libff::Fr<ppT>::size_in_bits();
     size_t g2_window_size = libff::get_exp_window_size<libff::G2<ppT> >(g2_scalar_count);

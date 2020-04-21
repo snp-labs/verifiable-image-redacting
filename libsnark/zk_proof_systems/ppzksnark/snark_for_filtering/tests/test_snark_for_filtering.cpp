@@ -34,14 +34,15 @@ using namespace cv;
 bool mouse_is_pressing = false;
 Mat original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/uhd.jpg",IMREAD_COLOR);
 Mat u1_array;
-Mat u2_array = original_array.clone();
+Mat u2_array;
 int stride=1;
+int end_x_ = -1, end_y_ = -1;
 
 struct Image_ROI{
-    int start_x;
-    int start_y;
-    int end_x;
-    int end_y;
+    vector<int> start_x;
+    vector<int> start_y;
+    vector<int> end_x;
+    vector<int> end_y;
 };
 
 template<typename ppT>
@@ -53,8 +54,8 @@ void mouse_callback(int event, int x, int y, int flags, void *pt)
 	if (event == EVENT_LBUTTONDOWN){
 
 		mouse_is_pressing = true;
-		ROI->start_x = x;
-		ROI->start_y = y;
+		ROI->start_x.push_back(x);
+		ROI->start_y.push_back(y);
 
 		circle(img_result, Point(x, y), 10, Scalar(0, 255, 0), -1);
 		imshow("original", img_result);
@@ -63,40 +64,48 @@ void mouse_callback(int event, int x, int y, int flags, void *pt)
 
 		if (mouse_is_pressing){
 			
-			rectangle(img_result, Point(ROI->start_x, ROI->start_y), Point(x, y),
+			rectangle(img_result, Point(ROI->start_x.back(), ROI->start_y.back()), Point(x, y),
 				Scalar(0, 255, 0), 1);
 
 			imshow("original", img_result);
-            ROI->end_x = x;
-            ROI->end_y = y;
+            end_x_ = x;
+            end_y_ = y;
 		}
 
 	} else if (event == EVENT_LBUTTONUP){
-
 		mouse_is_pressing = false;
-        if(ROI->start_x > ROI->end_x) std::swap(ROI->start_x, ROI->end_x);
-        if(ROI->start_y > ROI->end_y) std::swap(ROI->start_y, ROI->end_y);
-        // ROI->start_x = ROI->start_x - ROI->start_x%stride;
-        // ROI->start_y = ROI->start_y - ROI->start_y%stride;
-        // ROI->end_x = ((ROI->end_x+stride-1)/stride)*stride;
-        // ROI->end_y = ((ROI->end_y+stride-1)/stride)*stride;
-        ROI->start_x = 100;
-        ROI->start_y = 100;
-        ROI->end_x = 300;
-        ROI->end_y = 300;
+        if(ROI->start_x.back() > end_x_){
+            ROI->end_x.push_back(ROI->start_x.back());
+            ROI->start_x.back() = end_x_;
+        }
+        else ROI->end_x.push_back(end_x_);
 
-        for (int i=ROI->start_y; i<ROI->end_y; i++){
+        if(ROI->start_y.back() > end_y_){
+            ROI->end_y.push_back(ROI->start_y.back());
+            ROI->start_y.back() = end_y_;
+        }
+        else ROI->end_y.push_back(end_y_);
+        ROI->start_x.back() = ROI->start_x.back() - ROI->start_x.back()%stride;
+        ROI->start_y.back() = ROI->start_y.back() - ROI->start_y.back()%stride;
+        ROI->end_x.back() = ((ROI->end_x.back()+stride-1)/stride)*stride;
+        ROI->end_y.back() = ((ROI->end_y.back()+stride-1)/stride)*stride;
+        // ROI->start_x = 100;
+        // ROI->start_y = 100;
+        // ROI->end_x = 300;
+        // ROI->end_y = 300;
+
+        for (int i=ROI->start_y.back(); i<ROI->end_y.back(); i++){
             uchar* ptr = u2_array.ptr<uchar>(i);
-            for (int j=ROI->start_x; j<ROI->end_x; j++){
+            for (int j=ROI->start_x.back(); j<ROI->end_x.back(); j++){
                 ptr[j*3] = 0;
                 ptr[j*3+1] = 0;
                 ptr[j*3+2] = 0;
             }
         }
         bitwise_xor(original_array, u2_array, u1_array);
-	    // imshow("original", original_array);
-	    // imshow("u2", u2_array);
-        // imshow("u1", u1_array);
+	    imshow("original", original_array);
+	    imshow("u2", u2_array);
+        imshow("u1", u1_array);
 	}
 }
 
@@ -123,10 +132,8 @@ void test_snark_for_filtering()
             }
         }
     }
-
     imshow("original", original_array);
     imshow("stride", img_show);
-	setMouseCallback("original", mouse_callback<ppT>, (void *)&pt);
     cv::waitKey(0);
 
     int stride_rows = (int)ceil((double)original_array.rows/stride);
@@ -139,7 +146,10 @@ void test_snark_for_filtering()
             resize_original_array.at<Vec3b>(i,j)[2] = original_array.at<Vec3b>(i,j)[2];
         }
     }
-    imshow("resize_original_array", resize_original_array);
+    original_array = resize_original_array.clone();
+    u2_array = original_array.clone();
+    imshow("original", original_array);
+	setMouseCallback("original", mouse_callback<ppT>, (void *)&pt);
     cv::waitKey(0);
 	destroyAllWindows();
 
@@ -150,6 +160,7 @@ void test_snark_for_filtering()
     for (int i=0; i<stride_rows; i++){
         for (int j=0; j<stride_cols; j++){
             Mat temp = resize_original_array(Rect(j*stride, i*stride, stride, stride));
+            bool opening = false;
             unsigned char digest[SHA256_DIGEST_LENGTH] = {};
             SHA256_CTX context;
             SHA256_Init (&context);
@@ -172,8 +183,14 @@ void test_snark_for_filtering()
             sha_value += context.h[6];
             sha_value *= 4294967296;
             sha_value += context.h[7];
+            for (int k=0; k<pt.start_x.size(); k++){
+                if(pt.start_y[k]/stride<= i && i < pt.end_y[k]/stride && pt.start_x[k]/stride <= j && j < pt.end_x[k]/stride){
+                    opening = true;
+                    break;
+                }
+            }
 
-            if(pt.start_y/stride<= i && i < pt.end_y/stride && pt.start_x/stride <= j && j < pt.end_x/stride){
+            if(opening){
                 u1.push_back(sha_value);
                 u2.push_back(libff::Fr<ppT>::zero());
             }
@@ -184,10 +201,8 @@ void test_snark_for_filtering()
             original.push_back(sha_value);
         }
     }
-
     libff::leave_block("Compute SHA256");
 
-    
     const bool test_serialization = true;
     r1cs_example<libff::Fr<ppT> > example = generate_r1cs_filtering_example<libff::Fr<ppT> >(u1, u2);
     const bool bit = run_snark_for_filtering<ppT>(example, original, test_serialization);

@@ -217,27 +217,22 @@ template <typename ppT>
 	template <typename ppT>
 	class snark_for_filtering_public_parameter{
 	public:
-		libff::G1<ppT> g1_generator;
-		libff::G2<ppT> G2_gen;
 		libff::G1_vector<ppT> h_vector;
 
 		snark_for_filtering_public_parameter() = default;
-		snark_for_filtering_public_parameter(const libff::G1<ppT> &&g1_generator,
-											const libff::G2<ppT> &&G2_gen,
+		snark_for_filtering_public_parameter(
 											const libff::G1_vector<ppT> &&h_vector) :
-			g1_generator(std::move(g1_generator)),
-			G2_gen(std::move(G2_gen)),
 			h_vector(std::move(h_vector))
 		{};
 
 		size_t G1_size() const
 		{
-			return 1 + h_vector.size();
+			return h_vector.size();
 		}
 
 		size_t G2_size() const
 		{
-			return 1;
+			return 0;
 		}
 
 		size_t GT_size() const
@@ -253,9 +248,9 @@ template <typename ppT>
 
 		void print_size() const
 		{
-			libff::print_indent(); printf("* G1 elements in VK: %zu\n", this->G1_size());
-			libff::print_indent(); printf("* G2 elements in VK: %zu\n", this->G2_size());
-			libff::print_indent(); printf("* GT elements in VK: %zu\n", this->GT_size());
+			libff::print_indent(); printf("* G1 elements in pp: %zu\n", this->G1_size());
+			libff::print_indent(); printf("* G2 elements in pp: %zu\n", this->G2_size());
+			libff::print_indent(); printf("* GT elements in pp: %zu\n", this->GT_size());
 			libff::print_indent(); printf("* PP size in bits: %zu\n", this->size_in_bits());
 		}
 

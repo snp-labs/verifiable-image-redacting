@@ -281,16 +281,22 @@ snark_for_filtering_Commit<ppT> Commit(const snark_for_filtering_public_paramete
                                        const std::vector<libff::Fr<ppT>> &xi_vector)
 {
     libff::Fr<ppT> x0 = libff::Fr<ppT>::random_element();
-    libff::G1<ppT> sigma_x = x0 * pp.h_vector[0];
+    // libff::G1<ppT> sigma_x = x0 * pp.h_vector[0];
+    libff::G1<ppT> sigma_x;
     size_t len = xi_vector.size();
 
-// #ifdef MULTICORE
-//     #pragma omp parallel for
-// #endif
+#ifdef MULTICORE
+#pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out) \
+initializer(omp_priv=libff::G1<ppT>::zero())
+    #pragma omp parallel for reduction(+ : sigma_x)
+#else
+    sigma_x = libff::G1<ppT>::zero();
+#endif   
     for (size_t i = 0; i < len; i++)
     {
         sigma_x = sigma_x + xi_vector[i] * pp.h_vector[i+1];
     }
+    sigma_x = sigma_x + x0 * pp.h_vector[0];
 
     return snark_for_filtering_Commit<ppT>(std::move(sigma_x), std::move(x0));
 }
@@ -306,12 +312,8 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
      */
     libff::enter_block("Call to snark for filtering generator");
 
-    libff::enter_block("Generating G1 MSM window table");
     const libff::G1<ppT> g1_generator = libff::G1<ppT>::random_element();
-    libff::leave_block("Generating G1 MSM window table");
-    libff::enter_block("Generating G2 MSM window table");
     const libff::G2<ppT> G2_gen = libff::G2<ppT>::random_element();
-    libff::leave_block("Generating G2 MSM window table");
 
     size_t  num_variables = r1cs.num_variables();
 
@@ -319,39 +321,65 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
     libff::Fr<ppT> k1 = libff::Fr<ppT>::random_element();
     libff::Fr<ppT> k2 = libff::Fr<ppT>::random_element();
     libff::Fr<ppT> a = libff::Fr<ppT>::random_element();
-    libff::G2<ppT> a_g2 = a*libff::G2<ppT>::one();
+    libff::G2<ppT> a_g2 = a*G2_gen;
     libff::G2<ppT> c0_g2 = k0*a_g2;
     libff::G2<ppT> c1_g2 = k1*a_g2;
     libff::G2<ppT> c2_g2 = k2*a_g2;
-    libff::G1_vector<ppT> h_vector;
+    libff::G1_vector<ppT> h_g1_vector;
     libff::G1_vector<ppT> P_vector;
+    libff::Fr_vector<ppT> h_vector;
 
-    libff::enter_block("Compute h vector for snark for filterring proving key");
+    libff::enter_block("Compute h_vector densities");
+
+    // for (size_t i = 0; i < num_variables/2; i++)
+    // {
+    //     h_vector.emplace_back(libff::G1<ppT>::random_element());
+    // }
+
     for (size_t i = 0; i < num_variables/2; i++)
     {
-        h_vector.emplace_back(libff::G1<ppT>::random_element());
+        h_vector.emplace_back(libff::Fr<ppT>::random_element());
     }
-    libff::leave_block("Compute h vector for snark for filterring proving key");
+    libff::leave_block("Compute h_vector densities");
+
+#ifdef MULTICORE
+    const size_t chunks = omp_get_max_threads(); // to override, set OMP_NUM_THREADS env var or call omp_set_num_threads()
+#else
+    const size_t chunks = 1;
+#endif
+
+    libff::enter_block("Generating G1 MSM window table");
+    const size_t g1_scalar_count = num_variables/2;
+    const size_t g1_scalar_size = libff::Fr<ppT>::size_in_bits();
+    const size_t g1_window_size = libff::get_exp_window_size<libff::G1<ppT> >(g1_scalar_count);
+
+    libff::print_indent(); printf("* G1 window: %zu\n", g1_window_size);
+    libff::window_table<libff::G1<ppT> > g1_table = libff::get_window_table(g1_scalar_size, g1_window_size, g1_generator);
+    libff::leave_block("Generating G1 MSM window table");
+
+    libff::enter_block("Compute the h_g1_vector", false);
+    h_g1_vector = batch_exp(g1_scalar_size, g1_window_size, g1_table, h_vector);
+    libff::leave_block("Compute the h_g1_vector", false);
 
     libff::enter_block("Generating snark key pair Generator");
-    snark_for_completment_keypair<ppT> keypair = snark_for_completment_generator<ppT>(r1cs);
+    snark_for_completment_keypair<ppT> keypair = snark_for_completment_generator<ppT>(r1cs, g1_generator, G2_gen);
     libff::leave_block("Generating snark key pair Generator");
     libff::G1_vector<ppT> f_vector = keypair.pk.L_query;
 
     //Use h_vector, f_vector to build a matrix M
     // P <- M^T * k
-    libff::enter_block("Compute p vector for snark for filterring proving key");
+    libff::enter_block("Compute p_vector for snark for filterring proving key");
     P_vector.emplace_back(k2 * f_vector[0]);
     P_vector.emplace_back(k1 * f_vector[num_variables/2]);
-    P_vector.emplace_back(k0 * h_vector[0]);
+    P_vector.emplace_back(k0 * h_g1_vector[0]);
 
     for(size_t i = 1; i < num_variables/2; i++){
-		P_vector.emplace_back((k0 * h_vector[i]) + (k2 * f_vector[i]));
+		P_vector.emplace_back((k0 * h_g1_vector[i]) + (k2 * f_vector[i]));
     }
     for(size_t i = 1; i < num_variables/2; i++){
-		P_vector.emplace_back((k0 * h_vector[i]) + (k1 * f_vector[num_variables/2+i]));
+		P_vector.emplace_back((k0 * h_g1_vector[i]) + (k1 * f_vector[num_variables/2+i]));
     }
-    libff::leave_block("Compute p vector for snark for filterring proving key");
+    libff::leave_block("Compute p_vector for snark for filterring proving key");
 
     libff::leave_block("Call to snark for filtering generator");
 
@@ -379,9 +407,7 @@ snark_for_filtering_keypair<ppT> snark_for_filtering_generator(const r1cs_constr
         );
 
     snark_for_filtering_public_parameter<ppT> pp = snark_for_filtering_public_parameter<ppT>(
-        std::move(g1_generator),
-        std::move(G2_gen),
-        std::move(h_vector)
+        std::move(h_g1_vector)
     );
     
     ek.print_size();
@@ -404,28 +430,51 @@ snark_for_filtering_proof<ppT> snark_for_filtering_prover(snark_for_filtering_pr
     libff::Fr<ppT> o1(auxiliary_input[0]);
 
     libff::enter_block("Compute _C_x");
-    libff::G1<ppT> _C_x = o2 * pk.f_vector[len/2];
+    libff::G1<ppT> _C_x;
 
     // snark_for_completment_auxiliary_input<ppT> completment_auxiliary_input;
     libff::G1_vector<ppT> L_query = {};
 
+#ifdef MULTICORE
+#pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out) \
+initializer(omp_priv=libff::G1<ppT>::zero())
+    #pragma omp parallel for reduction(+ : _C_x)
+#else
+    _C_x = libff::G1<ppT>::zero();
+#endif    
     for(size_t i = 1; i < len/2; i++){//0 ~ n-1까지
 		_C_x = _C_x + auxiliary_input[i+len/2] * pk.f_vector[i+len/2];
     }
+    _C_x = _C_x + o2 * pk.f_vector[len/2];
     libff::leave_block("Compute _C_x");
 
     libff::enter_block("Compute ss_proof");
-    libff::G1<ppT> ss_proof_g1 = o1 * pk.P_vector[0];
+    libff::G1<ppT> ss_proof_g1;
+    libff::G1<ppT> ss_proof_g1_tmp;
 
-    ss_proof_g1 = ss_proof_g1 + o2 * pk.P_vector[1];
-    ss_proof_g1 = ss_proof_g1 + x0 * pk.P_vector[2];
-
+#ifdef MULTICORE
+    #pragma omp parallel for reduction(+ : ss_proof_g1)
+#else
+    ss_proof_g1 = libff::G1<ppT>::zero();
+#endif    
     for(size_t i = 0; i < len/2-1; i++){//0 ~ n-1까지
 		ss_proof_g1 = ss_proof_g1 + auxiliary_input[i+1] * pk.P_vector[i+3];
     }
+
+#ifdef MULTICORE
+    #pragma omp parallel for reduction(+ : ss_proof_g1_tmp)
+#else
+    ss_proof_g1_tmp = libff::G1<ppT>::zero();
+#endif    
     for(size_t i = 0; i < len/2-1; i++){//0 ~ n-1까지
-		ss_proof_g1 = ss_proof_g1 + auxiliary_input[i+len/2+1] * pk.P_vector[i+len/2+2];
+		ss_proof_g1_tmp = ss_proof_g1_tmp + auxiliary_input[i+len/2+1] * pk.P_vector[i+len/2+2];
     }
+
+    ss_proof_g1 = ss_proof_g1 + ss_proof_g1_tmp;
+    ss_proof_g1 = ss_proof_g1 + o1 * pk.P_vector[0];
+
+    ss_proof_g1 = ss_proof_g1 + o2 * pk.P_vector[1];
+    ss_proof_g1 = ss_proof_g1 + x0 * pk.P_vector[2];
     libff::leave_block("Compute ss_proof");
 
 
