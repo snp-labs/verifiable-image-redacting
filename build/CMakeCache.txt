@@ -358,7 +358,7 @@ MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=
 MONTGOMERY_OUTPUT:BOOL=ON
 
 //Enable parallelized execution, using OpenMP
-MULTICORE:BOOL=ON
+MULTICORE:BOOL=OFF
 
 //Path to a library.
 OPENSSL_CRYPTO_LIBRARY:FILEPATH=/usr/local/lib/libcrypto.so
@@ -388,12 +388,6 @@ OpenCV_LIB_DIR_DBG:PATH=
 
 //Path where release OpenCV libraries are located
 OpenCV_LIB_DIR_OPT:PATH=
-
-//C++ compiler flags for OpenMP parallization
-OpenMP_CXX_FLAGS:STRING=-fopenmp
-
-//C compiler flags for OpenMP parallization
-OpenMP_C_FLAGS:STRING=-fopenmp
 
 //Path to a program.
 P4COMMAND:FILEPATH=P4COMMAND-NOTFOUND
@@ -767,8 +761,6 @@ CVSCOMMAND-ADVANCED:INTERNAL=1
 CVS_UPDATE_OPTIONS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: DART_TESTING_TIMEOUT
 DART_TESTING_TIMEOUT-ADVANCED:INTERNAL=1
-//Details about finding OpenMP
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[-fopenmp][-fopenmp][v()]
 //Details about finding OpenSSL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenSSL:INTERNAL=[/usr/local/lib/libssl.so;/usr/local/lib/libcrypto.so][/usr/local/include][v1.1.1d()]
 //Details about finding PkgConfig
@@ -803,12 +795,6 @@ OpenCV_CONFIG_PATH-ADVANCED:INTERNAL=1
 OpenCV_LIB_DIR_DBG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenCV_LIB_DIR_OPT
 OpenCV_LIB_DIR_OPT-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OpenMP_CXX_FLAGS
-OpenMP_CXX_FLAGS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OpenMP_C_FLAGS
-OpenMP_C_FLAGS-ADVANCED:INTERNAL=1
-//Test OpenMP_FLAG_DETECTED
-OpenMP_FLAG_DETECTED:INTERNAL=1
 //ADVANCED property for variable: P4COMMAND
 P4COMMAND-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE

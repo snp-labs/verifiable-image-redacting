@@ -104,7 +104,7 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     libff::enter_block("Compute C_x Commitment");
     libff::Fr<ppT> o1(example.auxiliary_input[0]);
     // libff::G1<ppT> C_x = o1 * keypair.pk.f_vector[0];
-    libff::G1<ppT> C_x;
+    libff::G1<ppT> C_x = libff::G1<ppT>::zero();
     const size_t len = example.auxiliary_input.size();//514
 #ifdef MULTICORE
 #pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out) \
