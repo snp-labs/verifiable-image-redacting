@@ -107,11 +107,8 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     libff::G1<ppT> C_x = libff::G1<ppT>::zero();
     const size_t len = example.auxiliary_input.size();//514
 #ifdef MULTICORE
-#pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out) \
-initializer(omp_priv=libff::G1<ppT>::zero())
+#pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out)
     #pragma omp parallel for reduction(+ : C_x)
-#else
-    C_x = libff::G1<ppT>::zero();
 #endif    
     for(size_t i = 1; i < len/2; i++){//1 ~ 256
 		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i];

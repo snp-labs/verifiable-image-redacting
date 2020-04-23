@@ -282,15 +282,12 @@ snark_for_filtering_Commit<ppT> Commit(const snark_for_filtering_public_paramete
 {
     libff::Fr<ppT> x0 = libff::Fr<ppT>::random_element();
     // libff::G1<ppT> sigma_x = x0 * pp.h_vector[0];
-    libff::G1<ppT> sigma_x;
+    libff::G1<ppT> sigma_x = libff::G1<ppT>::zero();
     size_t len = xi_vector.size();
 
 #ifdef MULTICORE
-#pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out) \
-initializer(omp_priv=libff::G1<ppT>::zero())
+#pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out)
     #pragma omp parallel for reduction(+ : sigma_x)
-#else
-    sigma_x = libff::G1<ppT>::zero();
 #endif   
     for (size_t i = 0; i < len; i++)
     {
