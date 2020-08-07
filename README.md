@@ -16,7 +16,7 @@ For announcements and discussions, see the [libsnark mailing list](https://group
 [TOC]
 
 <!---
-  NOTE: the file you are reading is in Markdown format, which is is fairly readable
+  NOTE: the file you are reading is in Markdown format, which is fairly readable
   directly, but can be converted into an HTML file with much nicer formatting.
   To do so, run "make doc" (this requires the python-markdown package) and view
   the resulting file README.html. Alternatively, view the latest HTML version at
@@ -67,6 +67,13 @@ The libsnark library currently provides a C++ implementation of:
        optimizes the approach described in \[BCTV14a], itself an extension of
        \[BCGTV13], following the approach of \[GGPR13] and \[BCIOP13]. (An alternative
        implementation of this approach is the _Pinocchio_ system of \[PGHR13].)
+
+       The library also implements a zk-SNARK for R1CS secure in the generic group model
+       \[Groth16]. Compared to \[BCTV14a] the \[Groth16] proof system is faster and
+       achieves shorter proofs, at expense of making stronger security assumptions.
+
+       We provide [detailed empirical and asymptotic comparison](https://github.com/scipr-lab/libsnark/blob/master/libsnark/zk_proof_systems/ppzksnark/README.md)
+       between these choices.
     2. A preprocessing SNARK for a language of arithmetic circuits, "BACS"
        (_Bilinear Arithmetic Circuit Satisfiability_). This simplifies the writing
        of NP statements when the additional flexibility of R1CS is not needed.
@@ -159,7 +166,7 @@ currently provides three options:
         For example, on Fedora 20 at its default settings, you will get the error
         `zmInit ERR:can't protect` when running this code. To solve this,
         run `sudo setsebool -P allow_execheap 1` to allow execution,
-        or use `make CURVE=ALT_BN128` instead.
+        or use `cmake -DCURVE=ALT_BN128` instead.
 
 * "alt_bn128":
    an alternative to "bn128", somewhat slower but avoids dynamic code generation.
@@ -246,6 +253,10 @@ below. (If you port libsnark to additional platforms, please let us know!)
 
 Concretely, here are the requisite packages in some Linux distributions:
 
+* On Debian 10 (buster), Ubuntu 18.04 LTS, Ubuntu 20.04 LTS:
+
+        $ sudo apt install build-essential cmake git libgmp3-dev libprocps-dev python3-markdown libboost-program-options-dev libssl-dev python3 pkg-config
+
 * On Ubuntu 16.04 LTS:
 
         $ sudo apt-get install build-essential cmake git libgmp3-dev libprocps4-dev python-markdown libboost-all-dev libssl-dev
@@ -253,6 +264,10 @@ Concretely, here are the requisite packages in some Linux distributions:
 * On Ubuntu 14.04 LTS:
 
         $ sudo apt-get install build-essential cmake git libgmp3-dev libprocps3-dev python-markdown libboost-all-dev libssl-dev
+
+* On Fedora 31:
+
+        $ sudo dnf install gcc-c++ cmake make git gmp-devel procps-ng-devel boost-devel openssl-devel python3-markdown
 
 * On Fedora 21 through 23:
 
@@ -285,6 +300,8 @@ and then view the resulting `README.html` (which contains the very text you are 
 To compile and run the tests for this library, run:
 
     $ make check
+
+For faster build times you might also consider ccache from `ccache` package and using Ninja build system from `ninja-build` package. For the latter CMake invocation above becomes `cmake -GNinja ..`; and instead of `make`/`make check`/etc you should run `ninja`/`ninja check`/etc.
 
 ### Using libsnark as a library
 
@@ -350,7 +367,7 @@ to control these (you can see the default at the top of CMakeLists.txt).
 *   `cmake -DMULTICORE=ON`
 
      Enable parallelized execution of the ppzkSNARK generator and prover, using OpenMP.
-     This will utilize all cores on the CPU for heavyweight parallelizabe operations such as
+     This will utilize all cores on the CPU for heavyweight parallelizable operations such as
      FFT and multiexponentiation. The default is single-core.
 
      To override the maximum number of cores used, set the environment variable `OMP_NUM_THREADS`
@@ -617,6 +634,12 @@ References
 ](https://eprint.iacr.org/2014/718),
   George Danezis, Cedric Fournet, Jens Groth, Markulf Kohlweiss,
   ASIACCS 2014
+
+\[Groth16] [
+  On the Size of Pairing-based Non-interactive Arguments
+](https://eprint.iacr.org/2016/260),
+  Jens Groth,
+  EUROCRYPT 2016
 
 \[GM17] [
   Snarky Signatures: Minimal Signatures of Knowledge from Simulation-Extractable

@@ -211,7 +211,7 @@ namespace libsnark
 		size_t size_in_bits() const
 		{
 			// TODO: include GT size
-			return (G2_size() * libff::G2<ppT>::size_in_bits() + 12 * libff::bn128_Fq::size_in_bits() + libff::Fr<ppT>::size_in_bits()); //GT size = 12 * libff::bn128_Fq::size_in_bits()
+			return (G2_size() * libff::G2<ppT>::size_in_bits() + 12 * libff::alt_bn128_Fq::size_in_bits() + libff::Fr<ppT>::size_in_bits()); //GT size = 12 * libff::bn128_Fq::size_in_bits()
 		}
 
 		void print_size() const

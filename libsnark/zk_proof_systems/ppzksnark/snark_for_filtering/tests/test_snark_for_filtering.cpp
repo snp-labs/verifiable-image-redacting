@@ -29,6 +29,7 @@
 
 using namespace libsnark;
 using namespace cv;
+using namespace std;
 
 bool mouse_is_pressing = false;
 Mat original_array;
@@ -249,43 +250,43 @@ int main()
 {
     default_r1cs_gg_ppzksnark_pp::init_public_params();
     libff::start_profiling();
-    stride = 64;
-    original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/360p.jpg",IMREAD_COLOR);
+    //stride = 64;
+    //original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/360p.jpg",IMREAD_COLOR);
     // for(int i=0;i<1;i++){
-        printf("360p stride: %d",stride);
-        test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
+    //    printf("360p stride: %d",stride);
+    //    test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
     //     stride *= 2;
     // }
-    // stride = 1;
-    // ratio = 2;
+     stride = 4;
+     ratio = 2;
     original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/hd.jpg",IMREAD_COLOR);
-    // for(int i=0;i<7;i++){
+     for(int i=0;i<3;i++){
         printf("hd stride: %d",stride);
         test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
-        // stride *= 2;
-    // }
+        stride *= 4;
+     }
     // stride = 4;
     // ratio = 3;
-    original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/fhd.jpg",IMREAD_COLOR);
+    //original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/fhd.jpg",IMREAD_COLOR);
     // for(int i=0;i<3;i++){
-        printf("fhd stride: %d",stride);
-        test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
+    //    printf("fhd stride: %d",stride);
+    //    test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
     //     stride *= 4;
     // }
     // stride = 1;
     // ratio = 4;
-    original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/qhd.jpg",IMREAD_COLOR);
+    //original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/qhd.jpg",IMREAD_COLOR);
     // for(int i=0;i<7;i++){
-        printf("qhd stride: %d",stride);
-        test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
+    //    printf("qhd stride: %d",stride);
+    //    test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
     //     stride *= 2;
     // }
     // stride = 1;
     // ratio = 6;
-    original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/uhd.jpg",IMREAD_COLOR);
+    //original_array =  cv::imread("/home/itsp/snark_for_filtering/libsnark/zk_proof_systems/ppzksnark/snark_for_filtering/tests/uhd.jpg",IMREAD_COLOR);
     // for(int i=0;i<7;i++){
-        printf("uhd stride: %d",stride);
-        test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
+    //    printf("uhd stride: %d",stride);
+    //    test_snark_for_filtering<default_r1cs_gg_ppzksnark_pp>();
     //     stride *= 2;
     // }
 

@@ -12,3 +12,4 @@ bin
 *.in
 depends/
 build/
+tinyram_examples/
