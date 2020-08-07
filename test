@@ -1,0 +1,18 @@
+#!/bin/sh
+
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 400 >> size_400.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 800 >> size_800.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 1200 >> size_1200.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 1600 >> size_1600.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 2000 >> size_2000.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 2400 >> size_2400.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 2800 >> size_2800.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 3200 >> size_3200.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 3600 >> size_3600.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 4000 >> size_4000.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 4400 >> size_4400.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 4800 >> size_4800.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 5200 >> size_5200.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 5600 >> size_5600.txt
+./build/libsnark/zk_proof_systems_snark_for_filtering_test 6000 >> size_6000.txt
+

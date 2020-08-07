@@ -1,0 +1,286 @@
+Reset time counters for profiling
+(enter) Call to generate_filtering_example 	[             ]	(0.0029s x2.48 from start)
+cs.auxiliary_input_size: 2402 
+(leave) Call to generate_r1cs_example_with_field_input	[1596625615.4996s x0.00]	(0.0036s x2.17 from start)
+(enter) Call to run_snark_for_filtering    	[             ]	(0.0036s x2.17 from start)
+
+================================================================================
+snark for filtering Generator
+================================================================================
+
+  (enter) Call to snark for filtering generator	[             ]	(0.0037s x2.16 from start)
+    (enter) Compute the h_g1_vector            	[             ]	(0.0042s x2.84 from start)
+    (enter) Compute h_vector densities         	[             ]	(0.0042s x2.84 from start)
+    (leave) Compute h_vector densities         	[0.0083s x1.00]	(0.0125s x1.62 from start)
+    (enter) Generating G1 MSM window table     	[             ]	(0.0125s x1.62 from start)
+      Choosing window size 8 for 1201 elements
+      * G1 window: 8
+    (leave) Generating G1 MSM window table     	[0.0047s x1.00]	(0.0172s x1.45 from start)
+    . DONE!
+offline key size: 306255
+    (leave) Compute the h_g1_vector            	[0.0249s x1.37]	(0.0291s x1.58 from start)
+    (enter) Generating snark key pair Generator	[             ]	(0.0291s x1.58 from start)
+      (enter) Call to snark_for_complement_generator	[             ]	(0.0291s x1.58 from start)
+        (enter) Call to r1cs_to_qap_instance_map_with_evaluation	[             ]	(0.0294s x1.72 from start)
+          (enter) Compute evaluations of A, B, C, H at t	[             ]	(0.0295s x1.71 from start)
+          (leave) Compute evaluations of A, B, C, H at t	[0.0041s x1.79]	(0.0336s x1.72 from start)
+        (leave) Call to r1cs_to_qap_instance_map_with_evaluation	[0.0043s x1.75]	(0.0337s x1.72 from start)
+        * QAP number of variables: 2402
+        * QAP pre degree: 1201
+        * QAP degree: 1280
+        * QAP number of input variables: 0
+        (enter) Compute query densities            	[             ]	(0.0337s x1.72 from start)
+        (leave) Compute query densities            	[0.0000s x1.03]	(0.0337s x1.72 from start)
+        (enter) Compute L query for R1CS proving key	[             ]	(0.0337s x1.72 from start)
+        (leave) Compute L query for R1CS proving key	[0.0003s x1.00]	(0.0340s x1.71 from start)
+        (enter) Generating G1 MSM window table     	[             ]	(0.0340s x1.71 from start)
+          Choosing window size 10 for 4804 elements
+          * G1 window: 10
+        (leave) Generating G1 MSM window table     	[0.0151s x1.00]	(0.0491s x1.49 from start)
+        (enter) Generating G2 MSM window table     	[             ]	(0.0492s x1.49 from start)
+          Choosing window size 8 for 1201 elements
+          * G2 window: 8
+        (leave) Generating G2 MSM window table     	[0.0125s x1.00]	(0.0617s x1.39 from start)
+        (enter) Generate R1CS proving key          	[             ]	(0.0617s x1.39 from start)
+          (enter) Generate queries                   	[             ]	(0.0628s x1.39 from start)
+            (enter) Compute the A-query                	[             ]	(0.0628s x1.39 from start)
+            . DONE!
+            (leave) Compute the A-query                	[0.0097s x1.92]	(0.0725s x1.46 from start)
+            (enter) Compute the B-query                	[             ]	(0.0725s x1.46 from start)
+            Non-zero coordinate count: 1201/2403 (49.98%)
+            (leave) Compute the B-query                	[0.0320s x2.55]	(0.1045s x1.79 from start)
+            (enter) Compute the H-query                	[             ]	(0.1046s x1.80 from start)
+            . DONE!
+            (leave) Compute the H-query                	[0.0060s x3.90]	(0.1105s x1.91 from start)
+            (enter) Compute the L-query                	[             ]	(0.1105s x1.92 from start)
+            . DONE!
+            (leave) Compute the L-query                	[0.0098s x3.33]	(0.1203s x2.03 from start)
+          (leave) Generate queries                   	[0.0576s x2.79]	(0.1204s x2.06 from start)
+        (leave) Generate R1CS proving key          	[0.0587s x2.76]	(0.1204s x2.06 from start)
+        (enter) Generate R1CS verification key     	[             ]	(0.1204s x2.06 from start)
+          (enter) Call to reduced_pairing<bn128_pp>  	[             ]	(0.1204s x2.06 from start)
+            (enter) Call to pairing<bn128_pp>          	[             ]	(0.1204s x2.06 from start)
+              (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.1204s x2.06 from start)
+              (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.05]	(0.1204s x2.06 from start)
+              (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.1204s x2.06 from start)
+              (leave) Call to bn128_ate_precompute_G2    	[0.0001s x38.51]	(0.1205s x2.08 from start)
+              (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.1205s x2.08 from start)
+              (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.43]	(0.1207s x2.08 from start)
+            (leave) Call to pairing<bn128_pp>          	[0.0003s x10.95]	(0.1207s x2.08 from start)
+            (enter) Call to bn128_final_exponentiation 	[             ]	(0.1207s x2.08 from start)
+            (leave) Call to bn128_final_exponentiation 	[0.0003s x1.88]	(0.1211s x2.08 from start)
+          (leave) Call to reduced_pairing<bn128_pp>  	[0.0007s x6.30]	(0.1211s x2.08 from start)
+        (leave) Generate R1CS verification key     	[0.0007s x6.23]	(0.1211s x2.08 from start)
+      (leave) Call to snark_for_complement_generator	[0.0920s x2.24]	(0.1211s x2.08 from start)
+      * G1 elements in PK: 8488
+      * Non-zero G1 elements in PK: 7286
+      * G2 elements in PK: 2404
+      * Non-zero G2 elements in PK: 1202
+      * PK size in bits: 2546612
+      * G1 elements in VK: 0
+      * G2 elements in VK: 2
+      * GT elements in VK: 1
+      * VK size in bits: 1018
+    (leave) Generating snark key pair Generator	[0.0920s x2.24]	(0.1211s x2.08 from start)
+    (enter) Compute p_vector & a_vector for snark for filterring proving key	[             ]	(0.1211s x2.08 from start)
+    (leave) Compute p_vector & a_vector for snark for filterring proving key	[0.1847s x3.34]	(0.3058s x2.84 from start)
+  (leave) Call to snark for filtering generator	[0.3022s x2.85]	(0.3059s x2.84 from start)
+  * G1 elements in PK: 10896
+  * Non-zero G1 elements in PK: 9694
+  * G2 elements in PK: 2405
+  * Non-zero G2 elements in PK: 1203
+  * PK size in bits: 3160650
+  * G1 elements in VK: 0
+  * G2 elements in VK: 7
+  * GT elements in VK: 1
+  * VK size in bits: 6865
+  * G1 elements in pp: 1201
+  * G2 elements in pp: 0
+  * GT elements in pp: 0
+  * PP size in bits: 306255
+
+  * Peak vsize (physical memory+swap) in mebibytes (after generator): 262
+
+================================================================================
+Generating Commitment
+================================================================================
+
+  (enter) Compute sigma Commitment           	[             ]	(0.3060s x2.84 from start)
+offline sigma size: 255
+  (leave) Compute sigma Commitment           	[0.0085s x0.82]	(0.3145s x2.79 from start)
+  (enter) Compute C_x Commitment             	[             ]	(0.3145s x2.79 from start)
+  (leave) Compute C_x Commitment             	[0.0062s x2.01]	(0.3207s x2.77 from start)
+
+================================================================================
+snark for filtering Prover
+================================================================================
+
+  (enter) Call to snark for filtering prover 	[             ]	(0.3209s x2.77 from start)
+    (enter) Compute _C_x                       	[             ]	(0.3209s x2.77 from start)
+    (leave) Compute _C_x                       	[0.0033s x1.76]	(0.3242s x2.76 from start)
+    (enter) Compute ss_proof                   	[             ]	(0.3258s x2.75 from start)
+    (leave) Compute ss_proof                   	[0.0111s x1.45]	(0.3369s x2.71 from start)
+    (enter) Call to snark_for_complement_prover	[             ]	(0.3384s x2.71 from start)
+      (enter) Compute the polynomial H           	[             ]	(0.3384s x2.71 from start)
+        (enter) Call to r1cs_to_qap_witness_map    	[             ]	(0.3384s x2.71 from start)
+          (enter) Compute evaluation of polynomials A, B on set S	[             ]	(0.3385s x2.71 from start)
+          (leave) Compute evaluation of polynomials A, B on set S	[0.0002s x1.01]	(0.3386s x2.71 from start)
+          (enter) Compute coefficients of polynomial A	[             ]	(0.3386s x2.71 from start)
+          (leave) Compute coefficients of polynomial A	[0.0031s x1.94]	(0.3417s x2.70 from start)
+          (enter) Compute coefficients of polynomial B	[             ]	(0.3418s x2.70 from start)
+          (leave) Compute coefficients of polynomial B	[0.0005s x1.00]	(0.3423s x2.70 from start)
+          (enter) Compute ZK-patch                   	[             ]	(0.3423s x2.70 from start)
+          (leave) Compute ZK-patch                   	[0.0000s x1.02]	(0.3423s x2.70 from start)
+          (enter) Compute evaluation of polynomial A on set T	[             ]	(0.3423s x2.70 from start)
+          (leave) Compute evaluation of polynomial A on set T	[0.0005s x1.00]	(0.3428s x2.69 from start)
+          (enter) Compute evaluation of polynomial B on set T	[             ]	(0.3428s x2.69 from start)
+          (leave) Compute evaluation of polynomial B on set T	[0.0171s x2.26]	(0.3599s x2.67 from start)
+          (enter) Compute evaluation of polynomial H on set T	[             ]	(0.3599s x2.67 from start)
+            (enter) Compute evaluation of polynomial C on set S	[             ]	(0.3599s x2.67 from start)
+            (leave) Compute evaluation of polynomial C on set S	[0.0001s x1.01]	(0.3601s x2.67 from start)
+            (enter) Compute coefficients of polynomial C	[             ]	(0.3601s x2.67 from start)
+            (leave) Compute coefficients of polynomial C	[0.0005s x1.00]	(0.3605s x2.67 from start)
+            (enter) Compute evaluation of polynomial C on set T	[             ]	(0.3605s x2.67 from start)
+            (leave) Compute evaluation of polynomial C on set T	[0.0005s x1.00]	(0.3610s x2.67 from start)
+            (enter) Divide by Z on set T               	[             ]	(0.3610s x2.67 from start)
+            (leave) Divide by Z on set T               	[0.0010s x5.68]	(0.3620s x2.68 from start)
+          (leave) Compute evaluation of polynomial H on set T	[0.0021s x3.22]	(0.3621s x2.68 from start)
+          (enter) Compute coefficients of polynomial H	[             ]	(0.3621s x2.68 from start)
+          (leave) Compute coefficients of polynomial H	[0.0006s x1.00]	(0.3627s x2.67 from start)
+          (enter) Compute sum of H and ZK-patch      	[             ]	(0.3627s x2.67 from start)
+          (leave) Compute sum of H and ZK-patch      	[0.0000s x1.09]	(0.3627s x2.67 from start)
+        (leave) Call to r1cs_to_qap_witness_map    	[0.0243s x2.20]	(0.3627s x2.67 from start)
+      (leave) Compute the polynomial H           	[0.0243s x2.20]	(0.3627s x2.67 from start)
+      (enter) Compute the proof                  	[             ]	(0.3627s x2.67 from start)
+        (enter) Compute evaluation to A-query      	[             ]	(0.3627s x2.67 from start)
+        (enter) Process scalar vector              	[             ]	(0.3627s x2.67 from start)
+          * Elements of w skipped: 1206 (50.19%)
+          * Elements of w processed with special addition: 6 (0.25%)
+          * Elements of w remaining: 1191 (49.56%)
+        (leave) Process scalar vector              	[0.0001s x1.00]	(0.3628s x2.67 from start)
+        (leave) Compute evaluation to A-query      	[0.0004s x1.00]	(0.3631s x2.67 from start)
+        (enter) Compute evaluation to B-query      	[             ]	(0.3631s x2.67 from start)
+        (enter) Process scalar vector              	[             ]	(0.3631s x2.67 from start)
+          * Elements of w skipped: 602 (50.12%)
+          * Elements of w processed with special addition: 2 (0.17%)
+          * Elements of w remaining: 597 (49.71%)
+        (leave) Process scalar vector              	[0.0001s x1.01]	(0.3632s x2.67 from start)
+        (leave) Compute evaluation to B-query      	[0.0110s x2.10]	(0.3741s x2.65 from start)
+        (enter) Compute evaluation to H-query      	[             ]	(0.3741s x2.65 from start)
+        (leave) Compute evaluation to H-query      	[0.0113s x3.82]	(0.3854s x2.69 from start)
+      (leave) Compute the proof                  	[0.0237s x2.88]	(0.3864s x2.69 from start)
+    (leave) Call to snark_for_complement_prover	[0.0480s x2.55]	(0.3864s x2.69 from start)
+    * G1 elements in proof: 2
+    * G2 elements in proof: 1
+    * Proof size in bits: 1019
+  (leave) Call to snark for filtering prover 	[0.0656s x2.27]	(0.3864s x2.69 from start)
+  * snark_for_filtering_proof size in bits: 1784
+
+  * Peak vsize (physical memory+swap) in mebibytes (after prover): 257
+
+================================================================================
+snark for filtering Verifier
+================================================================================
+
+  (enter) Call to snark for filtering verifier	[             ]	(0.3868s x2.69 from start)
+    (enter) pairing computations               	[             ]	(0.3868s x2.69 from start)
+      (enter) Call to reduced_pairing<bn128_pp>  	[             ]	(0.3868s x2.69 from start)
+        (enter) Call to pairing<bn128_pp>          	[             ]	(0.3868s x2.69 from start)
+          (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.3868s x2.69 from start)
+          (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.08]	(0.3868s x2.69 from start)
+          (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.3868s x2.69 from start)
+          (leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.00]	(0.3869s x2.69 from start)
+          (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.3869s x2.69 from start)
+          (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.3871s x2.69 from start)
+        (leave) Call to pairing<bn128_pp>          	[0.0003s x1.00]	(0.3871s x2.69 from start)
+        (enter) Call to bn128_final_exponentiation 	[             ]	(0.3871s x2.69 from start)
+        (leave) Call to bn128_final_exponentiation 	[0.0003s x1.00]	(0.3874s x2.69 from start)
+      (leave) Call to reduced_pairing<bn128_pp>  	[0.0006s x1.00]	(0.3874s x2.69 from start)
+      (enter) Call to reduced_pairing<bn128_pp>  	[             ]	(0.3874s x2.69 from start)
+        (enter) Call to pairing<bn128_pp>          	[             ]	(0.3874s x2.69 from start)
+          (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.3874s x2.69 from start)
+          (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.05]	(0.3875s x2.69 from start)
+          (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.3875s x2.69 from start)
+          (leave) Call to bn128_ate_precompute_G2    	[0.0001s x7.77]	(0.3875s x2.69 from start)
+          (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.3875s x2.69 from start)
+          (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.3877s x2.69 from start)
+        (leave) Call to pairing<bn128_pp>          	[0.0003s x2.91]	(0.3877s x2.69 from start)
+        (enter) Call to bn128_final_exponentiation 	[             ]	(0.3877s x2.69 from start)
+        (leave) Call to bn128_final_exponentiation 	[0.0003s x1.00]	(0.3880s x2.69 from start)
+      (leave) Call to reduced_pairing<bn128_pp>  	[0.0006s x1.92]	(0.3880s x2.69 from start)
+      (enter) Call to reduced_pairing<bn128_pp>  	[             ]	(0.3880s x2.69 from start)
+        (enter) Call to pairing<bn128_pp>          	[             ]	(0.3881s x2.69 from start)
+          (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.3881s x2.69 from start)
+          (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.05]	(0.3881s x2.69 from start)
+          (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.3881s x2.69 from start)
+          (leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.00]	(0.3881s x2.69 from start)
+          (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.3881s x2.69 from start)
+          (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.3883s x2.69 from start)
+        (leave) Call to pairing<bn128_pp>          	[0.0003s x1.00]	(0.3883s x2.69 from start)
+        (enter) Call to bn128_final_exponentiation 	[             ]	(0.3883s x2.69 from start)
+        (leave) Call to bn128_final_exponentiation 	[0.0003s x1.00]	(0.3887s x2.69 from start)
+      (leave) Call to reduced_pairing<bn128_pp>  	[0.0006s x1.00]	(0.3887s x2.69 from start)
+      (enter) Call to reduced_pairing<bn128_pp>  	[             ]	(0.3887s x2.69 from start)
+        (enter) Call to pairing<bn128_pp>          	[             ]	(0.3887s x2.69 from start)
+          (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.3887s x2.69 from start)
+          (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.04]	(0.3887s x2.69 from start)
+          (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.3887s x2.69 from start)
+          (leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.00]	(0.3888s x2.68 from start)
+          (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.3888s x2.68 from start)
+          (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.3889s x2.68 from start)
+        (leave) Call to pairing<bn128_pp>          	[0.0003s x1.00]	(0.3890s x2.68 from start)
+        (enter) Call to bn128_final_exponentiation 	[             ]	(0.3890s x2.68 from start)
+        (leave) Call to bn128_final_exponentiation 	[0.0003s x1.00]	(0.3893s x2.68 from start)
+      (leave) Call to reduced_pairing<bn128_pp>  	[0.0006s x1.00]	(0.3893s x2.68 from start)
+      (enter) Call to reduced_pairing<bn128_pp>  	[             ]	(0.3896s x2.68 from start)
+        (enter) Call to pairing<bn128_pp>          	[             ]	(0.3896s x2.68 from start)
+          (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.3896s x2.68 from start)
+          (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.04]	(0.3896s x2.68 from start)
+          (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.3896s x2.68 from start)
+          (leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.00]	(0.3897s x2.68 from start)
+          (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.3897s x2.68 from start)
+          (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.3899s x2.68 from start)
+        (leave) Call to pairing<bn128_pp>          	[0.0003s x1.00]	(0.3899s x2.68 from start)
+        (enter) Call to bn128_final_exponentiation 	[             ]	(0.3899s x2.68 from start)
+        (leave) Call to bn128_final_exponentiation 	[0.0003s x1.00]	(0.3902s x2.68 from start)
+      (leave) Call to reduced_pairing<bn128_pp>  	[0.0006s x1.00]	(0.3902s x2.68 from start)
+      (enter) Check QAP divisibility             	[             ]	(0.3902s x2.68 from start)
+snark for filtering protocol: PASS
+      (leave) Check QAP divisibility             	[0.0000s x1.05]	(0.3902s x2.68 from start)
+    (leave) pairing computations               	[0.0034s x1.16]	(0.3902s x2.68 from start)
+    (enter) Call to snark_for_complement_verifier_weak_IC	[             ]	(0.3902s x2.68 from start)
+      (enter) Call to snark_for_complement_verifier_process_vk	[             ]	(0.3902s x2.68 from start)
+        (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.3902s x2.68 from start)
+        (leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.00]	(0.3903s x2.68 from start)
+      (leave) Call to snark_for_complement_verifier_process_vk	[0.0001s x1.01]	(0.3903s x2.68 from start)
+      (enter) Call to snark_for_complement_online_verifier_weak_IC	[             ]	(0.3903s x2.68 from start)
+        (enter) Check if the proof is well-formed  	[             ]	(0.3903s x2.68 from start)
+        (leave) Check if the proof is well-formed  	[0.0000s x1.12]	(0.3903s x2.68 from start)
+        (enter) Online pairing computations        	[             ]	(0.3903s x2.68 from start)
+          (enter) Check QAP divisibility             	[             ]	(0.3903s x2.68 from start)
+            (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.3904s x2.68 from start)
+            (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.04]	(0.3904s x2.68 from start)
+            (enter) Call to bn128_ate_precompute_G2    	[             ]	(0.3904s x2.68 from start)
+            (leave) Call to bn128_ate_precompute_G2    	[0.0001s x1.00]	(0.3904s x2.68 from start)
+            (enter) Call to bn128_ate_precompute_G1    	[             ]	(0.3905s x2.68 from start)
+            (leave) Call to bn128_ate_precompute_G1    	[0.0000s x1.03]	(0.3905s x2.68 from start)
+            (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.3905s x2.68 from start)
+            (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.3906s x2.68 from start)
+            (enter) Call to miller_loop<bn128_pp>      	[             ]	(0.3907s x2.68 from start)
+            (leave) Call to miller_loop<bn128_pp>      	[0.0002s x1.00]	(0.3908s x2.68 from start)
+            (enter) Call to bn128_final_exponentiation 	[             ]	(0.3908s x2.68 from start)
+            (leave) Call to bn128_final_exponentiation 	[0.0003s x1.00]	(0.3911s x2.67 from start)
+          (leave) Check QAP divisibility             	[0.0008s x1.00]	(0.3912s x2.67 from start)
+        (leave) Online pairing computations        	[0.0008s x1.00]	(0.3912s x2.67 from start)
+      (leave) Call to snark_for_complement_online_verifier_weak_IC	[0.0008s x1.00]	(0.3912s x2.67 from start)
+    (leave) Call to snark_for_complement_verifier_weak_IC	[0.0009s x1.00]	(0.3912s x2.67 from start)
+  (leave) Call to snark for filtering verifier	[0.0044s x1.13]	(0.3912s x2.67 from start)
+
+  * Peak vsize (physical memory+swap) in mebibytes (after verifier): 257
+* The verification result is: PASS
+(leave) Call to run_snark_for_filtering    	[0.3876s x2.68]	(0.3912s x2.67 from start)
+
+================================================================================
+(leave) Test Snark for Filtering
+================================================================================
+

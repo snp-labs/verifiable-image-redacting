@@ -11,3 +11,4 @@ bin
 !JsnarkCirctuitBuilder/auction_10.arith
 *.in
 depends/
+build/
