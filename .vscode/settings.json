@@ -57,6 +57,13 @@
         "typeinfo": "cpp",
         "*.ipp": "cpp",
         "valarray": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "random": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "memory_resource": "cpp",
+        "set": "cpp"
     }
 }

@@ -308,6 +308,18 @@ target_link_libraries(
 )
 
 add_executable(
+  Verifiable_image_redacting
+  EXCLUDE_FROM_ALL
+
+  zk_proof_systems/ppzksnark/Verifiable_image_redacting/profiling/profile_Verifiable_image_redacting.cpp
+)
+target_link_libraries(
+  Verifiable_image_redacting
+
+  snark
+)
+
+add_executable(
   profile_r1cs_gg_ppzksnark
   EXCLUDE_FROM_ALL
 
@@ -629,6 +641,24 @@ target_link_libraries(
   ${OpenCV_LIBS}
   /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so
   OpenMP::OpenMP_CXX
+  ../depends/bls-signatures/target/debug/libbls_signatures_ffi.so
+  snark
+)
+
+include_directories(${OpenCV_INCLUDE_DIRS})
+add_executable(
+  Verifiable_image_redacting_test
+  EXCLUDE_FROM_ALL
+
+  zk_proof_systems/ppzksnark/Verifiable_image_redacting/tests/test_Verifiable_image_redacting.cpp
+)
+
+target_link_libraries(
+  Verifiable_image_redacting_test
+  ${OpenCV_LIBS}
+  /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so
+  OpenMP::OpenMP_CXX
+  #/usr/local/lib/libbls.a
 
   snark
 )
@@ -743,6 +773,8 @@ add_executable(
 
   zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.tcc
   zk_proof_systems/ppzksnark/snark_for_filtering/snark_for_filtering.hpp
+  zk_proof_systems/ppzksnark/Verifiable_image_redacting/Verifiable_image_redacting.tcc
+  zk_proof_systems/ppzksnark/Verifiable_image_redacting/Verifiable_image_redacting.hpp
 )
 target_link_libraries(
   run_ppzksnark
@@ -858,6 +890,14 @@ add_test(
   NAME zk_proof_systems_snark_for_filtering_test
   COMMAND zk_proof_systems_snark_for_filtering_test
 )
+add_test(
+  NAME Verifiable_image_redacting
+  COMMAND Verifiable_image_redacting
+)
+add_test(
+  NAME Verifiable_image_redacting_test
+  COMMAND Verifiable_image_redacting_test
+)
 add_dependencies(check common_routing_algorithms_test)
 add_dependencies(check gadgetlib1_simple_test)
 add_dependencies(check gadgetlib1_r1cs_ppzksnark_verifier_gadget_test)
@@ -882,6 +922,7 @@ add_dependencies(check test_merkle_tree_gadgets)
 add_dependencies(check test_set_commitment_gadget)
 add_dependencies(check test_sha256_gadget)
 add_dependencies(check zk_proof_systems_snark_for_filtering_test)
+add_dependencies(check Verifiable_image_redacting_test)
 
 # TODO (howardwu) Resolve runtime on targets
 # gadgetlib1_fooram_test, zk_proof_systems_r1cs_mp_ppzkpcd_test, zk_proof_systems_r1cs_sp_ppzkpcd_test, zk_proof_systems_ram_zksnark_test
