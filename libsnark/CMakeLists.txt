@@ -109,8 +109,8 @@ if("${WITH_SUPERCOP}")
   )
 endif()
 
-set(OpenCV_DIR "/usr/include/opencv")
-find_package(OpenCV 2.4.9 REQUIRED core imgproc highgui objdetect)
+set(OpenCV_DIR "/usr/local/include/opencv")
+find_package(OpenCV 3.4.0 REQUIRED core imgproc highgui objdetect)
 
 find_package(OpenSSL REQUIRED) 
 if( OpenSSL_FOUND )
@@ -623,7 +623,7 @@ add_executable(
 target_link_libraries(
   zk_proof_systems_r1cs_gg_ppzksnark_test
   ${OpenCV_LIBS}
-  /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so
+  /usr/lib/aarch64-linux-gnu/libssl.so /usr/lib/aarch64-linux-gnu/libcrypto.so
 
   snark
 )
@@ -639,7 +639,7 @@ add_executable(
 target_link_libraries(
   zk_proof_systems_snark_for_filtering_test
   ${OpenCV_LIBS}
-  /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so
+  /usr/lib/aarch64-linux-gnu/libssl.so /usr/lib/aarch64-linux-gnu/libcrypto.so
   OpenMP::OpenMP_CXX
   ../depends/bls-signatures/target/debug/libbls_signatures_ffi.so
   snark
