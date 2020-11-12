@@ -50,3 +50,36 @@ TEST(plookup_composer, Relu_lookup_proof)
    EXPECT_EQ(result, true);
 }
 
+TEST(plookup_composer, Relu_lookup_proof)
+{
+   waffle::PLookupComposer composer = waffle::PLookupComposer();
+   composer.lookup_tables.emplace_back(std::move(generate_xor_table()));
+ 
+   size_t num_bits = 30;
+ 
+   // uint32_t random_value = engine.get_random_uint32();
+   uint32_t random_value = 1073741824-1;//2**30-1
+      
+   std::cout<<random_value<<std::endl;
+ 
+   fr witness_value = fr{ random_value, 0, 0, 0 }.to_montgomery_form();
+   uint32_t witness_index = composer.add_variable(witness_value);
+ 
+   std::vector<uint32_t> accumulators = composer.create_range_constraint(witness_index, num_bits);
+ 
+   uint32_t num_variables = (uint32_t)composer.get_num_variables()-1;
+ 
+   fr source = composer.get_variable(num_variables).from_montgomery_form();
+   uint32_t expected = static_cast<uint32_t>(source.data[0]);
+ 
+   std::cout<<expected<<std::endl;
+ 
+   auto prover = composer.create_prover();
+ 
+   auto verifier = composer.create_verifier();
+ 
+   auto proof = prover.construct_proof();
+ 
+   bool result = verifier.verify_proof(proof); // instance, prover.reference_string.SRS_T2);
+   EXPECT_EQ(result, true);
+}
