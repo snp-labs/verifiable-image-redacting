@@ -139,8 +139,8 @@ Portability
 
 Tested configurations include:
 
-* Ubuntu LTS with g++ 4.8 on x86-64: BN128
-* ARM AArch32/AArch64: ALT_BN128
+* Ubuntu 16.04 LTS with g++ 4.8 on x86-64: BN128
+* Ubuntu 16.04 LTS with g++ 4.8 on ARM AArch32/AArch64: ALT_BN128
 
 --------------------------------------------------------------------------------
 Directory structure
