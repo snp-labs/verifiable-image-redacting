@@ -63,11 +63,6 @@ namespace libsnark
 		libff::G1_vector<ppT> H_query;
 		snark_for_completment_constraint_system<ppT> constraint_system;
 
-		libff::G1<ppT> b_g1;
-		libff::G1<ppT> p0_g1;
-        libff::G1<ppT> p1_g1;
-		libff::Fr<ppT> tau;
-
 		snark_for_filtering_proving_key(){};
 		snark_for_filtering_proving_key<ppT> &operator=(const snark_for_filtering_proving_key<ppT> &other) = default;
 		snark_for_filtering_proving_key(const snark_for_filtering_proving_key<ppT> &other) = default;
@@ -83,31 +78,22 @@ namespace libsnark
 										knowledge_commitment_vector<libff::G2<ppT>, libff::G1<ppT>> &&B_query,
 										libff::G1_vector<ppT> &&H_query,
 										//   libff::G1_vector<ppT> &&L_query,
-										snark_for_completment_constraint_system<ppT> &&constraint_system,
-										libff::G1<ppT> &&b_g1,
-										libff::G1<ppT> &&p0_g1,
-        								libff::G1<ppT> &&p1_g1,
-										libff::Fr<ppT> &&tau) : P_vector(std::move(P_vector)),
-																f_vector(std::move(f_vector)),
-																alpha_g1(std::move(alpha_g1)),
-																beta_g1(std::move(beta_g1)),
-																beta_g2(std::move(beta_g2)),
-																delta_g1(std::move(delta_g1)),
-																delta_g2(std::move(delta_g2)),
-																A_query(std::move(A_query)),
-																B_query(std::move(B_query)),
-																H_query(std::move(H_query)),
-																// L_query(std::move(L_query)),
-																constraint_system(std::move(constraint_system)),
-																b_g1(std::move(b_g1)),
-																p0_g1(std::move(p0_g1)),
-																p1_g1(std::move(p1_g1)),
-																tau(std::move(tau))
-																{};
+										snark_for_completment_constraint_system<ppT> &&constraint_system) : P_vector(std::move(P_vector)),
+																											f_vector(std::move(f_vector)),
+																											alpha_g1(std::move(alpha_g1)),
+																											beta_g1(std::move(beta_g1)),
+																											beta_g2(std::move(beta_g2)),
+																											delta_g1(std::move(delta_g1)),
+																											delta_g2(std::move(delta_g2)),
+																											A_query(std::move(A_query)),
+																											B_query(std::move(B_query)),
+																											H_query(std::move(H_query)),
+																											// L_query(std::move(L_query)),
+																											constraint_system(std::move(constraint_system)){};
 
 		size_t G1_size() const
 		{
-			return 6 + A_query.size() + B_query.domain_size() + H_query.size() + P_vector.size() + f_vector.size();
+			return 3 + A_query.size() + B_query.domain_size() + H_query.size() + P_vector.size() + f_vector.size();
 		}
 
 		size_t G2_size() const
@@ -117,7 +103,7 @@ namespace libsnark
 
 		size_t G1_sparse_size() const
 		{
-			return 6 + A_query.size() + B_query.size() + H_query.size() + P_vector.size() + f_vector.size();
+			return 3 + A_query.size() + B_query.size() + H_query.size() + P_vector.size() + f_vector.size();
 		}
 
 		size_t G2_sparse_size() const
@@ -129,7 +115,7 @@ namespace libsnark
 		{
 			return (libff::size_in_bits(A_query) + B_query.size_in_bits() +
 					libff::size_in_bits(H_query) + libff::size_in_bits(P_vector) + libff::size_in_bits(f_vector) +
-					3 * libff::G1<ppT>::size_in_bits() + 2 * libff::G2<ppT>::size_in_bits() + libff::Fr<ppT>::size_in_bits());
+					3 * libff::G1<ppT>::size_in_bits() + 2 * libff::G2<ppT>::size_in_bits());
 		}
 
 		void print_size() const
@@ -170,9 +156,6 @@ namespace libsnark
 		libff::G2<ppT> a_g2;
 		libff::GT<ppT> alpha_g1_beta_g2;
 		libff::G2<ppT> delta_g2;
-		libff::G2<ppT> d0_g2;
-		libff::G2<ppT> d1_g2;
-		libff::Fr<ppT> tau;
 
 		snark_for_filtering_verification_key() = default;
 		snark_for_filtering_verification_key(const libff::G2<ppT> &c0_g2,
@@ -180,18 +163,12 @@ namespace libsnark
 											 const libff::G2<ppT> &c2_g2,
 											 const libff::G2<ppT> &a_g2,
 											 const libff::GT<ppT> &alpha_g1_beta_g2,
-											 const libff::G2<ppT> &delta_g2,
-											 const libff::G2<ppT> &d0_g2,
-											 const libff::G2<ppT> &d1_g2,
-											 const libff::Fr<ppT> &tau) : c0_g2(c0_g2),
-																		  c1_g2(c1_g2),
-																		  c2_g2(c2_g2),
-																		  a_g2(a_g2),
-																		  alpha_g1_beta_g2(alpha_g1_beta_g2),
-																		  delta_g2(delta_g2),
-																		  d0_g2(d0_g2),
-																		  d1_g2(d1_g2),
-																		  tau(tau){};
+											 const libff::G2<ppT> &delta_g2) : c0_g2(c0_g2),
+																			   c1_g2(c1_g2),
+																			   c2_g2(c2_g2),
+																			   a_g2(a_g2),
+																			   alpha_g1_beta_g2(alpha_g1_beta_g2),
+																			   delta_g2(delta_g2){};
 
 		size_t G1_size() const
 		{
@@ -200,7 +177,7 @@ namespace libsnark
 
 		size_t G2_size() const
 		{
-			return 7;
+			return 5;
 		}
 
 		size_t GT_size() const
@@ -211,7 +188,7 @@ namespace libsnark
 		size_t size_in_bits() const
 		{
 			// TODO: include GT size
-			return (G2_size() * libff::G2<ppT>::size_in_bits() + 12 * libff::alt_bn128_Fq::size_in_bits() + libff::Fr<ppT>::size_in_bits()); //GT size = 12 * libff::bn128_Fq::size_in_bits()
+			return (5 * libff::G2<ppT>::size_in_bits() + 12 * libff::bn128_Fq::size_in_bits()); //GT size = 12 * libff::bn128_Fq::size_in_bits()
 		}
 
 		void print_size() const
@@ -371,7 +348,6 @@ namespace libsnark
 		snark_for_completment_proof<ppT> completment_proof;
 		libff::G1<ppT> ss_proof_g1;
 		libff::G1<ppT> _C_x;
-		libff::G1<ppT> sb;
 
 		snark_for_filtering_proof()
 		{
@@ -381,17 +357,15 @@ namespace libsnark
 			this->completment_proof->g_C = libff::G1<ppT>::one();
 			this->ss_proof_g1 = libff::G1<ppT>::one();
 			this->_C_x = libff::G1<ppT>::one();
-			this->sb = libff::G1<ppT>::one();
 		}
 		snark_for_filtering_proof(snark_for_completment_proof<ppT> &&completment_proof,
-								  libff::G1<ppT> &&ss_proof_g1, libff::G1<ppT> &&_C_x, libff::G1<ppT> &&sb) : completment_proof(std::move(completment_proof)),
+								  libff::G1<ppT> &&ss_proof_g1, libff::G1<ppT> &&_C_x) : completment_proof(std::move(completment_proof)),
 																						 ss_proof_g1(std::move(ss_proof_g1)),
-																						 _C_x(std::move(_C_x)),
-																						 sb(std::move(sb)){};
+																						 _C_x(std::move(_C_x)){};
 
 		size_t proof_size() const //g1 group
 		{
-			return 5;
+			return 4;
 		}
 		size_t size_in_bits() const
 		{

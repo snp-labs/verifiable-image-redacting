@@ -39,12 +39,7 @@ namespace libsnark
                 this->B_query == other.B_query &&
                 this->H_query == other.H_query &&
                 // this->L_query == other.L_query &&
-                this->constraint_system == other.constraint_system &&
-                this->b_g1 == other.b_g1 &&
-                this->p0_g1 == other.p0_g1 &&
-                this->p1_g1 == other.p1_g1 &&
-                this->tau == other.tau
-                );
+                this->constraint_system == other.constraint_system);
     }
     template <typename ppT>
     std::ostream &operator<<(std::ostream &out, const snark_for_filtering_proving_key<ppT> &pk)
@@ -61,10 +56,6 @@ namespace libsnark
         out << pk.H_query;
         // out << pk.L_query;
         out << pk.constraint_system;
-        out << pk.b_g1 << OUTPUT_NEWLINE;
-        out << pk.p0_g1 << OUTPUT_NEWLINE;
-        out << pk.p1_g1 << OUTPUT_NEWLINE;
-        out << pk.tau << OUTPUT_NEWLINE;
 
         return out;
     }
@@ -88,14 +79,6 @@ namespace libsnark
         in >> pk.H_query;
         // in >> pk.L_query;
         in >> pk.constraint_system;
-        in >> pk.b_g1;
-        libff::consume_OUTPUT_NEWLINE(in);
-        in >> pk.p0_g1;
-        libff::consume_OUTPUT_NEWLINE(in);
-        in >> pk.p1_g1;
-        libff::consume_OUTPUT_NEWLINE(in);
-        in >> pk.tau;
-        libff::consume_OUTPUT_NEWLINE(in);
 
         return in;
     }
@@ -166,11 +149,7 @@ namespace libsnark
                 this->c2_g2 == other.c2_g2 &&
                 this->a_g2 == other.a_g2 &&
                 this->alpha_g1_beta_g2 == other.alpha_g1_beta_g2 &&
-                this->delta_g2 == other.delta_g2 &&
-                this->d0_g2 == other.d0_g2 &&
-                this->d1_g2 == other.d1_g2 &&
-                this->tau == other.tau
-                );
+                this->delta_g2 == other.delta_g2);
     }
     template <typename ppT>
     std::ostream &operator<<(std::ostream &out, const snark_for_filtering_verification_key<ppT> &vk)
@@ -181,9 +160,6 @@ namespace libsnark
         out << vk.a_g2;
         out << vk.alpha_g1_beta_g2 << OUTPUT_NEWLINE;
         out << vk.delta_g2 << OUTPUT_NEWLINE;
-        out << vk.d0_g2 << OUTPUT_NEWLINE;
-        out << vk.d1_g2 << OUTPUT_NEWLINE;
-        out << vk.tau << OUTPUT_NEWLINE;
 
         return out;
     }
@@ -201,12 +177,6 @@ namespace libsnark
         in >> vk.alpha_g1_beta_g2;
         libff::consume_OUTPUT_NEWLINE(in);
         in >> vk.delta_g2;
-        libff::consume_OUTPUT_NEWLINE(in);
-        in >> vk.d0_g2;
-        libff::consume_OUTPUT_NEWLINE(in);
-        in >> vk.d1_g2;
-        libff::consume_OUTPUT_NEWLINE(in);
-        in >> vk.tau;
         libff::consume_OUTPUT_NEWLINE(in);
 
         return in;
@@ -401,20 +371,11 @@ namespace libsnark
         libff::Fr<ppT> k0 = libff::Fr<ppT>::random_element();
         libff::Fr<ppT> k1 = libff::Fr<ppT>::random_element();
         libff::Fr<ppT> k2 = libff::Fr<ppT>::random_element();
-        libff::Fr<ppT> k0_ = libff::Fr<ppT>::random_element();
-        libff::Fr<ppT> k1_ = libff::Fr<ppT>::random_element();
         libff::Fr<ppT> a = libff::Fr<ppT>::random_element();
         libff::G2<ppT> a_g2 = a * G2_gen;
-        libff::Fr<ppT> b = libff::Fr<ppT>::random_element();
-        libff::G1<ppT> b_g1 = a*g1_generator;
-        libff::Fr<ppT> tau = libff::Fr<ppT>::random_element();
         libff::G2<ppT> c0_g2 = k0 * a_g2;
         libff::G2<ppT> c1_g2 = k1 * a_g2;
         libff::G2<ppT> c2_g2 = k2 * a_g2;
-        libff::G2<ppT> d0_g2 = k0_*a_g2;
-        libff::G2<ppT> d1_g2 = k1_*a_g2;
-        libff::G1<ppT> p0_g1 = k0_*b_g1;
-        libff::G1<ppT> p1_g1 = k1_*b_g1;
         P_vector[0] = k2 * f_vector[0];
         P_vector[1] = k1 * f_vector[num_variables / 2];
         P_vector[2] = k0 * h_g1_vector[0];
@@ -448,22 +409,14 @@ namespace libsnark
             std::move(keypair.pk.A_query),
             std::move(keypair.pk.B_query),
             std::move(keypair.pk.H_query),
-            std::move(keypair.pk.constraint_system),
-            std::move(b_g1),
-            std::move(p0_g1),
-            std::move(p1_g1),
-            std::move(tau)
-            );
+            std::move(keypair.pk.constraint_system));
         snark_for_filtering_verification_key<ppT> vk = snark_for_filtering_verification_key<ppT>(
             c0_g2,
             c1_g2,
             c2_g2,
             a_g2,
             keypair.vk.alpha_g1_beta_g2,
-            keypair.vk.delta_g2,
-            d0_g2,
-            d1_g2,
-            tau);
+            keypair.vk.delta_g2);
 
         snark_for_filtering_public_parameter<ppT> pp = snark_for_filtering_public_parameter<ppT>(
             std::move(h_g1_vector));
@@ -483,7 +436,6 @@ namespace libsnark
                                                               const libff::Fr<ppT> &x0)
     {
 
-        libff::enter_block("Call to snark for filtering prover");
         const size_t len = auxiliary_input.size(); //len = 514
         libff::Fr<ppT> o2(auxiliary_input[len / 2]);
         libff::Fr<ppT> o1(auxiliary_input[0]);
@@ -514,10 +466,6 @@ namespace libsnark
         libff::enter_block("Compute ss_proof");
         libff::G1<ppT> ss_proof_g1;
         libff::G1<ppT> ss_proof_g1_tmp;
-        //simulation-extractable ver
-        libff::Fr<ppT> s = libff::Fr<ppT>::random_element();
-        libff::G1<ppT> sb = s * pk.b_g1;
-
 
 #ifdef MULTICORE
 #pragma omp parallel for reduction(+ \
@@ -546,10 +494,6 @@ namespace libsnark
 
         ss_proof_g1 = ss_proof_g1 + o2 * pk.P_vector[1];
         ss_proof_g1 = ss_proof_g1 + x0 * pk.P_vector[2];
-        //simulation-extractable ver
-        ss_proof_g1 = ss_proof_g1 + s * pk.p0_g1;
-        ss_proof_g1 = ss_proof_g1 + (s * pk.tau) * pk.p1_g1;
-
         libff::leave_block("Compute ss_proof");
 
         snark_for_completment_proving_key<ppT> completment_pk = snark_for_completment_proving_key<ppT>(
@@ -578,9 +522,8 @@ namespace libsnark
             std::move(primary_input),
             std::move(auxiliary_input));
 
-        libff::leave_block("Call to snark for filtering prover");
 
-        snark_for_filtering_proof<ppT> proof = snark_for_filtering_proof<ppT>(std::move(completment_proof), std::move(ss_proof_g1), std::move(_C_x), std::move(sb));
+        snark_for_filtering_proof<ppT> proof = snark_for_filtering_proof<ppT>(std::move(completment_proof), std::move(ss_proof_g1), std::move(_C_x));
 
         // snark_for_filtering_proof<ppT> proof
         //     = snark_for_filtering_proof<ppT>(std::move(completment_proof), std::move(ss_proof_g1), std::move(_C_x));
@@ -625,14 +568,13 @@ namespace libsnark
                                       const snark_for_filtering_proof<ppT> &proof)
     {
 
-        libff::enter_block("Call to snark for filtering verifier");
+        // libff::enter_block("Call to snark for filtering verifier");
 
         libff::enter_block("pairing computations");
         libff::GT<ppT> left = ppT::reduced_pairing(proof.ss_proof_g1, vk.a_g2);
         libff::GT<ppT> right0 = ppT::reduced_pairing(C_x, vk.c2_g2);
         libff::GT<ppT> right1 = ppT::reduced_pairing(proof._C_x, vk.c1_g2);
         libff::GT<ppT> right2 = ppT::reduced_pairing(sigma_x, vk.c0_g2);
-        libff::GT<ppT> right3 = ppT::reduced_pairing(proof.sb, vk.d0_g2 + vk.tau*vk.d1_g2);
 
         snark_for_completment_verification_key<ppT> completment_vk = snark_for_completment_verification_key<ppT>(
             std::move(vk.alpha_g1_beta_g2),
@@ -641,14 +583,14 @@ namespace libsnark
         // const bool ans =(left == (right0 *  right1 * right2);
 
         libff::enter_block("Check QAP divisibility");
-        const bool ans = (left == (right0 * right1 * right2 * right3));
+        const bool ans = (left == (right0 * right1 * right2));
         printf("snark for filtering protocol: %s\n", (ans) ? "PASS" : "FAIL");
         libff::leave_block("Check QAP divisibility");
         libff::leave_block("pairing computations");
 
         const bool ans2 = snark_for_completment_verifier_weak_IC<ppT>(completment_vk, proof._C_x, C_x, proof.completment_proof);
 
-        libff::leave_block("Call to snark for filtering verifier");
+        // libff::leave_block("Call to snark for filtering verifier");
 
         // return left == (right0 *  right1 * right2);
         return ans && ans2;

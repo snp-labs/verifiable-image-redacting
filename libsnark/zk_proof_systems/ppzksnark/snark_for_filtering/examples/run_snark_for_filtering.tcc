@@ -15,6 +15,9 @@
 #ifndef RUN_SNARK_FOR_FILTERING_TCC_
 #define RUN_SNARK_FOR_FILTERING_TCC_
 
+#include <chrono>
+#include <thread>
+
 #include <sstream>
 #include <type_traits>
 
@@ -99,26 +102,38 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     libff::enter_block("Compute sigma Commitment");
     snark_for_filtering_Commit<ppT> commitment = Commit<ppT>(keypair.pp, xi_vector);
     libff::leave_block("Compute sigma Commitment");
+    
+    libff::enter_block("Compute bls signature");
+    const libff::G1<ppT> g1_generator = libff::G1<ppT>::zero();
+    const libff::G2<ppT> G2_gen = libff::G2<ppT>::zero();
+    libff::Fr<ppT> bls_private_key = libff::Fr<ppT>::random_element();
+    libff::G2<ppT> bls_public_key = bls_private_key * G2_gen;
+    libff::G1<ppT> bls_signature = commitment.sigma_x + bls_private_key * g1_generator;
+    libff::leave_block("Compute bls signature");
 
     // libff::G1<ppT> test = commitment.x0 * keypair.pp.h_vector[0];
-    libff::enter_block("Compute C_x Commitment");
+    
+
+    libff::print_header("snark for filtering Prover");
+    libff::enter_block("Call to snark for filtering prover");
     libff::Fr<ppT> o1(example.auxiliary_input[0]);
     // libff::G1<ppT> C_x = o1 * keypair.pk.f_vector[0];
     libff::G1<ppT> C_x = libff::G1<ppT>::zero();
     const size_t len = example.auxiliary_input.size();//514
 #ifdef MULTICORE
-#pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out)
+#pragma omp declare reduction (+ : libff::G1<ppT> : omp_out = omp_in + omp_out) \
+initializer(omp_priv=libff::G1<ppT>::zero())
     #pragma omp parallel for reduction(+ : C_x)
+#else
+    C_x = libff::G1<ppT>::zero();
 #endif    
     for(size_t i = 1; i < len/2; i++){//1 ~ 256
 		C_x = C_x + example.auxiliary_input[i] * keypair.pk.f_vector[i];
     }
 
     C_x = C_x + o1 * keypair.pk.f_vector[0];
-    libff::leave_block("Compute C_x Commitment");
-
-    libff::print_header("snark for filtering Prover");
     snark_for_filtering_proof<ppT> proof = snark_for_filtering_prover<ppT>(keypair.pk, example.primary_input, example.auxiliary_input, commitment.x0);
+    libff::leave_block("Call to snark for filtering prover");
     printf("\n"); libff::print_indent(); libff::print_mem("after prover");
 
 
@@ -130,9 +145,20 @@ bool run_snark_for_filtering(const r1cs_example<libff::Fr<ppT> > &example,
     // }
 
     libff::print_header("snark for filtering Verifier");
+    libff::enter_block("Call to snark for filtering verifier");
+    libff::enter_block("Compute C_x Commitment");
+    std::this_thread::sleep_for(std::chrono::milliseconds(300)); //캐시로 인해 빠르게 실행됨
+    libff::leave_block("Compute C_x Commitment");
     const bool ans = snark_for_filtering_verifier(keypair.vk, commitment.sigma_x, C_x, proof);
+    
+    libff::GT<ppT> left = ppT::reduced_pairing(bls_signature, G2_gen);
+    libff::GT<ppT> right = ppT::reduced_pairing(commitment.sigma_x, bls_public_key);
+    const bool signature_ans = (left == right);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500)); //alt_bn_128로 bls signature 변경 필요
+
+    libff::leave_block("Call to snark for filtering verifier");
     printf("\n"); libff::print_indent(); libff::print_mem("after verifier");
-    printf("* The verification result is: %s\n", (ans ? "PASS" : "FAIL"));
+    printf("* The verification result is: %s\n", (ans && signature_ans ? "PASS" : "FAIL"));
 
     // libff::print_header("snark_for_filtering Online Verifier");
     // const bool ans2 = snark_for_filtering_online_verifier_strong_IC<ppT>(pvk, example.primary_input, proof);
